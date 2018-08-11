@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
+    <!-- Online version of Bulma...
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.map">
+    ...We're going to use local files -->
+    <link rel="stylesheet" href="public/bulma-0.7.1/css/bulma.css">
+    <link rel="stylesheet" href="public/bulma-0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="public/amiiboland.js"></script>
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+
   </head>
 
   <nav class="navbar is-transparent">
@@ -99,6 +108,23 @@
       </ul>
     </div>
 
+
+   
+
+    <div class="modal">
+        <div class="modal-background">
+        <div class="modal-content">
+          </div>
+        </div>
+           
+          <div class="collected has-text-white"> 
+            <input id="switchLarge" type="checkbox" name="switchLarge" class="switch is-large is-success is-rounded">
+            <label for="switchLarge">Collected</label>
+            </div>
+          </div>
+ 
+    
+
   
   <div class="columns">
           <div class="column">
@@ -109,10 +135,13 @@
                       <p></p>
                       </div>
                 <center>
-                  <img src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png">
+                    <img alt="Mario" src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png" class="amiibo-image">
                 </center>
               </article>
             </div>
+
+          
+            
 
             <div class="column">
                 <article class="message is-large is-danger">
@@ -153,7 +182,7 @@
                       </article>
                     </center>
                   </div>
-</div>
+                </div>
 
 <div class="columns">
     <div class="column">
@@ -168,6 +197,8 @@
           </center>
         </article>
       </div>
+
+
 
       <div class="column">
           <article class="message is-large is-danger">
@@ -211,6 +242,9 @@
 </div>
 
 
+
+
+
         
   <footer class="footer">
         <div class="content">
@@ -221,5 +255,9 @@
           </center>
         </div>
       </footer>
+
+
+    
+
   </body>
 </html>

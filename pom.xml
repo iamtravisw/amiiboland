@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.iamtravisw.app</groupId>
-    <artifactId>goodmorning</artifactId>
+    <artifactId>amiiboland</artifactId>
     <version>1.0</version>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -37,13 +38,19 @@
             <version>1.7.12</version>
         </dependency>
         <dependency>
-        <groupId>com.sparkjava</groupId>
-        <artifactId>spark-template-velocity</artifactId>
-        <version>2.7.1</version>
-    </dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-velocity</artifactId>
+            <version>2.7.1</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.11</version>
         </dependency>
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+    </dependencies>
 </project>
