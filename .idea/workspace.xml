@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Amiibo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Amiibo.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +16,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="127" column="35" lean-forward="true" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="35" />
+            <state relative-caret-position="259">
+              <caret line="155" column="85" selection-start-line="155" selection-start-column="85" selection-end-line="155" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,15 +192,16 @@
       <updated>1533873552057</updated>
       <workItem from="1533873560646" duration="709000" />
       <workItem from="1533874322581" duration="4634000" />
-      <workItem from="1533946806997" duration="22993000" />
+      <workItem from="1533946806997" duration="26765000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28336000" />
+    <option name="totallyTimeSpent" value="32108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="40" width="1920" height="1000" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -211,11 +209,11 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50208336" side_tool="true" weight="0.4053476" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.915625" weight="0.32406417" />
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49791667" visible="true" weight="0.32406417" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.084375" visible="true" weight="0.32406417" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="2" />
@@ -302,8 +300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="127" column="35" lean-forward="true" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="35" />
+        <state relative-caret-position="259">
+          <caret line="155" column="85" selection-start-line="155" selection-start-column="85" selection-end-line="155" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

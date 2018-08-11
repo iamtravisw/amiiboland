@@ -55,46 +55,46 @@ public class Main {
                         // Check to see if the row already exists before inserting any new rows
                         String checkExists = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
                         PreparedStatement psAdd = conn.prepareStatement(checkExists);
-                        psAdd.setInt(1, menu);                                 // AmiiboID
+                        psAdd.setInt(1, menu);                              // AmiiboID
                         psAdd.setInt(2, userID);                           // UserID
-                        ResultSet rsAdd = psAdd.executeQuery();                  // Execute
+                        ResultSet rsAdd = psAdd.executeQuery();               // Execute
 
-                        // If the row does not exist, insert a new row for this user
-                        if (!rsAdd.isBeforeFirst()) {
-                            System.out.println("Data does not exist... Inserting into database...");
+                            // If the row does not exist, insert a new row for this user
+                            if (!rsAdd.isBeforeFirst()) {
+                                System.out.println("Data does not exist... Inserting into database...");
 
-                            // sql insert statement
-                            String addAmiibo = "insert into Collection (AmiiboID, UserID, Collected, ModUser, ModDate, AddUser, AddDate)"
-                                    + "values (?, ?, ?, ?, ?, ?, ?)";
-                            PreparedStatement psAddInsert = conn.prepareStatement(addAmiibo);
+                                // sql insert statement
+                                String addAmiibo = "insert into Collection (AmiiboID, UserID, Collected, ModUser, ModDate, AddUser, AddDate)"
+                                        + "values (?, ?, ?, ?, ?, ?, ?)";
+                                PreparedStatement psAddInsert = conn.prepareStatement(addAmiibo);
 
-                            // sql insert values
-                            psAddInsert.setInt(1, menu);                  // AmiiboID
-                            psAddInsert.setInt(2, userID);             // UserID
-                            psAddInsert.setString(3, "Y");             // Collected Y/N
-                            psAddInsert.setString(4, "1");             // ModUser (ID)
-                            psAddInsert.setString(5, moddate.toString()); // ModDate
-                            psAddInsert.setString(6, "1");             // AddUser (ID)
-                            psAddInsert.setString(7, adddate.toString()); // AddDate
-                            psAddInsert.execute();                           // Execute
+                                // sql insert values
+                                psAddInsert.setInt(1, menu);                  // AmiiboID
+                                psAddInsert.setInt(2, userID);                // UserID
+                                psAddInsert.setString(3, "Y");             // Collected Y/N
+                                psAddInsert.setInt(4, userID);          // ModUser (ID)
+                                psAddInsert.setString(5, moddate.toString()); // ModDate
+                                psAddInsert.setInt(6, userID);          // AddUser (ID)
+                                psAddInsert.setString(7, adddate.toString()); // AddDate
+                                psAddInsert.execute();                           // Execute
 
-                            // If the row does exist, simply update it
-                        } else {
-                            while (rsAdd.next()) {
-                                String CollectionID = rsAdd.getString("CollectionID");
-                                System.out.println("This row already exists as CollectionID: " + CollectionID + ". Updating database...");
+                                // If the row does exist, simply update it
+                            } else {
+                                while (rsAdd.next()) {
+                                    int collectionID = rsAdd.getInt("CollectionID");
+                                    System.out.println("This row already exists as CollectionID: " + collectionID + ". Updating database...");
 
-                                // update the data
-                                PreparedStatement psAddUpdate = conn.prepareStatement(
-                                        "UPDATE Collection SET Collected = ?, ModUser = ?, ModDate = ? WHERE CollectionID = ?");
+                                    // update the data
+                                    PreparedStatement psAddUpdate = conn.prepareStatement(
+                                            "UPDATE Collection SET Collected = ?, ModUser = ?, ModDate = ? WHERE CollectionID = ?");
 
-                                // set the preparedstatement parameters
-                                psAddUpdate.setString(1, "Y");             // Collected
-                                psAddUpdate.setString(2, "1");             // ModUser
-                                psAddUpdate.setString(3, moddate.toString()); // ModDate
-                                psAddUpdate.setString(4, "1");            // CollectionID
-                                psAddUpdate.executeUpdate();                    // Execute
-                                System.out.println("Updated row...");
+                                        // set the preparedstatement parameters
+                                        psAddUpdate.setString(1, "Y");             // Collected
+                                        psAddUpdate.setInt(2, userID);                // ModUser
+                                        psAddUpdate.setString(3, moddate.toString()); // ModDate
+                                        psAddUpdate.setInt(4, collectionID);          // CollectionID
+                                        psAddUpdate.executeUpdate();                    // Execute
+                                        System.out.println("Updated row...");
                             }
                         }
 
@@ -103,6 +103,7 @@ public class Main {
                         // ==================================================
 
                     } else if (subMenu == 2) {
+
 
                         // Check to see if the row already exists before inserting any new rows
                         String checkForDelete = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
@@ -121,6 +122,60 @@ public class Main {
                             psDelete.executeUpdate();
 
                             System.out.println("Deleted CollectionID: " + collectionID);
+                        }
+
+
+                        // ==================================================
+                        // Add Favorite Logic
+                        // ==================================================
+
+                    } else if (subMenu == 3) {
+
+                        // Check to see if the row already exists before inserting any new rows
+                        String checkExistsFave = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
+                        PreparedStatement psAddFave = conn.prepareStatement(checkExistsFave);
+                        psAddFave.setInt(1, menu);                                 // AmiiboID
+                        psAddFave.setInt(2, userID);                               // UserID
+                        ResultSet rsAddFave = psAddFave.executeQuery();               // Execute
+
+                            // If the row does not exist, insert a new row for this user
+                            if (!rsAddFave.isBeforeFirst()) {
+                                System.out.println("Data does not exist... Inserting into database...");
+
+                                // sql insert statement
+                                String faveAmiibo = "insert into Collection (AmiiboID, UserID, Favorited, ModUser, ModDate, AddUser, AddDate)"
+                                        + "values (?, ?, ?, ?, ?, ?, ?)";
+                                PreparedStatement psFaveInsert = conn.prepareStatement(faveAmiibo);
+
+                                // sql insert values
+                                psFaveInsert.setInt(1, menu);                  // AmiiboID
+                                psFaveInsert.setInt(2, userID);                 // UserID
+                                psFaveInsert.setString(3, "Y");             // Favorited Y/N
+                                psFaveInsert.setInt(4, userID);                 // ModUser (ID)
+                                psFaveInsert.setString(5, moddate.toString()); // ModDate
+                                psFaveInsert.setInt(6, userID);                 // AddUser (ID)
+                                psFaveInsert.setString(7, adddate.toString()); // AddDate
+                                psFaveInsert.execute();                           // Execute
+
+                                // If the row does exist, simply update it
+                            } else {
+                                while (rsAddFave.next()) {
+                                    int collectionID = rsAddFave.getInt("CollectionID");
+                                    System.out.println("This row already exists as CollectionID: " + collectionID + ". Updating database...");
+
+                                    // update the data
+                                    PreparedStatement psFaveUpdate = conn.prepareStatement(
+                                            "UPDATE Collection SET Favorited = ?, ModUser = ?, ModDate = ? WHERE CollectionID = ?");
+
+                                    // set the preparedstatement parameters
+                                    psFaveUpdate.setString(1, "Y");             // Favorited
+                                    psFaveUpdate.setInt(2, userID);                 // ModUser
+                                    psFaveUpdate.setString(3, moddate.toString()); // ModDate
+                                    psFaveUpdate.setInt(4, collectionID);           // CollectionID
+                                    psFaveUpdate.executeUpdate();                    // Execute
+                                    System.out.println("Updated row...");
+
+                            }
                         }
                     }
                 }
