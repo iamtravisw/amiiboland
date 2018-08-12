@@ -49,17 +49,20 @@ public class Main {
             return render(model, "templates/index.vm");
         });
 
-        // this is my home page
-        get("/", (rq, rs) -> {
-            Map<String, Object> model = new HashMap<>();
-            return render(model, "templates/index.vm");
-        });
+
+
+// get name and email from user input
+        post("/input", (request, response) -> {
+            String switchLarge;
+            switchLarge = request.queryParams("switchLarge");
+
+            if (switchLarge != null) {
 
         // ==================================================
         // Main Menu
         // ==================================================
 
-        do {
+      //  do {
             try {
 
                 System.out.println("Type the Menu Number of the Amiibo you wish to modify.\n");
@@ -394,7 +397,9 @@ public class Main {
                 System.out.println(e);
             }
         }
-        while (true);
+      //  while (true);
+            return String.join(" / ", switchLarge);
+        });
     }
 
     public static String render(Map<String, Object> model, String templatePath) {

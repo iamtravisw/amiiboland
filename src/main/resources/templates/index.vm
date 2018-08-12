@@ -4,18 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
-    <!-- Online version of Bulma...
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    ...We're going to use local files -->
-    <link rel="stylesheet" href="public/assets/css/bulma.css">
-    <link rel="stylesheet" href="public/assets/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="public/amiiboland.js"></script>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-
+    <script src="/amiiboland.js"></script>
+    <link rel="icon" href="/amiibo.ico">
 </head>
 
 <nav class="navbar is-transparent">
@@ -67,10 +61,7 @@
               <span>Sign Up</span>
             </a>
           </span>
-    </div>
-    </div>
-    </div>
-</nav>
+        </nav>
 
 <div class="tabs is-centered is-boxed">
     <ul>
@@ -108,24 +99,11 @@
 </div>
 
 
-
-
-<div class="modal">
-    <div class="modal-background">
-        <div class="modal-content">
-        </div>
-    </div>
-
-    <div class="collected has-text-white">
-        <input id="switchLarge" type="checkbox" name="switchLarge" class="switch is-large is-success is-rounded">
-        <label for="switchLarge">Collected</label>
-    </div>
-</div>
-
-
-
-
 <div class="columns">
+    <!-- Here are all of the Amiibo -->
+
+
+
     <div class="column">
         <article class="message is-large is-danger">
             <div class="message-header">
@@ -133,12 +111,53 @@
                 <p>Mario</p>
                 <p></p>
             </div>
-            <center>
-                <img alt="Mario" src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png" class="amiibo-image">
+            <center>   <!-- Amiibo -->
+                <figure class="image has-text-light">
+                    <img class="amiibo-image" src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png">
+                    <!-- Content Over Amiibo -->
+                    <figcaption class="overlay is-overlay is-invisible">
+                        <!-- Background -->
+                        <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                        <br>
+                        <!-- Buttons -->
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <article class="tile is-child">
+
+                                    <!-- Collect Button -->
+                                    <div class="switch">
+                                        <input class="switch is-overlay is-large is-success is-rounded is-overlay" id="collected" type="checkbox" name="switchLarge" value="1" onclick="this.form.submit()">
+                                        <label for="collected"><br>Mine</label>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Wish List Button -->
+                            <div class="tile is-parent">
+                                <article class="tile is-child">
+                                    <div class="star">
+                                        <span class="fa-stack">
+                                            <i class="fas fa-star fa-2x"></i>
+                                            <h4 class="subtitle is-5 has-text-light">Wish</h4>
+                                        </span>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Favorite Button -->
+                            <div class="tile is-parent">
+                                <article class="tile is-child">
+                                    <div class="heart">
+                                        <span class="fa-stack">
+                                            <i class="fas fa-heart fa-2x"></i>
+                                            <h4 class="subtitle is-5 has-text-light">Fave</h4>
+                                        </span>
+                                    </div>
+                                </article>
+                            </div>
+                    </figcaption>
+                </figure>
             </center>
         </article>
     </div>
-
 
 
 
@@ -146,11 +165,11 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>Blue Yarn Yoshi</p>
+                <p>Shulk</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/_unRKBKF-XrAcGRH8IB8w7ajGe_AvIzO.png">
+                <img src="https://storage.googleapis.com/amiibo/-m7N2IwDaQkiCy2zHmOrRhuINvfOdiDA.png">
             </center>
         </article>
     </div>
@@ -179,7 +198,6 @@
                 <img src="https://storage.googleapis.com/amiibo/08xh0YTRxB7_oHndOtHfozouRvG-fD7u.png">
             </center>
         </article>
-        </center>
     </div>
 </div>
 
@@ -188,11 +206,11 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>Mario</p>
+                <p>Lil Mac</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png">
+                <img src="https://storage.googleapis.com/amiibo/V5MocWvAu9M1DKNUzS3PaFGKSMuNXwse.png">
             </center>
         </article>
     </div>
@@ -203,11 +221,11 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>Blue Yarn Yoshi</p>
+                <p>Robin</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/_unRKBKF-XrAcGRH8IB8w7ajGe_AvIzO.png">
+                <img src="https://storage.googleapis.com/amiibo/Mhp_9fkh24_ieTjtF9E6fNoFxUgVVsqA.png">
             </center>
         </article>
     </div>
@@ -216,11 +234,11 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>Shulk</p>
+                <p>Ryu</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/-m7N2IwDaQkiCy2zHmOrRhuINvfOdiDA.png">
+                <img src="https://storage.googleapis.com/amiibo/MP8W0wItc3oIb40t9JemJgmE5PNwd_O3.png">
             </center>
         </article>
     </div>
@@ -229,14 +247,13 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>K.K. Slider</p>
+                <p>Samus</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/08xh0YTRxB7_oHndOtHfozouRvG-fD7u.png">
+                <img src="https://storage.googleapis.com/amiibo/qWA5qJ0Mlj_02N8k7VDxPhqKxuaPtgGk.png">
             </center>
         </article>
-        </center>
     </div>
 </div>
 

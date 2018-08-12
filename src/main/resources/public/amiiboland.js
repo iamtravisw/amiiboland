@@ -2,17 +2,23 @@ $(document).ready(function(){
   
     $(".amiibo-image").mouseover(function() {
     console.log("amiibo-image has been moused over");
-    $(".modal").addClass("is-active");  
+    $(".overlay").removeClass("is-invisible");
   });
 
-  $(".collected").mouseover(function() {
-    console.log("collected switch has been moused over");
-    $(".modal").addClass("is-active");  
-  });
   
-  $(".modal-background").mouseleave(function() {
+  $(".overlay").mouseleave(function() {
     console.log("mouse moved off amiibo-image");
-     $(".modal").removeClass("is-active");
+     $(".overlay").addClass("is-invisible");
   });
+
+    $(".star").click(function() {
+        console.log("Wish List clicked (star)");
+        $(".star").toggleClass("has-text-warning");
+    });
+
+    $(".heart").click(function() {
+        console.log("Favorite clicked (heart)");
+        $(".heart").toggleClass("has-text-danger");
+    });
 
 });
