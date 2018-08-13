@@ -3,124 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/bulma.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/css/bulma.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/css/bulma.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/css/bulma.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/base/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/base/generic.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/base/helpers.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/base/minireset.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/breadcrumb.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/bulma-switch.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/card.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/dropdown.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/level.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/media.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/menu.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/message.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/modal.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/navbar.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/pagination.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/panel.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/components/tabs.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/box.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/button.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/container.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/content.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/form.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/icon.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/image.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/notification.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/other.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/progress.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/table.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/tag.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/elements/title.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/grid/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/grid/columns.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/grid/tiles.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/layout/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/layout/footer.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/layout/hero.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/layout/section.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/animations.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/controls.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/derived-variables.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/functions.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/initial-variables.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/assets/sass/utilities/mixins.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/css/bulma.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/css/bulma.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/amiiboland.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/amiiboland.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/bulma.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/css/bulma.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/css/bulma.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/css/bulma.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/base/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/base/generic.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/base/helpers.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/base/minireset.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/breadcrumb.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/bulma-switch.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/card.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/dropdown.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/level.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/media.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/menu.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/message.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/modal.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/navbar.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/pagination.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/panel.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/components/tabs.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/box.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/button.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/container.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/content.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/form.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/icon.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/image.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/notification.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/other.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/progress.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/table.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/tag.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/elements/title.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/grid/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/grid/columns.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/grid/tiles.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/layout/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/layout/footer.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/layout/hero.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/layout/section.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/_all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/animations.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/controls.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/derived-variables.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/functions.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/initial-variables.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/assets/sass/utilities/mixins.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.vm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -132,32 +17,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.vm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="159" column="10" lean-forward="true" selection-start-line="159" selection-start-column="10" selection-end-line="159" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="amiiboland.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/public/amiiboland.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+            <state relative-caret-position="300">
+              <caret line="123" column="28" lean-forward="true" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,6 +35,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -187,6 +55,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/css/bulma.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/css/iamtravisw.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
       </list>
     </option>
@@ -223,7 +93,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -263,26 +133,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
-              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -381,12 +244,13 @@
       <workItem from="1534004731538" duration="1846000" />
       <workItem from="1534024491745" duration="381000" />
       <workItem from="1534034318191" duration="9522000" />
-      <workItem from="1534080193589" duration="20883000" />
+      <workItem from="1534080193589" duration="20955000" />
+      <workItem from="1534108901655" duration="13523000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72429000" />
+    <option name="totallyTimeSpent" value="86024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="40" width="1920" height="1000" extended-state="0" />
@@ -402,11 +266,11 @@
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.084375" visible="true" weight="0.32406417" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.084375" visible="true" weight="0.3090909" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.103125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11875" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -414,11 +278,11 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.3989305" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
   </component>
@@ -434,6 +298,33 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/amiiboland.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2385">
+          <caret line="159" column="10" lean-forward="true" selection-start-line="159" selection-start-column="10" selection-end-line="159" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -565,9 +456,39 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/amiiboland.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/sass/components/bulma-switch.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="9879" lean-forward="true" selection-start-line="9879" selection-end-line="9879" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/iamtravisw.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="1515">
           <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -575,17 +496,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/public/amiiboland.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="159" column="10" lean-forward="true" selection-start-line="159" selection-start-column="10" selection-end-line="159" selection-end-column="10" />
+        <state relative-caret-position="300">
+          <caret line="123" column="28" lean-forward="true" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

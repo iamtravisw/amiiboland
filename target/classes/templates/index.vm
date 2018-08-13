@@ -118,41 +118,61 @@
                     <figcaption class="overlay is-overlay is-invisible">
                         <!-- Background -->
                         <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
-                        <br>
+                        <div style="height:16px;font-size:16px;">&nbsp;</div>
                         <!-- Buttons -->
                         <div class="tile is-ancestor">
-                            <div class="tile is-parent">
-                                <article class="tile is-child">
 
-                                    <!-- Collect Button -->
-                                    <div class="switch">
-                                        <input class="switch is-overlay is-large is-success is-rounded is-overlay" id="collected" type="checkbox" name="switchLarge" value="1" onclick="this.form.submit()">
-                                        <label for="collected"><br>Mine</label>
-                                    </div>
-                                </article>
-                            </div>
-                            <!-- Wish List Button -->
+                            <!-- Collected "Mine" (Star) Button -->
                             <div class="tile is-parent">
                                 <article class="tile is-child">
-                                    <div class="star">
-                                        <span class="fa-stack">
-                                            <i class="fas fa-star fa-2x"></i>
-                                            <h4 class="subtitle is-5 has-text-light">Wish</h4>
-                                        </span>
-                                    </div>
+                                    <form action="/inpu2t" method="POST">
+                                        <div class="star">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-star fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                    <input class="fancy-checkbox is-hidden" type="checkbox" name="mine" value="1" onchange="this.form.submit()">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </form>
                                 </article>
                             </div>
-                            <!-- Favorite Button -->
+
+                            <!-- Collected "Love" (Heart) Button -->
                             <div class="tile is-parent">
                                 <article class="tile is-child">
-                                    <div class="heart">
-                                        <span class="fa-stack">
-                                            <i class="fas fa-heart fa-2x"></i>
-                                            <h4 class="subtitle is-5 has-text-light">Fave</h4>
-                                        </span>
-                                    </div>
+                                    <form action="/inpu2t" method="POST">
+                                        <div class="heart">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-heart fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                    <input class="fancy-checkbox is-hidden" type="checkbox" name="love" value="1" onchange="this.form.submit()">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </form>
                                 </article>
                             </div>
+
+                            <!-- Collected "Want" (Gem) Button -->
+                            <div class="tile is-parent">
+                                <article class="tile is-child">
+                                    <form action="/inpu2t" method="POST">
+                                        <div class="gem">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-gem fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                    <input class="fancy-checkbox is-hidden" type="checkbox" name="want" value="1" onchange="this.form.submit()">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </article>
+                            </div>
+
                     </figcaption>
                 </figure>
             </center>
@@ -214,7 +234,6 @@
             </center>
         </article>
     </div>
-
 
 
     <div class="column">
