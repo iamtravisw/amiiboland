@@ -11,11 +11,14 @@ public class Main {
 
         // Instances
         AddAmiibo addAmiibo = new AddAmiibo();
+
         RemoveAmiibo removeAmiibo = new RemoveAmiibo();
         AddFavorite addFavorite = new AddFavorite();
         RemoveFavorite removeFavorite = new RemoveFavorite();
         AddWishList addWishList = new AddWishList();
         RemoveWishList removeWishList = new RemoveWishList();
+
+
 
         // ==================================================
         // Spark Configuration
@@ -23,26 +26,37 @@ public class Main {
 
         staticFiles.location("/public");
 
-        // this is my home page
+        // Index
         get("/", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
             return render(model, "templates/index.vm");
         });
 
-        // favicon
+        // Favicon
         get("/favicon", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
             return render(model, "templates/index.vm");
         });
 
-        // Collection
+        // Collection (Add/Remove)
         post("/collection", (request, response) -> {
             String mine, love, want;
             mine = request.queryParams("mine");
 
             if (mine.equals("addMario")) {
                 System.out.println("Value is " + mine + ". Adding to collection.");
+
+                addAmiibo.setAmiiboID(22);
+
+
+                System.out.println("Main class has an ID of: " + addAmiibo.getAmiiboID());
                 addAmiibo.main(args);
+
+
+
+
+
+
             } else if (mine.equals("removeMario")) {
                 System.out.println("Value is " + mine + ". Removing from collection.");
                 removeAmiibo.main(args);
@@ -50,7 +64,7 @@ public class Main {
             return String.join(mine);
         });
 
-        // Favorites
+        // Favorites (Add/Remove)
         post("/favorites", (request, response) -> {
             String love;
             love = request.queryParams("love");
@@ -65,7 +79,7 @@ public class Main {
             return String.join(love);
         });
 
-        // WishList
+        // WishList (Add/Remove)
         post("/wishlist", (request, response) -> {
             String want;
             want = request.queryParams("want");
@@ -80,11 +94,10 @@ public class Main {
             }
             return String.join(want);
         });
-    }
 
+    }
     public static String render(Map<String, Object> model, String templatePath) {
         return new VelocityTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
-
 

@@ -55,7 +55,7 @@ public class RemoveWishList {
                         psFaveUpdateRemove.executeUpdate();                    // Execute
                     }
                 }
-
+                conn.close();
             }
         }
         catch (Exception e)

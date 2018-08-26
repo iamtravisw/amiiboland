@@ -69,7 +69,7 @@ public class AddWishList {
                         psWishUpdate.executeUpdate();                    // Execute
                     }
                 }
-
+                conn.close();
             }
         }
         catch (Exception e)

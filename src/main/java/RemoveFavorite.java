@@ -71,6 +71,7 @@ public class RemoveFavorite {
                     psFaveUpdateRemove.setInt(4, collectionID);           // CollectionID
                     psFaveUpdateRemove.executeUpdate();                    // Execute
                 }
+                conn.close();
             }
         } catch (Exception e)
         {

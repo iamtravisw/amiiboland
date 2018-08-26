@@ -69,7 +69,7 @@ public class AddFavorite {
 
                     }
                 }
-
+                conn.close();
             }
         }
         catch (Exception e)
