@@ -101,174 +101,80 @@
 
 <div class="columns">
     <!-- Here are all of the Amiibo -->
+    #foreach( $amiibo in $amiibos )
+    
+        <div class="column">
+          <div class="amiibo-id" amiibo="$amiibo.AmiiboID"></div>
+            <article class="message is-large is-danger">
+                <div class="message-header">
+                    <p></p>
+                    <p>$amiibo.Name</p>
+                    <p></p>
+                </div>
+                <center>   <!-- Amiibo -->
+                    <figure class="image has-text-light">
+                        <img class="amiibo-image" src="$amiibo.ImageURL">
+                        <!-- Content Over Amiibo -->
+                        <figcaption class="overlay is-overlay is-invisible">
+                            <!-- Background -->
+                            <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                            <div style="height:16px;font-size:16px;">&nbsp;</div>
 
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Mario</p>
-                <p></p>
-            </div>
-            <center>   <!-- Amiibo -->
-                <figure class="image has-text-light">
-                    <img class="amiibo-image" src="https://storage.googleapis.com/amiibo/9L3Onnk5QzEp9CY8FtCKu65GjBbwr05O.png">
-                    <!-- Content Over Amiibo -->
-                    <figcaption class="overlay is-overlay is-invisible">
-                        <!-- Background -->
-                        <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
-                        <div style="height:16px;font-size:16px;">&nbsp;</div>
+                            <!-- Buttons -->
+                            <div class="tile is-ancestor">
 
-                        <!-- Buttons -->
-                        <div class="tile is-ancestor">
+                                <!-- Collected "Mine" (Star) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        <div class="star">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-star fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                    <input class="mine is-hidden" type="checkbox" value="1" id="mine">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </article>
+                                </div>
+                                <!-- Collected "Love" (Heart) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        <div class="heart">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-heart fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                    <input class="love is-hidden" type="checkbox" id="love">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </article>
+                                </div>
+                                <!-- Collected "Want" (Gem) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        <div class="gem">
+                                            <label>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-gem fa-2x"></i>
+                                                    <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                    <input class="want is-hidden" type="checkbox" id="want">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </article>
+                                </div>
 
-                            <!-- Collected "Mine" (Star) Button -->
-                            <div class="tile is-parent">
-                                <article class="tile is-child">
-                                    <div class="star">
-                                        <label>
-                                            <span class="fa-stack">
-                                                <i class="fas fa-star fa-2x"></i>
-                                                <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                <input class="mine is-hidden" type="checkbox" value="1" id="mine">
-                                            </span>
-                                        </label>
-                                    </div>
-                                </article>
-                            </div>
-                            <!-- Collected "Love" (Heart) Button -->
-                            <div class="tile is-parent">
-                                <article class="tile is-child">
-                                    <div class="heart">
-                                        <label>
-                                            <span class="fa-stack">
-                                                <i class="fas fa-heart fa-2x"></i>
-                                                <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                <input class="love is-hidden" type="checkbox" id="love">
-                                            </span>
-                                        </label>
-                                    </div>
-                                </article>
-                            </div>
-                            <!-- Collected "Want" (Gem) Button -->
-                            <div class="tile is-parent">
-                                <article class="tile is-child">
-                                    <div class="gem">
-                                        <label>
-                                            <span class="fa-stack">
-                                                <i class="fas fa-gem fa-2x"></i>
-                                                <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                <input class="want is-hidden" type="checkbox" id="want">
-                                            </span>
-                                        </label>
-                                    </div>
-                                </article>
-                            </div>
+                        </figcaption>
+                    </figure>
+                </center>
+            </article>
+        </div>
 
-                    </figcaption>
-                </figure>
-            </center>
-        </article>
+
+    #end
     </div>
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Shulk</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/-m7N2IwDaQkiCy2zHmOrRhuINvfOdiDA.png">
-            </center>
-        </article>
-    </div>
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Mewtwo</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/P2xvkedVp9Yb_GFgX-3lTOwSQm6MNkZG.png">
-            </center>
-        </article>
-    </div>
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>K.K. Slider</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/08xh0YTRxB7_oHndOtHfozouRvG-fD7u.png">
-            </center>
-        </article>
-    </div>
-</div>
-
-<div class="columns">
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Lil Mac</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/V5MocWvAu9M1DKNUzS3PaFGKSMuNXwse.png">
-            </center>
-        </article>
-    </div>
-
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Robin</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/Mhp_9fkh24_ieTjtF9E6fNoFxUgVVsqA.png">
-            </center>
-        </article>
-    </div>
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Ryu</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/MP8W0wItc3oIb40t9JemJgmE5PNwd_O3.png">
-            </center>
-        </article>
-    </div>
-
-    <div class="column">
-        <article class="message is-large is-danger">
-            <div class="message-header">
-                <p></p>
-                <p>Samus</p>
-                <p></p>
-            </div>
-            <center>
-                <img src="https://storage.googleapis.com/amiibo/qWA5qJ0Mlj_02N8k7VDxPhqKxuaPtgGk.png">
-            </center>
-        </article>
-    </div>
-</div>
-
-
-
-
-
 
 <footer class="footer">
     <div class="content">

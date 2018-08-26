@@ -1,3 +1,7 @@
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
@@ -9,6 +13,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        String dbURL = System.getenv("DB_URL");
+        String dbUser = System.getenv("DB_USER");
+        String dbPassword = System.getenv("DB_PASSWORD");
+
         // ==================================================
         // Spark Configuration
         // ==================================================
@@ -17,7 +25,43 @@ public class Main {
 
         // Index
         get("/", (rq, rs) -> {
+            // Get all amiibos
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+            String selectMain = "SELECT AmiiboID, Name, ImageURL FROM Amiibo";
+            PreparedStatement psMain = conn.prepareStatement(selectMain);
+            ResultSet resultSet = psMain.executeQuery(selectMain);
+
+            ArrayList<HashMap<String,String>> amiibos = new ArrayList<HashMap<String,String>>();
+
+            // [
+            //     { "Name": "Mario", "AmiiboID": "2"},
+            //     { "Name": "Mario", "AmiiboID": "2"},
+            // ]
+
+            // If we want to display them (text)
+            while (resultSet.next()) {
+                String AmiiboID = resultSet.getString("AmiiboID");
+                String Name = resultSet.getString("Name");
+                String ImageURL = resultSet.getString("ImageURL");
+
+                // Hashmap = key value pair
+                HashMap<String, String> amiibo = new HashMap<String, String>();
+                amiibo.put("Name", Name);
+                amiibo.put("AmiiboID", AmiiboID);
+                amiibo.put("ImageURL", ImageURL);
+
+                amiibos.add(amiibo);
+                // System.out.println(AmiiboID + " - " + Name);
+            }
+
             Map<String, Object> model = new HashMap<>();
+            model.put("amiibos", amiibos);
+
+            System.out.println(amiibos);
+
+            // Pass amiibos to template
             return render(model, "templates/index.vm");
         });
 
@@ -110,6 +154,11 @@ public class Main {
             }
             return String.join(want);
         });
+
+
+
+
+
 
     }
     public static String render(Map<String, Object> model, String templatePath) {
