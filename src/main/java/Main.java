@@ -9,17 +9,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Instances
-        AddAmiibo addAmiibo = new AddAmiibo();
-
-        RemoveAmiibo removeAmiibo = new RemoveAmiibo();
-        AddFavorite addFavorite = new AddFavorite();
-        RemoveFavorite removeFavorite = new RemoveFavorite();
-        AddWishList addWishList = new AddWishList();
-        RemoveWishList removeWishList = new RemoveWishList();
-
-
-
         // ==================================================
         // Spark Configuration
         // ==================================================
@@ -40,25 +29,27 @@ public class Main {
 
         // Collection (Add/Remove)
         post("/collection", (request, response) -> {
+            AddAmiibo addAmiibo = new AddAmiibo();
+            RemoveAmiibo removeAmiibo = new RemoveAmiibo();
             String mine, love, want;
             mine = request.queryParams("mine");
 
-            if (mine.equals("addMario")) {
+            if (mine.equals("addAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("Add Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + mine + ". Adding to collection.");
-
                 addAmiibo.setAmiiboID(22);
-
-
                 System.out.println("Main class has an ID of: " + addAmiibo.getAmiiboID());
                 addAmiibo.main(args);
 
-
-
-
-
-
-            } else if (mine.equals("removeMario")) {
+            } else if (mine.equals("removeAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("Remove Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + mine + ". Removing from collection.");
+                removeAmiibo.setAmiiboID(22);
+                System.out.println("Main class has an ID of: " + removeAmiibo.getAmiiboID());
                 removeAmiibo.main(args);
             }
             return String.join(mine);
@@ -66,14 +57,27 @@ public class Main {
 
         // Favorites (Add/Remove)
         post("/favorites", (request, response) -> {
+            AddFavorite addFavorite = new AddFavorite();
+            RemoveFavorite removeFavorite = new RemoveFavorite();
             String love;
             love = request.queryParams("love");
 
-            if (love.equals("loveMario")) {
+            if (love.equals("loveAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("Favorite Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + love + ". Adding to Favorites.");
+                addFavorite.setAmiiboID(22);
+                System.out.println("Main class has an ID of: " + addFavorite.getAmiiboID());
                 addFavorite.main(args);
-            } else if (love.equals("unloveMario")) {
+
+            } else if (love.equals("unloveAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("Unfavorite Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + love + ". Removing from Favorites.");
+                removeFavorite.setAmiiboID(22);
+                System.out.println("Main class has an ID of: " + removeFavorite.getAmiiboID());
                 removeFavorite.main(args);
             }
             return String.join(love);
@@ -81,15 +85,27 @@ public class Main {
 
         // WishList (Add/Remove)
         post("/wishlist", (request, response) -> {
+            AddWishList addWishList = new AddWishList();
+            RemoveWishList removeWishList = new RemoveWishList();
             String want;
             want = request.queryParams("want");
 
-            if (want .equals("wantMario")) {
+            if (want.equals("wantAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("WishList Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + want + ". Adding to WishList.");
+                addWishList.setAmiiboID(22);
+                System.out.println("Main class has an ID of: " + addWishList.getAmiiboID());
                 addWishList.main(args);
-            }
-            else if (want .equals("unwantMario")) {
+
+            } else if (want.equals("unwantAmiibo")) {
+                System.out.println("------------------------------------------");
+                System.out.println("UnWishList Amiibo Started");
+                System.out.println("------------------------------------------");
                 System.out.println("Value is " + want + ". Removing from WishList.");
+                removeWishList.setAmiiboID(22);
+                System.out.println("Main class has an ID of: " + removeWishList.getAmiiboID());
                 removeWishList.main(args);
             }
             return String.join(want);

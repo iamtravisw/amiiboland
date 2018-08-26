@@ -5,20 +5,32 @@ import java.sql.DriverManager;
 
 public class RemoveWishList {
 
-    public static void main(String[] args) {
+    // Variables
+    public int userID = 1;
+    public int amiiboID;
 
-        // Variables from REST
-        int userID = 1;
-        int amiiboID = 1;
+    // Setters and Getters
+    public void setAmiiboID(int amiiboID) {
+        this.amiiboID = amiiboID;
+    }
+    public int getAmiiboID() {
+        return amiiboID;
+    }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    public int getUserID() {
+        return userID;
+    }
 
-        // Date conversion for MySQL
-        Date adddate = new Date();
-        Date moddate = new Date();
+    public void main(String[] args) {
 
-        // Connect to the Database
+        Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
+        int amiiboID = this.amiiboID;
+        int userID = this.userID;
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -31,6 +43,8 @@ public class RemoveWishList {
                 psWishRemove.setInt(1, amiiboID);                                 // AmiiboID
                 psWishRemove.setInt(2, userID);                               // UserID
                 ResultSet rsWishRemove = psWishRemove.executeQuery();         // Execute
+
+                System.out.println("RemoveWishList class has an ID of: " + this.amiiboID);
 
                 // If the row does not exist, do nothing
                 if (!rsWishRemove.isBeforeFirst()) {
@@ -50,9 +64,11 @@ public class RemoveWishList {
                         // set the preparedstatement parameters
                         psFaveUpdateRemove.setString(1, "N");             // WishList
                         psFaveUpdateRemove.setInt(2, userID);                 // ModUser
-                        psFaveUpdateRemove.setString(3, moddate.toString()); // ModDate
+                        psFaveUpdateRemove.setString(3, modDate.toString()); // ModDate
                         psFaveUpdateRemove.setInt(4, collectionID);           // CollectionID
                         psFaveUpdateRemove.executeUpdate();                    // Execute
+
+                        System.out.println("RemoveWishList class has an ID of: " + this.amiiboID);
                     }
                 }
                 conn.close();

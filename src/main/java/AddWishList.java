@@ -4,21 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class AddWishList {
+    // Variables
+    public int userID = 1;
+    public int amiiboID;
 
-    public static void main(String[] args) {
+    // Setters and Getters
+    public void setAmiiboID(int amiiboID) {
+        this.amiiboID = amiiboID;
+    }
+    public int getAmiiboID() {
+        return amiiboID;
+    }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    public int getUserID() {
+        return userID;
+    }
 
-        // Variables from REST
-        int userID = 1;
-        int amiiboID = 1;
+    public void main(String[] args) {
 
-        // Date conversion for MySQL
-        Date adddate = new Date();
-        Date moddate = new Date();
-
-        // Connect to the Database
+        Date addDate = new Date();
+        Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
+        int amiiboID = this.amiiboID;
+        int userID = this.userID;
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -31,6 +43,8 @@ public class AddWishList {
                 psAddWishList.setInt(1, amiiboID);                                 // AmiiboID
                 psAddWishList.setInt(2, userID);                               // UserID
                 ResultSet rsAddWishList = psAddWishList.executeQuery();               // Execute
+
+                System.out.println("AddWishList class has an ID of: " + this.amiiboID);
 
                 // If the row does not exist, insert a new row for this user
                 if (!rsAddWishList.isBeforeFirst()) {
@@ -46,9 +60,9 @@ public class AddWishList {
                     psWishInsert.setInt(2, userID);                 // UserID
                     psWishInsert.setString(3, "Y");             // WishList Y/N
                     psWishInsert.setInt(4, userID);                 // ModUser (ID)
-                    psWishInsert.setString(5, moddate.toString()); // ModDate
+                    psWishInsert.setString(5, modDate.toString()); // ModDate
                     psWishInsert.setInt(6, userID);                 // AddUser (ID)
-                    psWishInsert.setString(7, adddate.toString()); // AddDate
+                    psWishInsert.setString(7, addDate.toString()); // AddDate
                     psWishInsert.execute();                           // Execute
 
                     // If the row does exist, simply update it
@@ -64,9 +78,11 @@ public class AddWishList {
                         // set the preparedstatement parameters
                         psWishUpdate.setString(1, "Y");             // WishList
                         psWishUpdate.setInt(2, userID);                 // ModUser
-                        psWishUpdate.setString(3, moddate.toString()); // ModDate
+                        psWishUpdate.setString(3, modDate.toString()); // ModDate
                         psWishUpdate.setInt(4, collectionID);           // CollectionID
                         psWishUpdate.executeUpdate();                    // Execute
+
+                        System.out.println("AddWishList class has an ID of: " + this.amiiboID);
                     }
                 }
                 conn.close();

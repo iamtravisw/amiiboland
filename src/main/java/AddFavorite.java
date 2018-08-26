@@ -5,20 +5,34 @@ import java.sql.DriverManager;
 
 public class AddFavorite {
 
-    public static void main(String[] args) {
+    // Variables
+    public int userID = 1;
+    public int amiiboID;
 
-        // Variables from REST
-        int userID = 1;
-        int amiiboID = 1;
+    // Setters and Getters
+    public void setAmiiboID(int amiiboID) {
+        this.amiiboID = amiiboID;
+    }
+    public int getAmiiboID() {
+        return amiiboID;
+    }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    public int getUserID() {
+        return userID;
+    }
 
-        // Date conversion for MySQL
-        Date adddate = new Date();
-        Date moddate = new Date();
+    public void main(String[] args) {
 
-        // Connect to the Database
+        Date addDate = new Date();
+        Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
+        int amiiboID = this.amiiboID;
+        int userID = this.userID;
+
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -45,10 +59,12 @@ public class AddFavorite {
                     psFaveInsert.setInt(2, userID);                 // UserID
                     psFaveInsert.setString(3, "Y");             // Favorited Y/N
                     psFaveInsert.setInt(4, userID);                 // ModUser (ID)
-                    psFaveInsert.setString(5, moddate.toString()); // ModDate
+                    psFaveInsert.setString(5, modDate.toString()); // ModDate
                     psFaveInsert.setInt(6, userID);                 // AddUser (ID)
-                    psFaveInsert.setString(7, adddate.toString()); // AddDate
+                    psFaveInsert.setString(7, addDate.toString()); // AddDate
                     psFaveInsert.execute();                           // Execute
+
+                    System.out.println("AddFavorite class has an ID of: " + this.amiiboID);
 
                     // If the row does exist, simply update it
                 } else {
@@ -63,9 +79,11 @@ public class AddFavorite {
                         // set the preparedstatement parameters
                         psFaveUpdate.setString(1, "Y");             // Favorited
                         psFaveUpdate.setInt(2, userID);                 // ModUser
-                        psFaveUpdate.setString(3, moddate.toString()); // ModDate
+                        psFaveUpdate.setString(3, modDate.toString()); // ModDate
                         psFaveUpdate.setInt(4, collectionID);           // CollectionID
                         psFaveUpdate.executeUpdate();                    // Execute
+
+                        System.out.println("AddFavorite class has an ID of: " + this.amiiboID);
 
                     }
                 }

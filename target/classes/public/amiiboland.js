@@ -48,7 +48,7 @@ $(document).ready(function(){
             $.ajax({
                 url:'/collection',
                 type:'post',
-                data: { mine: newValue + "Mario"},
+                data: { mine: newValue + "Amiibo"},
                 success: function(){
                     console.log("Request completed successfully");
                 }
@@ -64,7 +64,7 @@ $(document).ready(function(){
             $.ajax({
                 url:'/favorites',
                 type:'post',
-                data: { love: newValue + "Mario"},
+                data: { love: newValue + "Amiibo"},
                 success: function(){
                     console.log("Request completed successfully");
                 }
@@ -80,7 +80,7 @@ $(document).ready(function(){
             $.ajax({
                 url:'/wishlist',
                 type:'post',
-                data: { want: newValue + "Mario"},
+                data: { want: newValue + "Amiibo"},
                 success: function(){
                     console.log("Request completed successfully");
                 }

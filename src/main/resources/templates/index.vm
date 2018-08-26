@@ -129,7 +129,7 @@
                                             <span class="fa-stack">
                                                 <i class="fas fa-star fa-2x"></i>
                                                 <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                <input class="mine is-hidden" type="checkbox" id="mine">
+                                                <input class="mine is-hidden" type="checkbox" value="1" id="mine">
                                             </span>
                                         </label>
                                     </div>

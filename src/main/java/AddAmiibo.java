@@ -25,17 +25,13 @@ public class AddAmiibo {
 
     public void main(String[] args) {
 
-        AddAmiibo addAmiibo = new AddAmiibo();
-
         Date addDate = new Date();
         Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
-
-        int amiiboID = addAmiibo.getAmiiboID();
-        int userID = addAmiibo.getUserID();
-
+        int amiiboID = this.amiiboID;
+        int userID = this.userID;
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -44,8 +40,8 @@ public class AddAmiibo {
                 // Check to see if the row already exists before inserting any new rows
                 String checkExists = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
                 PreparedStatement psAdd = conn.prepareStatement(checkExists);
-                psAdd.setInt(1, amiiboID);                              // AmiiboID
-                psAdd.setInt(2, userID);                           // UserID
+                psAdd.setInt(1, this.amiiboID);                              // AmiiboID
+                psAdd.setInt(2, this.userID);                           // UserID
                 ResultSet rsAdd = psAdd.executeQuery();               // Execute
 
                 // If the row does not exist, insert a new row for this user
@@ -67,7 +63,7 @@ public class AddAmiibo {
                     psAddInsert.setString(7, addDate.toString()); // AddDate
                     psAddInsert.execute();                           // Execute
 
-                    System.out.println(amiiboID);
+                    System.out.println("AddAmiibo class has an ID of: " + this.amiiboID);
 
                     // If the row does exist, simply update it
                 } else {
@@ -87,9 +83,7 @@ public class AddAmiibo {
                         psAddUpdate.executeUpdate();                     // Execute
                         System.out.println("Updated row...");
 
-
-
-                        System.out.println("AddAmiibo class has an ID of: " + addAmiibo.getAmiiboID());
+                        System.out.println("AddAmiibo class has an ID of: " + this.amiiboID);
                     }
                 }
                 conn.close();
