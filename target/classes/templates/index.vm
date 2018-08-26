@@ -99,11 +99,10 @@
 </div>
 
 
-<div class="columns">
+<div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
     #foreach( $amiibo in $amiibos )
-    
-        <div class="column">
+        <div class="column is-one-quarter">
           <div class="amiibo-id" amiibo="$amiibo.AmiiboID"></div>
             <article class="message is-large is-danger">
                 <div class="message-header">
@@ -171,10 +170,9 @@
                 </center>
             </article>
         </div>
-
-
     #end
-    </div>
+</div>
+
 
 <footer class="footer">
     <div class="content">

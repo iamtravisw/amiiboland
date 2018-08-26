@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/resources/templates/index.vm" line="144" mnemonic="6" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AddAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddAmiibo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AddFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddFavorite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AddWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddWishList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/RemoveWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveWishList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.vm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +16,7 @@
     <session id="5524229">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.opened" value="2" />
@@ -39,7 +27,7 @@
           <entry key="class" value="2" />
           <entry key="java" value="16" />
           <entry key="js" value="1" />
-          <entry key="vm" value="2" />
+          <entry key="vm" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -47,21 +35,21 @@
           <entry key="CLASS" value="2" />
           <entry key="JAVA" value="16" />
           <entry key="JavaScript" value="1" />
-          <entry key="VTL" value="2" />
+          <entry key="VTL" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2331" />
           <entry key="js" value="6" />
-          <entry key="vm" value="13" />
+          <entry key="vm" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2331" />
           <entry key="JavaScript" value="6" />
-          <entry key="VTL" value="13" />
+          <entry key="VTL" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -74,13 +62,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="68" column="59" lean-forward="true" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
+            <state relative-caret-position="330">
+              <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1189#1213#0" expanded="true" />
-                <element signature="e#1493#1509#0" expanded="true" />
+                <element signature="e#1199#1223#0" expanded="true" />
+                <element signature="e#1761#1777#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -119,8 +116,8 @@
         <option value="$PROJECT_DIR$/src/main/java/AddAmiibo.java" />
         <option value="$PROJECT_DIR$/src/main/java/AddWishList.java" />
         <option value="$PROJECT_DIR$/src/main/java/RemoveWishList.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
       </list>
     </option>
   </component>
@@ -195,14 +192,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
-              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -216,7 +205,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535316572284" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535320307356" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -301,16 +290,15 @@
       <workItem from="1534080193589" duration="20955000" />
       <workItem from="1534108901655" duration="28540000" />
       <workItem from="1535264521972" duration="2785000" />
-      <workItem from="1535292935209" duration="20309000" />
+      <workItem from="1535292935209" duration="21883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124135000" />
+    <option name="totallyTimeSpent" value="125709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="40" width="1920" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12087327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -321,7 +309,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.084375" visible="true" weight="0.30879122" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.084375" weight="0.30879122" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.3989305" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -493,19 +481,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3465">
-          <caret line="270" lean-forward="true" selection-start-line="270" selection-end-line="270" />
+        <state relative-caret-position="90">
+          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="68" column="59" lean-forward="true" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
+        <state relative-caret-position="330">
+          <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1189#1213#0" expanded="true" />
-            <element signature="e#1493#1509#0" expanded="true" />
+            <element signature="e#1199#1223#0" expanded="true" />
+            <element signature="e#1761#1777#0" expanded="true" />
           </folding>
         </state>
       </provider>
