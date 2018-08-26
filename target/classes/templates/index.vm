@@ -117,54 +117,50 @@
                         <!-- Background -->
                         <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
                         <div style="height:16px;font-size:16px;">&nbsp;</div>
+
                         <!-- Buttons -->
                         <div class="tile is-ancestor">
 
                             <!-- Collected "Mine" (Star) Button -->
                             <div class="tile is-parent">
                                 <article class="tile is-child">
-                                        <div class="star">
-                                            <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-star fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                    <input class="mine is-hidden" type="checkbox" value="1" id="mine">
-                                                </span>
-                                            </label>
-                                        </div>
-
+                                    <div class="star">
+                                        <label>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-star fa-2x"></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                <input class="mine is-hidden" type="checkbox" id="mine">
+                                            </span>
+                                        </label>
+                                    </div>
                                 </article>
                             </div>
                             <!-- Collected "Love" (Heart) Button -->
                             <div class="tile is-parent">
                                 <article class="tile is-child">
-                                    <form action="" id="my-form">
-                                        <div class="heart">
-                                            <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-heart fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                    <input class="fancy-checkbox is-hidden" type="checkbox" name="love" value="2" onchange="this.form.submit()">
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </form>
+                                    <div class="heart">
+                                        <label>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-heart fa-2x"></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                <input class="love is-hidden" type="checkbox" id="love">
+                                            </span>
+                                        </label>
+                                    </div>
                                 </article>
                             </div>
                             <!-- Collected "Want" (Gem) Button -->
                             <div class="tile is-parent">
                                 <article class="tile is-child">
-                                    <form action="/input" method="POST">
-                                        <div class="gem">
-                                            <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-gem fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                    <input class="fancy-checkbox is-hidden" type="checkbox" name="want" value="1" onchange="this.form.submit()">
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </form>
+                                    <div class="gem">
+                                        <label>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-gem fa-2x"></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                <input class="want is-hidden" type="checkbox" id="want">
+                                            </span>
+                                        </label>
+                                    </div>
                                 </article>
                             </div>
 
@@ -191,11 +187,11 @@
         <article class="message is-large is-danger">
             <div class="message-header">
                 <p></p>
-                <p>Shulk</p>
+                <p>Mewtwo</p>
                 <p></p>
             </div>
             <center>
-                <img src="https://storage.googleapis.com/amiibo/-m7N2IwDaQkiCy2zHmOrRhuINvfOdiDA.png">
+                <img src="https://storage.googleapis.com/amiibo/P2xvkedVp9Yb_GFgX-3lTOwSQm6MNkZG.png">
             </center>
         </article>
     </div>
