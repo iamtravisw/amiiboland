@@ -31,19 +31,16 @@
             About
         </a>
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="/documentation/overview/start/">
-                Collections
+            <a class="navbar-link" href="#">
+                Series
             </a>
             <div class="navbar-dropdown is-boxed">
-                <a class="navbar-item" href="/documentation/overview/start/">
-                    Super Smash Bros.
+
+            #foreach( $series in $allSeries )
+                <a class="navbar-item" href="#">
+                    $series.Series
                 </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
-                    Super Mario
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
-                    Legend of Zelda
-                </a>
+                #end
             </div>
         </div>
     </div>
@@ -80,19 +77,25 @@
         <li>
             <a>
                 <span class=""><i class="" aria-hidden="true"></i></span>
-                <span>Super Smash Bros.</span>
+                <span>Collected</span>
             </a>
         </li>
         <li>
             <a>
                 <span class=""><i class="" aria-hidden="true"></i></span>
-                <span>Legend of Zelda</span>
+                <span>Favorited</span>
             </a>
         </li>
         <li>
             <a>
                 <span class=""><i class="" aria-hidden="true"></i></span>
-                <span>Animal Crossing</span>
+                <span>Wish List</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class=""><i class="" aria-hidden="true"></i></span>
+                <span>Missing</span>
             </a>
         </li>
     </ul>
@@ -102,7 +105,7 @@
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
     #foreach( $amiibo in $amiibos )
-        <div class="column is-one-quarter">
+        <div class="column is-one-fifth">
           <div class="amiibo-id" amiibo="$amiibo.AmiiboID"></div>
             <article class="message is-large is-danger">
                 <div class="message-header">
@@ -112,9 +115,9 @@
                 </div>
                 <center>   <!-- Amiibo -->
                     <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$amiibo.ImageURL">
+                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive$amiibo.AmiiboID">
                         <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible">
+                        <figcaption class="overlay is-overlay is-invisible" id="active$amiibo.AmiiboID">
                             <!-- Background -->
                             <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
                             <div style="height:16px;font-size:16px;">&nbsp;</div>

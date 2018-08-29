@@ -40,7 +40,7 @@ public class RemoveAmiibo {
                 // Check to see if the row already exists before inserting any new rows
                 String checkForDelete = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
                 PreparedStatement psCheckDelete = conn.prepareStatement(checkForDelete);
-                psCheckDelete.setInt(1, this.amiiboID);                               // AmiiboID
+                psCheckDelete.setInt(1, amiiboID);                               // AmiiboID
                 psCheckDelete.setInt(2, userID);                             // UserID
                 ResultSet rsDelete = psCheckDelete.executeQuery();              // Execute
 

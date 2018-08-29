@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-    $(".amiibo-image").mouseover(function() {
+    $("#inactive1").mouseover(function() {
     //console.log("amiibo-image has been moused over");
-    $(".overlay").removeClass("is-invisible");
+    $("#active1").removeClass("is-invisible");
   });
 
     $(".overlay").mouseleave(function() {
@@ -43,12 +43,13 @@ $(document).ready(function(){
     $(document).ready(function(){
         $( "#mine" ).change(function() {
             var newValue = $(this).is(':checked') ? "add" : "remove";
+            var activeAmiiboID = $("1");
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("Sending request to backend");
             $.ajax({
                 url:'/collection',
                 type:'post',
-                data: { mine: newValue + "Amiibo"},
+                data: { mine: newValue + "Amiibo" },
                 success: function(){
                     console.log("Request completed successfully");
                 }
@@ -88,5 +89,3 @@ $(document).ready(function(){
         });
     });
 });
-
-

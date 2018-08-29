@@ -33,36 +33,36 @@ public class Main {
             PreparedStatement psMain = conn.prepareStatement(selectMain);
             ResultSet resultSet = psMain.executeQuery(selectMain);
 
+            String selectMain2 = "SELECT DISTINCT Series FROM Amiibo ORDER BY Series ASC";
+            PreparedStatement psMain2 = conn.prepareStatement(selectMain2);
+            ResultSet resultSet2 = psMain2.executeQuery(selectMain2);
+
             ArrayList<HashMap<String,String>> amiibos = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String,String>> allSeries = new ArrayList<HashMap<String,String>>();
 
-            // [
-            //     { "Name": "Mario", "AmiiboID": "2"},
-            //     { "Name": "Mario", "AmiiboID": "2"},
-            // ]
-
-            // If we want to display them (text)
             while (resultSet.next()) {
                 String AmiiboID = resultSet.getString("AmiiboID");
                 String Name = resultSet.getString("Name");
                 String ImageURL = resultSet.getString("ImageURL");
-
-                // Hashmap = key value pair
                 HashMap<String, String> amiibo = new HashMap<String, String>();
                 amiibo.put("Name", Name);
                 amiibo.put("AmiiboID", AmiiboID);
                 amiibo.put("ImageURL", ImageURL);
-
                 amiibos.add(amiibo);
-                // System.out.println(AmiiboID + " - " + Name);
             }
-
+            while (resultSet2.next()) {
+                String Series = resultSet2.getString("Series");
+                HashMap<String, String> series = new HashMap<String, String>();
+                series.put("Series", Series);
+                allSeries.add(series);
+            }
             Map<String, Object> model = new HashMap<>();
             model.put("amiibos", amiibos);
-
+            model.put("allSeries", allSeries);
             System.out.println(amiibos);
-
+            System.out.println(allSeries);
             // Pass amiibos to template
-            return render(model, "templates/index.vm");
+            return render(model,"templates/index.vm");
         });
 
         // Favicon
@@ -75,7 +75,7 @@ public class Main {
         post("/collection", (request, response) -> {
             AddAmiibo addAmiibo = new AddAmiibo();
             RemoveAmiibo removeAmiibo = new RemoveAmiibo();
-            String mine, love, want;
+            String mine;
             mine = request.queryParams("mine");
 
             if (mine.equals("addAmiibo")) {
@@ -154,15 +154,8 @@ public class Main {
             }
             return String.join(want);
         });
-
-
-
-
-
-
     }
     public static String render(Map<String, Object> model, String templatePath) {
         return new VelocityTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
-
