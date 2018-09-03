@@ -3,22 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/collected.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/collected.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/missing.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/missing.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/amiiboland.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/amiiboland.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/collected.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/collected.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/comingsoon.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/comingsoon.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/favorited.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/favorited.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/missing.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/missing.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/wishlist.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AddAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddAmiibo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AddFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddFavorite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AddWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddWishList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/RemoveWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveWishList.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +23,7 @@
     <session id="5524229">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -50,43 +42,43 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="css" value="5" />
-          <entry key="java" value="29" />
-          <entry key="js" value="12" />
+          <entry key="java" value="30" />
+          <entry key="js" value="14" />
           <entry key="map" value="5" />
           <entry key="php" value="1" />
           <entry key="sass" value="18" />
-          <entry key="vm" value="64" />
+          <entry key="vm" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="5" />
-          <entry key="JAVA" value="29" />
-          <entry key="JavaScript" value="12" />
+          <entry key="JAVA" value="30" />
+          <entry key="JavaScript" value="14" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Sass" value="18" />
           <entry key="SourceMap" value="5" />
-          <entry key="VTL" value="64" />
+          <entry key="VTL" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="71" />
-          <entry key="java" value="4843" />
-          <entry key="js" value="1230" />
+          <entry key="java" value="4853" />
+          <entry key="js" value="1272" />
           <entry key="sass" value="12" />
-          <entry key="vm" value="5017" />
+          <entry key="vm" value="5087" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="71" />
-          <entry key="JAVA" value="4842" />
-          <entry key="JavaScript" value="1230" />
+          <entry key="JAVA" value="4852" />
+          <entry key="JavaScript" value="1272" />
           <entry key="SQL" value="1" />
           <entry key="Sass" value="12" />
-          <entry key="VTL" value="5017" />
+          <entry key="VTL" value="5087" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -101,40 +93,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="142" column="10" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="142" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#2813#2819#1#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#2735#2741#1#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="277" column="56" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="231" column="39" lean-forward="true" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -156,6 +119,7 @@
       <find>addAmiibo</find>
       <find>sass</find>
       <find>bulma</find>
+      <find>missing</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,20 +150,20 @@
         <option value="$PROJECT_DIR$/src/main/resources/public/bulma-extensions.js" />
         <option value="$PROJECT_DIR$/src/main/resources/public/navBar.js" />
         <option value="$PROJECT_DIR$/src/main/resources/public/navBar.php" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/about.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/collected.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/about.vm" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/amiiboland.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/new.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/collected.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/missing.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/new.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
   </component>
@@ -298,7 +262,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535947562062" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536017019442" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -309,6 +273,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/public/js" />
       <recent name="$PROJECT_DIR$/src/main/resources/public/sass/components" />
       <recent name="$PROJECT_DIR$/src/main/resources/public/sass/utilities" />
       <recent name="$PROJECT_DIR$/src/main/resources/public/sass/elements" />
@@ -402,16 +367,15 @@
       <workItem from="1535924147603" duration="15472000" />
       <workItem from="1535963190042" duration="349000" />
       <workItem from="1535993844688" duration="3164000" />
-      <workItem from="1536001731186" duration="5441000" />
+      <workItem from="1536001731186" duration="11137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226821000" />
+    <option name="totallyTimeSpent" value="232517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="40" width="1920" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17678382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -422,7 +386,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.084375" visible="true" weight="0.42857143" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.084375" weight="0.42857143" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.3989305" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -585,38 +549,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/navBar.php" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/navBar.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/bird-alert.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-336">
-          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="35" column="53" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/public/amiiboland.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="750">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
@@ -627,10 +573,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collected.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wishlist.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/missing.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/new.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="69" selection-start-line="69" selection-end-line="142" selection-end-column="6" />
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/favorited.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
             <element signature="e#2739#2745#1#HTML" expanded="true" />
@@ -638,79 +654,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collected.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2732#2738#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/favorited.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="122" column="60" lean-forward="true" selection-start-line="122" selection-start-column="60" selection-end-line="122" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2730#2736#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wishlist.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="122" column="44" lean-forward="true" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2730#2736#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/missing.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="124" column="57" lean-forward="true" selection-start-line="124" selection-start-column="57" selection-end-line="124" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2732#2738#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="142" column="10" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="142" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2813#2819#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="277" column="56" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2735#2741#1#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="231" column="39" lean-forward="true" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
         </state>
       </provider>
     </entry>

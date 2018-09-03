@@ -236,7 +236,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectMissing= "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Collected FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected != 'Y'";
+            String selectMissing= "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Collected FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL";
             PreparedStatement psMissing = conn.prepareStatement(selectMissing);
             ResultSet resultsMissing = psMissing.executeQuery(selectMissing);
 
