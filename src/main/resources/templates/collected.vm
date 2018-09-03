@@ -69,9 +69,10 @@
 
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
-    #foreach( $collected in $collectedAmiibo)
+    #foreach( $collected in $collectedAmiibo )
         <div class="column is-one-fifth">
-            <div class="amiibo-id" amiibo="$collected.AmiiboID"></div>
+            <div class="amiibo-id is-hidden" id="amiibo">$collected.AmiiboID</div>
+
             <article class="message is-large is-danger">
                 <div class="message-header">
                     <p></p>
@@ -80,9 +81,9 @@
                 </div>
                 <center>   <!-- Amiibo -->
                     <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$collected.ImageURL" id="inactive">
+                        <img class="amiibo-image" src="$collected.ImageURL" id="inactive-$collected.AmiiboID">
                         <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible" id="active">
+                        <figcaption class="overlay is-overlay is-invisible" id="active-$collected.AmiiboID">
                             <!-- Background -->
                             <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
                             <div style="height:16px;font-size:16px;">&nbsp;</div>
@@ -95,11 +96,11 @@
                                     <article class="tile is-child">
                                         <div class="star">
                                             <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-star fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                    <input class="mine is-hidden" type="checkbox" value="1" id="mine">
-                                                </span>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-star fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                        <input class="mine is-hidden" type="checkbox" id="mine-$collected.AmiiboID">
+                                                    </span>
                                             </label>
                                         </div>
                                     </article>
@@ -109,11 +110,11 @@
                                     <article class="tile is-child">
                                         <div class="heart">
                                             <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-heart fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                    <input class="love is-hidden" type="checkbox" id="love">
-                                                </span>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-heart fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                        <input class="love is-hidden" type="checkbox" id="love-$collected.AmiiboID">
+                                                    </span>
                                             </label>
                                         </div>
                                     </article>
@@ -123,11 +124,11 @@
                                     <article class="tile is-child">
                                         <div class="gem">
                                             <label>
-                                                <span class="fa-stack">
-                                                    <i class="fas fa-gem fa-2x"></i>
-                                                    <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                    <input class="want is-hidden" type="checkbox" id="want">
-                                                </span>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-gem fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                        <input class="want is-hidden" type="checkbox" id="want-$collected.AmiiboID">
+                                                    </span>
                                             </label>
                                         </div>
                                     </article>
