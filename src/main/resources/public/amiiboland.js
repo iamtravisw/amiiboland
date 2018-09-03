@@ -1,12 +1,15 @@
 $(document).ready(function(){
 
-    $("#inactive1").mouseover(function() {
-    //console.log("amiibo-image has been moused over");
-    $("#active1").removeClass("is-invisible");
+    var amiibo = document.getElementById("amiibo");
+    var activeAmiiboID = amiibo.textContent || amiibo.innerText;
+
+    $("#inactive-"+activeAmiiboID).mouseover(function() {
+    console.log("amiibo-image has been moused over"+ " "+ activeAmiiboID);
+    $("#active-"+activeAmiiboID).removeClass("is-invisible");
   });
 
     $(".overlay").mouseleave(function() {
-    //console.log("mouse moved off amiibo-image");
+    console.log("mouse moved off amiibo-image");
      $(".overlay").addClass("is-invisible");
   });
 
@@ -43,13 +46,16 @@ $(document).ready(function(){
     $(document).ready(function(){
         $( "#mine" ).change(function() {
             var newValue = $(this).is(':checked') ? "add" : "remove";
-            var activeAmiiboID = $("1");
+            var activeAmiiboID = 1;
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("Sending request to backend");
             $.ajax({
                 url:'/collection',
                 type:'post',
-                data: { mine: newValue + "Amiibo" },
+                data: {
+                    mine: newValue + "Amiibo",
+                    amiiboID: activeAmiiboID
+                },
                 success: function(){
                     console.log("Request completed successfully");
                 }
@@ -60,12 +66,16 @@ $(document).ready(function(){
     $(document).ready(function(){
         $( "#love" ).change(function() {
             var newValue = $(this).is(':checked') ? "love" : "unlove";
+            var activeAmiiboID = 1;
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("Sending request to backend");
             $.ajax({
                 url:'/favorites',
                 type:'post',
-                data: { love: newValue + "Amiibo"},
+                data: {
+                    love: newValue + "Amiibo",
+                    amiiboID: activeAmiiboID
+                },
                 success: function(){
                     console.log("Request completed successfully");
                 }
@@ -76,12 +86,16 @@ $(document).ready(function(){
     $(document).ready(function(){
         $( "#want" ).change(function() {
             var newValue = $(this).is(':checked') ? "want" : "unwant";
+            var activeAmiiboID = 1;
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("Sending request to backend");
             $.ajax({
                 url:'/wishlist',
                 type:'post',
-                data: { want: newValue + "Amiibo"},
+                data: {
+                    want: newValue + "Amiibo",
+                    amiiboID: activeAmiiboID
+                },
                 success: function(){
                     console.log("Request completed successfully");
                 }

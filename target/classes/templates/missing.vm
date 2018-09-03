@@ -29,7 +29,7 @@
             </span>
         </li>
 
-        <li class="is-active">
+        <li class="">
             <span>
                 <a href="/">All</a>
             </span>
@@ -53,9 +53,9 @@
             </span>
         </li>
 
-        <li class="">
+        <li class="is-active">
             <span>
-                <a href="/missing">Missing</a>
+                <a href="#">Missing</a>
             </span>
         </li>
 
@@ -69,21 +69,20 @@
 
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
-    #foreach( $amiibo in $amiibos )
+    #foreach( $missing in $missingAmiibo)
         <div class="column is-one-fifth">
-          <div class="amiibo-id is-hidden" id="amiibo">$amiibo.AmiiboID</div>
-
+            <div class="amiibo-id" amiibo="$missing.AmiiboID"></div>
             <article class="message is-large is-danger">
                 <div class="message-header">
                     <p></p>
-                    <p>$amiibo.Name</p>
+                    <p>$missing.Name</p>
                     <p></p>
                 </div>
                 <center>   <!-- Amiibo -->
                     <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
+                        <img class="amiibo-image" src="$missing.ImageURL" id="inactive">
                         <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible" id="active-$amiibo.AmiiboID">
+                        <figcaption class="overlay is-overlay is-invisible" id="active">
                             <!-- Background -->
                             <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
                             <div style="height:16px;font-size:16px;">&nbsp;</div>

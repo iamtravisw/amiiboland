@@ -29,7 +29,7 @@
             </span>
         </li>
 
-        <li class="is-active">
+        <li class="">
             <span>
                 <a href="/">All</a>
             </span>
@@ -41,9 +41,9 @@
             </span>
         </li>
 
-        <li class="">
+        <li class="is-active">
             <span>
-                <a href="/favorited">Favorited</a>
+                <a href="#">Favorited</a>
             </span>
         </li>
 
@@ -69,21 +69,20 @@
 
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
-    #foreach( $amiibo in $amiibos )
+    #foreach( $favorited in $favoritedAmiibo)
         <div class="column is-one-fifth">
-          <div class="amiibo-id is-hidden" id="amiibo">$amiibo.AmiiboID</div>
-
+            <div class="amiibo-id" amiibo="$favorited.AmiiboID"></div>
             <article class="message is-large is-danger">
                 <div class="message-header">
                     <p></p>
-                    <p>$amiibo.Name</p>
+                    <p>$favorited.Name</p>
                     <p></p>
                 </div>
                 <center>   <!-- Amiibo -->
                     <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
+                        <img class="amiibo-image" src="$favorited.ImageURL" id="inactive">
                         <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible" id="active-$amiibo.AmiiboID">
+                        <figcaption class="overlay is-overlay is-invisible" id="active">
                             <!-- Background -->
                             <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
                             <div style="height:16px;font-size:16px;">&nbsp;</div>
