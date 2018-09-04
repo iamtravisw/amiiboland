@@ -4,13 +4,15 @@
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AddAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddAmiibo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AddFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddFavorite.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AddWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AddWishList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveAmiibo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveFavorite.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RemoveWishList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RemoveWishList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.vm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,19 +25,19 @@
     <session id="5524229">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="14" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.23" value="2" />
-          <entry key="project.open.time.24" value="4" />
+          <entry key="project.open.time.24" value="5" />
           <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.27" value="2" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,7 +49,7 @@
           <entry key="map" value="5" />
           <entry key="php" value="1" />
           <entry key="sass" value="18" />
-          <entry key="vm" value="90" />
+          <entry key="vm" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -59,26 +61,26 @@
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Sass" value="18" />
           <entry key="SourceMap" value="5" />
-          <entry key="VTL" value="90" />
+          <entry key="VTL" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="71" />
-          <entry key="java" value="4853" />
+          <entry key="java" value="4877" />
           <entry key="js" value="1272" />
           <entry key="sass" value="12" />
-          <entry key="vm" value="5087" />
+          <entry key="vm" value="5093" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="71" />
-          <entry key="JAVA" value="4852" />
+          <entry key="JAVA" value="4876" />
           <entry key="JavaScript" value="1272" />
           <entry key="SQL" value="1" />
           <entry key="Sass" value="12" />
-          <entry key="VTL" value="5087" />
+          <entry key="VTL" value="5093" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -94,10 +96,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="231" column="39" lean-forward="true" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
+            <state relative-caret-position="405">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
         </entry>
@@ -155,7 +157,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/collected.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/missing.vm" />
@@ -164,6 +165,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.vm" />
       </list>
     </option>
   </component>
@@ -202,6 +204,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -226,22 +229,7 @@
               <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
-              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
-              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
@@ -255,14 +243,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536017019442" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536024756253" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -368,16 +355,17 @@
       <workItem from="1535963190042" duration="349000" />
       <workItem from="1535993844688" duration="3164000" />
       <workItem from="1536001731186" duration="11137000" />
+      <workItem from="1536019434563" duration="1929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232517000" />
+    <option name="totallyTimeSpent" value="234446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="40" width="1920" height="1000" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17678382" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17838125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -475,12 +463,12 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/bulma-quickview.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/sass/components/bulma-steps.sass" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="73516" selection-start-column="73516" selection-end-column="73516" />
         </state>
       </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.min.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -549,23 +537,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/navBar.php" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/navBar.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/bird-alert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/bird-alert.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.vm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
@@ -588,13 +561,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.vm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
@@ -647,17 +613,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#figcaption#0;n#figure#0;n#center#0;n#article#0;n#div#0;n#div#2;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2739#2745#1#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="231" column="39" lean-forward="true" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
+        <state relative-caret-position="210">
+          <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>

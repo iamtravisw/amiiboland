@@ -25,31 +25,52 @@
 
 
 
-    <section class="hero is-primary">
+    <section class="hero is-danger">
         <div class="hero-body">
             <div class="container">
+
+ <div class="columns is-desktop is-vcentered is-gapless">
+        <div class="column is-one-fifths">
+            <figure class="image is-128x128">
+                <img class="is-rounded" src="https://pbs.twimg.com/profile_images/919721320513904641/dpnYt4EV_400x400.jpg">
+            </figure>
+        </div>
+
+         <div class="column is-four-fifths">
                 <h1 class="title">
-                    User Profile
+                    TravisaurusREKT
                 </h1>
                 <h2 class="subtitle">
-                    Users personal tag line
+                    I collect video games and Amiibo
                     <i class="fas fa-pencil-alt fa-xs"></i>
-
-
                 </h2>
             </div>
         </div>
+            </div>
     </section>
 
 
-    <div class="columns">
+    <div class="columns is-gapless">
         <div class="column is-one-fifth">
-            About
+
+
+            <h1 class="subtitle">About</h1>
+            My name is Travis, I am a collector of Amiibo and Retro video games. Nintendo Switch is my favorite console.
+            <hr>
+            <h1 class="subtitle">Collection</h1>
+            Collection 7/127<br>
+            Collection Worth: $54.04
+            <hr>
+            <h1 class="subtitle">Activity</h1>
+            Added Mario to Collection on 9/2/2018<br><br>
+            Added Mario to Favorites on 9/2/2018<br><br>
+            Removed Kirby to Collection on 9/2/2018<br><br>
+            Added Pikachu to Wish List on 9/2/2018
         </div>
 
 
 
-        <div class="column is-three-fifths">
+        <div class="column is-gapless">
             <div class="container is-fluid">
 
         <div class="tabs is-left">
@@ -58,6 +79,7 @@
                     <a>
                         <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
                         <span>Collection</span>
+                        
                     </a>
                 </li>
                 <li>
@@ -79,9 +101,6 @@
 
 
 
-        <div class="column is-three-fifths">
-            Activity
-        </div>
     </div>
 
 
