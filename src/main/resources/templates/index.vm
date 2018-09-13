@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/amiiboland.js"></script>
+    <script src="/js/amiiboland.js"></script>
     <link rel="icon" href="/amiibo.ico">
+    <script src="/js/vanillatoasts.js"></script>
+    <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
 </head>
 
 <div id="navMenu">
@@ -71,10 +73,10 @@
         <!-- Here are all of the Amiibo -->
         #foreach( $amiibo in $amiibos )
             <div class="column is-one-fifth">
-              <div class="amiibo-id is-hidden" id="amiibo">$amiibo.AmiiboID</div>
-
+              <div class="amiibo-id is-hidden" id="amiibo">
+              </div>
                 <article class="message is-large is-danger">
-                    <div class="message-header">
+                    <div class="message-header" id="$amiibo.Name">
                         <p></p>
                         <p>$amiibo.Name</p>
                         <p></p>
@@ -94,12 +96,16 @@
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            <div class="star">
+                                            #if ($amiibo.Collected == "Y")
+                                            <div class="star$amiibo.AmiiboID has-text-warning">
+                                            #else
+                                            <div class="star$amiibo.AmiiboID">
+                                            #end
                                                 <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-star fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                        <input class="mine is-hidden" type="checkbox" id="mine-$amiibo.AmiiboID">
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$amiibo.AmiiboID#$amiibo.Name">
                                                     </span>
                                                 </label>
                                             </div>
@@ -108,12 +114,17 @@
                                     <!-- Collected "Love" (Heart) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            <div class="heart">
+                                            #if ($amiibo.Favorited == "Y")
+                                            <div class="heart$amiibo.AmiiboID has-text-danger">
+                                            #else
+                                            <div class="heart$amiibo.AmiiboID">
+                                            #end
                                                 <label>
                                                     <span class="fa-stack">
-                                                        <i class="fas fa-heart fa-2x"></i>
+                                                        <i class="fas fa-heart fa-2x "></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                        <input class="love is-hidden" type="checkbox" id="love-$amiibo.AmiiboID">
+                                                            <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
+                                                            <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
                                                     </span>
                                                 </label>
                                             </div>
@@ -122,12 +133,16 @@
                                     <!-- Collected "Want" (Gem) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            <div class="gem">
+                                            #if($amiibo.WishList == "Y")
+                                            <div class="gem$amiibo.AmiiboID has-text-info">
+                                            #else
+                                            <div class="gem$amiibo.AmiiboID ">
+                                            #end
                                                 <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-gem fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                        <input class="want is-hidden" type="checkbox" id="want-$amiibo.AmiiboID">
+                                                        <input class="want is-hidden" type="checkbox" id="want#$amiibo.AmiiboID#$amiibo.Name">
                                                     </span>
                                                 </label>
                                             </div>

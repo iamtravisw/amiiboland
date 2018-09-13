@@ -21,7 +21,7 @@
 </div>
 
 
-<div class="modal">
+<div class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
@@ -221,7 +221,7 @@
                 </h1>
                 <h2 class="subtitle">
                     If you want up to date news you can follow me on <a href="https://twitter.com/iamtravisw">Twitter</a> or subscribe to my <a href="https://www.iamtravisw.com/"> blog</a>.<br>
-                    Amiibo.Land is and always will be free to use, but you can <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PYZX4TVFNM2GA">buy me a hamburger</a> if you want.
+                    Amiibo.Land is and always will be free to use, but you can <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PYZX4TVFNM2GA">buy me a cheeseburger </a> if you want.
                 </h2>
             </div>
         </div>

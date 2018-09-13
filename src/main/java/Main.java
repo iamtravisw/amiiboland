@@ -31,7 +31,7 @@ public class Main {
             }
 
             // 'All' Tab from Home Page
-            String selectAll = "SELECT AmiiboID, Name, ImageURL FROM Amiibo";
+            String selectAll = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE UserID IS NULL OR UserID = 1 ORDER BY a.AmiiboID ASC";
             PreparedStatement psAll = conn.prepareStatement(selectAll);
             ResultSet resultsAll = psAll.executeQuery(selectAll);
 
@@ -41,10 +41,16 @@ public class Main {
                 String AmiiboID = resultsAll.getString("AmiiboID");
                 String Name = resultsAll.getString("Name");
                 String ImageURL = resultsAll.getString("ImageURL");
+                String Favorited = resultsAll.getString("Favorited");
+                String Collected = resultsAll.getString("Collected");
+                String WishList = resultsAll.getString("WishList");
                 HashMap<String, String> amiibo = new HashMap<String, String>();
                 amiibo.put("Name", Name);
                 amiibo.put("AmiiboID", AmiiboID);
                 amiibo.put("ImageURL", ImageURL);
+                amiibo.put("Favorited", Favorited);
+                amiibo.put("Collected", Collected);
+                amiibo.put("WishList", WishList);
                 amiibos.add(amiibo);
             }
 
@@ -85,6 +91,7 @@ public class Main {
 
             // Pass amiibos to template
             return render(model,"templates/navbar.vm");
+
         });
 
         // 'New' Tab from Home Page
@@ -176,11 +183,13 @@ public class Main {
                 String Name = resultsFavorited.getString("Name");
                 String ImageURL = resultsFavorited.getString("ImageURL");
                 String UserID = resultsFavorited.getString("UserID");
+                String Favorited = resultsFavorited.getString("Favorited");
                 HashMap<String, String> favorited = new HashMap<String, String>();
                 favorited.put("Name", Name);
                 favorited.put("AmiiboID", AmiiboID);
                 favorited.put("ImageURL", ImageURL);
                 favorited.put("UserID", UserID);
+                favorited.put("Favorited", Favorited);
                 favoritedAmiibo.add(favorited);
             }
 

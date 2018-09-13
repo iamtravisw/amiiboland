@@ -12,69 +12,34 @@
     <link rel="icon" href="/amiibo.ico">
     <script src="/js/vanillatoasts.js"></script>
     <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
-</head>
+    </head>
 
-<div id="navMenu">
-    <script>
-        $.get("/navbar", function(data){
-            $("#navMenu").replaceWith(data);
-        });
+    <div id="navMenu">
+            <script>
+            $.get("/navbar", function(data){
+                $("#navMenu").replaceWith(data);
+            });
     </script>
-</div>
+    </div>
 
+    <section class="hero is-danger">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    30th Anniversary - The Legend of Zelda series
+                </h1>
+            </div>
+        </div>
+    </section>
 
-<div class="tabs is-centered is-boxed">
-    <ul>
-        <li class="">
-            <span>
-                <a href="new">New</a>
-            </span>
-        </li>
-
-        <li class="is-active">
-            <span>
-                <a href="/">All</a>
-            </span>
-        </li>
-
-        <li class="">
-            <span>
-                <a href="/collected">Collected</a>
-            </span>
-        </li>
-
-        <li class="">
-            <span>
-                <a href="/favorited">Favorited</a>
-            </span>
-        </li>
-
-        <li class="">
-            <span>
-                <a href="/wishlist">Wish List</a>
-            </span>
-        </li>
-
-        <li class="">
-            <span>
-                <a href="/missing">Missing</a>
-            </span>
-        </li>
-
-        <li class="">
-            <span>
-                <a href="/comingsoon">Coming Soon</a>
-            </span>
-        </li>
-    </ul>
-</div>
+    <br>
 
     <div class="columns is-multiline">
         <!-- Here are all of the Amiibo -->
         #foreach( $amiibo in $amiibos )
             <div class="column is-one-fifth">
-              <div class="amiibo-id is-hidden" id="amiibo">
-              </div>
+                <div class="amiibo-id is-hidden" id="amiibo">
+                </div>
                 <article class="message is-large is-danger">
                     <div class="message-header" id="$amiibo.Name">
                         <p></p>
@@ -96,11 +61,7 @@
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($amiibo.Collected == "Y")
-                                            <div class="star$amiibo.AmiiboID has-text-warning">
-                                            #else
-                                            <div class="star$amiibo.AmiiboID">
-                                            #end
+                                            <div class="star">
                                                 <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-star fa-2x"></i>
@@ -114,17 +75,12 @@
                                     <!-- Collected "Love" (Heart) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($amiibo.Favorited == "Y")
-                                            <div class="heart$amiibo.AmiiboID has-text-danger">
-                                            #else
-                                            <div class="heart$amiibo.AmiiboID">
-                                            #end
+                                            <div class="heart">
                                                 <label>
                                                     <span class="fa-stack">
-                                                        <i class="fas fa-heart fa-2x "></i>
+                                                        <i class="fas fa-heart fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                            <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
-                                                            <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
+                                                        <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name">
                                                     </span>
                                                 </label>
                                             </div>
@@ -133,11 +89,7 @@
                                     <!-- Collected "Want" (Gem) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if($amiibo.WishList == "Y")
-                                            <div class="gem$amiibo.AmiiboID has-text-info">
-                                            #else
-                                            <div class="gem$amiibo.AmiiboID ">
-                                            #end
+                                            <div class="gem">
                                                 <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-gem fa-2x"></i>
@@ -157,15 +109,15 @@
         #end
     </div>
 
-<footer class="footer">
-    <div class="content">
-        <center>
-            <strong> Amiibo.Land © <a href="http://iamtravisw.com"> Travis Woodward</strong>.<br></a>
-            All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.</a><br>
-            <a href="/privacypolicy">Privacy Policy</a> | <a href="/termsofservice">Terms of Service</a>
-        </center>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="content">
+            <center>
+                <strong> Amiibo.Land © <a href="http://iamtravisw.com"> Travis Woodward</strong>.<br></a>
+                All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.</a><br>
+                <a href="/privacypolicy">Privacy Policy</a> | <a href="/termsofservice">Terms of Service</a>
+            </center>
+        </div>
+    </footer>
 
-</body>
+    </body>
 </html>

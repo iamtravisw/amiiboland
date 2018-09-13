@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
-        <link rel="stylesheet" href="/css/bulma.css">
-        <link rel="stylesheet" href="/css/bulma.min.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="/amiiboland.js"></script>
-        <link rel="icon" href="/amiibo.ico">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/amiiboland.js"></script>
+    <link rel="icon" href="/amiibo.ico">
+    <script src="/js/vanillatoasts.js"></script>
+    <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
     </head>
 
     <div id="navMenu">
@@ -24,51 +24,30 @@
     <body>
 
 
+<section class="hero is-link">
+    <div class="hero-body">
+        <div class="container">
 
-    <section class="hero is-danger">
-        <div class="hero-body">
-            <div class="container">
-
- <div class="columns is-desktop is-vcentered is-gapless">
-        <div class="column is-one-fifths">
-            <figure class="image is-128x128">
-                <img class="is-rounded" src="https://pbs.twimg.com/profile_images/919721320513904641/dpnYt4EV_400x400.jpg">
-            </figure>
-        </div>
-
-         <div class="column is-four-fifths">
-                <h1 class="title">
-                    TravisaurusREKT
-                </h1>
-                <h2 class="subtitle">
-                    I collect video games and Amiibo
-                    <i class="fas fa-pencil-alt fa-xs"></i>
-                </h2>
+            <div class="columns is-half">
+                <div class="column">
+                    <h1 class="title">
+                        TravisaurusREKT's profile
+                    </h1>
+                    <h2 class="subtitle">
+                        Welcome to the Collection of TravisaurusREKT
+                    </h2>
+                </div>
+                <div class="column has-text-right">
+                    <div style="height:12px;font-size:12px;">&nbsp;</div>
+                    <h2 class="subtitle">
+                        <strong>Collection</strong><br>
+                        58/167
+                    </h2>
+                </div>
             </div>
         </div>
-            </div>
-    </section>
-
-
-    <div class="columns is-gapless">
-        <div class="column is-one-fifth">
-
-
-            <h1 class="subtitle">About</h1>
-            My name is Travis, I am a collector of Amiibo and Retro video games. Nintendo Switch is my favorite console.
-            <hr>
-            <h1 class="subtitle">Collection</h1>
-            Collection 7/127<br>
-            Collection Worth: $54.04
-            <hr>
-            <h1 class="subtitle">Activity</h1>
-            Added Mario to Collection on 9/2/2018<br><br>
-            Added Mario to Favorites on 9/2/2018<br><br>
-            Removed Kirby to Collection on 9/2/2018<br><br>
-            Added Pikachu to Wish List on 9/2/2018
-        </div>
-
-
+    </div>
+</section>
 
         <div class="column is-gapless">
             <div class="container is-fluid">
@@ -79,7 +58,6 @@
                     <a>
                         <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
                         <span>Collection</span>
-                        
                     </a>
                 </li>
                 <li>
@@ -101,7 +79,29 @@
 
 
 
-    </div>
+
+
+<div class="columns is-multiline">
+    <!-- Here are all of the Amiibo -->
+    #foreach( $amiibo in $amiibos )
+        <div class="column is-one-fifth">
+            <div class="amiibo-id is-hidden" id="amiibo">
+            </div>
+            <article class="message is-large is-link">
+                <div class="message-header" id="$amiibo.Name">
+                    <p></p>
+                    <p>$amiibo.Name</p>
+                    <p></p>
+                </div>
+                <center>   <!-- Amiibo -->
+                    <figure class="image has-text-light">
+                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
+                    </figure>
+                </center>
+            </article>
+        </div>
+    #end
+</div>
 
 
 

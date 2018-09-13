@@ -1,64 +1,53 @@
 <!DOCTYPE html>
 <html>
+
 <div id="header">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
-        <link rel="stylesheet" href="/css/bulma.css">
-        <link rel="stylesheet" href="/css/bulma.min.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="/amiiboland.js"></script>
-        <link rel="icon" href="/amiibo.ico">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    </head>
-</div>
-
-<nav class="navbar is-transparent" id="navMenu">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-            <img src="https://storage.googleapis.com/amiibo/logo.png" alt="Amiibo.Land">
-        </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-        </div>
-    </div>
-    <div class="navbar-end">
-        <a class="navbar-item" href="/">
-            Home
-        </a>
-        <a class="navbar-item" href="/profile">
-            Profile
-        </a>
-        <a class="navbar-item" href="/about">
-            About
-        </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="#">
-                Series
+    <nav class="navbar is-transparent" id="navMenu">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="https://storage.googleapis.com/amiibo/logo.png" alt="Amiibo.Land">
             </a>
-            <div class="navbar-dropdown is-boxed">
-
-                #foreach( $series in $allSeries )
-                    <a class="navbar-item" href="#">
-                        $series.Series
-                    </a>
-                #end
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
             </div>
         </div>
-    </div>
-    <span class="navbar-item">
-            <input class="input" type="text" placeholder="Search">
-          </span>
-    <a class="navbar-item" href="#">
-        Login
-    </a>
-    <span class="navbar-item">
-            <a class="button is-dark">
-              <span class="icon">
-                <i class="fas fa-user"></i>
-              </span>
-              <span>Sign Up</span>
+        <div class="navbar-end">
+            <a class="navbar-item" href="/">
+                Home
             </a>
-    </span>
+            <a class="navbar-item" href="/profile">
+                Profile
+            </a>
+            <a class="navbar-item" href="/about">
+                About
+            </a>
+            <!--
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="#">
+                    Series
+                </a>
+                <div class="navbar-dropdown is-boxed">
+
+                    #foreach( $series in $allSeries )
+                        <a class="navbar-item" href="/series/$series.Series">
+                            $series.Series
+                        </a>
+                    #end
+                </div>
+            </div>
+            -->
+        </div>
+        <span class="navbar-item">
+                <input class="input" type="text" placeholder="Search">
+              </span>
+        <a class="navbar-item" href="#">
+            Login
+        </a>
+        <span class="navbar-item">
+                <a class="button is-dark">
+                  <span class="icon">
+                    <i class="fas fa-user"></i>
+                  </span>
+                  <span>Sign Up</span>
+                </a>
+        </span>
 </nav>
