@@ -14,7 +14,7 @@
             <a class="navbar-item" href="/">
                 Home
             </a>
-            <a class="navbar-item" href="/profile">
+            <a class="navbar-item" href="/profile/collection">
                 Profile
             </a>
             <a class="navbar-item" href="/about">
@@ -36,6 +36,8 @@
             </div>
             -->
         </div>
+
+
         <span class="navbar-item">
                 <input class="input" type="text" placeholder="Search">
               </span>

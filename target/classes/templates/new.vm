@@ -12,7 +12,7 @@
     <link rel="icon" href="/amiibo.ico">
     <script src="/js/vanillatoasts.js"></script>
     <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
-    </head>
+</head>
 
 <div id="navMenu">
     <script>
@@ -69,82 +69,95 @@
     </ul>
 </div>
 
-<div class="columns is-multiline">
-    <!-- Here are all of the Amiibo -->
-    #foreach( $recents in $newAmiibo )
-        <div class="column is-one-fifth">
-            <div class="amiibo-id is-hidden" id="amiibo">$recents.AmiiboID</div>
-
-            <article class="message is-large is-danger">
-                <div class="message-header">
-                    <p></p>
-                    <p>$recents.Name</p>
-                    <p></p>
+    <div class="columns is-multiline">
+        <!-- Here are all of the Amiibo -->
+        #foreach( $recents in $newAmiibo )
+            <div class="column is-one-fifth">
+                <div class="amiibo-id is-hidden" id="amiibo">
                 </div>
-                <center>   <!-- Amiibo -->
-                    <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$recents.ImageURL" id="inactive-$recents.AmiiboID">
-                        <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible" id="active-$recents.AmiiboID">
-                            <!-- Background -->
-                            <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
-                            <div style="height:16px;font-size:16px;">&nbsp;</div>
+                <article class="message is-large is-danger">
+                    <div class="message-header" id="$recents.Name">
+                        <p></p>
+                        <p>$recents.Name</p>
+                        <p></p>
+                    </div>
+                    <center>   <!-- Amiibo -->
+                        <figure class="image has-text-light">
+                            <img class="amiibo-image" src="$recents.ImageURL" id="inactive-$recents.AmiiboID">
+                            <!-- Content Over Amiibo -->
+                            <figcaption class="overlay is-overlay is-invisible" id="active-$recents.AmiiboID">
+                                <!-- Background -->
+                                <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                                <div style="height:16px;font-size:16px;">&nbsp;</div>
 
-                            <!-- Buttons -->
-                            <div class="tile is-ancestor">
+                                <!-- Buttons -->
+                                <div class="tile is-ancestor">
 
-                                <!-- Collected "Mine" (Star) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="star">
+                                    <!-- Collected "Mine" (Star) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($recents.Collected == "Y")
+                                            <div class="star$recents.AmiiboID has-text-warning">
+                                            #else
+                                            <div class="star$recents.AmiiboID">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-star fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                        <input class="mine is-hidden" type="checkbox" id="mine-$recents.AmiiboID">
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$recents.AmiiboID#$recents.Name" value="$recents.Collected">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
-                                <!-- Collected "Love" (Heart) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="heart">
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Love" (Heart) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($recents.Favorited == "Y")
+                                            <div class="heart$recents.AmiiboID has-text-danger">
+                                            #else
+                                            <div class="heart$recents.AmiiboID">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
-                                                        <i class="fas fa-heart fa-2x"></i>
+                                                        <i class="fas fa-heart fa-2x "></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                        <input class="love is-hidden" type="checkbox" id="love-$recents.AmiiboID">
+                                                            <input class="love is-hidden" type="checkbox" id="love#$recents.AmiiboID#$recents.Name" value="$recents.Favorited">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
-                                <!-- Collected "Want" (Gem) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="gem">
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Want" (Gem) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if($recents.WishList == "Y")
+                                            <div class="gem$recents.AmiiboID has-text-info">
+                                            #else
+                                            <div class="gem$recents.AmiiboID ">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-gem fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                        <input class="want is-hidden" type="checkbox" id="want-$recents.AmiiboID">
+                                                            <input class="want is-hidden" type="checkbox" id="want#$recents.AmiiboID#$recents.Name" value="$recents.WishList">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
+                                        </article>
+                                    </div>
 
-                        </figcaption>
-                    </figure>
-                </center>
-            </article>
-        </div>
-    #end
-</div>
+                            </figcaption>
+                        </figure>
+                    </center>
+                </article>
+            </div>
+        #end
+    </div>
 
-<footer class="footer">
+
+        <footer class="footer">
     <div class="content">
         <center>
             <strong> Amiibo.Land © <a href="http://iamtravisw.com"> Travis Woodward</strong>.<br></a>

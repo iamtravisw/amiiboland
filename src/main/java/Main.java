@@ -63,6 +63,7 @@ public class Main {
             return render(model,"templates/index.vm");
         });
 
+       /*
         // NavBar for Series
         get("/navbar", (rq, rs) -> {
 
@@ -83,16 +84,13 @@ public class Main {
                 series.put("Series", Series);
                 allSeries.add(series);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("allSeries", allSeries);
-
             System.out.println(allSeries);
-
             // Pass amiibos to template
             return render(model,"templates/navbar.vm");
-
         });
+        */
 
         // 'New' Tab from Home Page
         get("/new", (rq, rs) -> {
@@ -101,7 +99,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectNew = "SELECT  AmiiboID, Name, ImageURL, ReleaseDate FROM Amiibo WHERE ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY ReleaseDate DESC";
+            String selectNew = "SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC";
             PreparedStatement psNew = conn.prepareStatement(selectNew);
             ResultSet resultsNew = psNew.executeQuery(selectNew);
 
@@ -112,11 +110,17 @@ public class Main {
                 String AmiiboID = resultsNew.getString("AmiiboID");
                 String Name = resultsNew.getString("Name");
                 String ImageURL = resultsNew.getString("ImageURL");
+                String Favorited = resultsNew.getString("Favorited");
+                String Collected = resultsNew.getString("Collected");
+                String WishList = resultsNew.getString("WishList");
                 HashMap<String, String> recents = new HashMap<String, String>();
                 recents.put("ReleaseDate", ReleaseDate);
                 recents.put("Name", Name);
                 recents.put("AmiiboID", AmiiboID);
                 recents.put("ImageURL", ImageURL);
+                recents.put("Favorited", Favorited);
+                recents.put("Collected", Collected);
+                recents.put("WishList", WishList);
                 newAmiibo.add(recents);
             }
 
@@ -137,7 +141,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectCollected = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Collected FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND Collected = 'Y' ORDER BY c.ModDate DESC";
+            String selectCollected = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND Collected = 'Y' ORDER BY c.ModDate DESC";
             PreparedStatement psCollected = conn.prepareStatement(selectCollected);
             ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
 
@@ -148,11 +152,17 @@ public class Main {
                 String Name = resultsCollected.getString("Name");
                 String ImageURL = resultsCollected.getString("ImageURL");
                 String UserID = resultsCollected.getString("UserID");
+                String Favorited = resultsCollected.getString("Favorited");
+                String Collected = resultsCollected.getString("Collected");
+                String WishList = resultsCollected.getString("WishList");
                 HashMap<String, String> collected = new HashMap<String, String>();
                 collected.put("Name", Name);
                 collected.put("AmiiboID", AmiiboID);
                 collected.put("ImageURL", ImageURL);
                 collected.put("UserID", UserID);
+                collected.put("Favorited", Favorited);
+                collected.put("Collected", Collected);
+                collected.put("WishList", WishList);
                 collectedAmiibo.add(collected);
             }
 
@@ -165,6 +175,48 @@ public class Main {
             return render(model,"templates/collected.vm");
         });
 
+        // PROFILE for 'Collected'
+        get("/profile/collection", (rq, rs) -> {
+
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+
+            String selectCollected = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND Collected = 'Y' ORDER BY c.ModDate DESC";
+            PreparedStatement psCollected = conn.prepareStatement(selectCollected);
+            ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
+
+            ArrayList<HashMap<String,String>> collectedAmiibo = new ArrayList<HashMap<String,String>>();
+
+            while (resultsCollected.next()) {
+                String AmiiboID = resultsCollected.getString("AmiiboID");
+                String Name = resultsCollected.getString("Name");
+                String ImageURL = resultsCollected.getString("ImageURL");
+                String UserID = resultsCollected.getString("UserID");
+                String Favorited = resultsCollected.getString("Favorited");
+                String Collected = resultsCollected.getString("Collected");
+                String WishList = resultsCollected.getString("WishList");
+                HashMap<String, String> collected = new HashMap<String, String>();
+                collected.put("Name", Name);
+                collected.put("AmiiboID", AmiiboID);
+                collected.put("ImageURL", ImageURL);
+                collected.put("UserID", UserID);
+                collected.put("Favorited", Favorited);
+                collected.put("Collected", Collected);
+                collected.put("WishList", WishList);
+                collectedAmiibo.add(collected);
+            }
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("collectedAmiibo", collectedAmiibo);
+
+            System.out.println(collectedAmiibo);
+
+            // Pass amiibos to template
+            return render(model,"templates/profile/collection.vm");
+        });
+
+
         // 'Favorited' Tab from Home Page
         get("/favorited", (rq, rs) -> {
 
@@ -172,7 +224,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectFavorited = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.Favorited = 'Y' ORDER BY c.ModDate DESC";
+            String selectFavorited = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.Favorited = 'Y' ORDER BY c.ModDate DESC";
             PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
             ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
 
@@ -184,12 +236,16 @@ public class Main {
                 String ImageURL = resultsFavorited.getString("ImageURL");
                 String UserID = resultsFavorited.getString("UserID");
                 String Favorited = resultsFavorited.getString("Favorited");
+                String Collected = resultsFavorited.getString("Collected");
+                String WishList = resultsFavorited.getString("WishList");
                 HashMap<String, String> favorited = new HashMap<String, String>();
                 favorited.put("Name", Name);
                 favorited.put("AmiiboID", AmiiboID);
                 favorited.put("ImageURL", ImageURL);
                 favorited.put("UserID", UserID);
                 favorited.put("Favorited", Favorited);
+                favorited.put("Collected", Collected);
+                favorited.put("WishList", WishList);
                 favoritedAmiibo.add(favorited);
             }
 
@@ -202,6 +258,47 @@ public class Main {
             return render(model,"templates/favorited.vm");
         });
 
+        //  PROFILE 'Favorited' Tab
+        get("/profile/favorited", (rq, rs) -> {
+
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+
+            String selectFavorited = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.Favorited = 'Y' ORDER BY c.ModDate DESC";
+            PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
+            ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
+
+            ArrayList<HashMap<String,String>> favoritedAmiibo = new ArrayList<HashMap<String,String>>();
+
+            while (resultsFavorited.next()) {
+                String AmiiboID = resultsFavorited.getString("AmiiboID");
+                String Name = resultsFavorited.getString("Name");
+                String ImageURL = resultsFavorited.getString("ImageURL");
+                String UserID = resultsFavorited.getString("UserID");
+                String Favorited = resultsFavorited.getString("Favorited");
+                String Collected = resultsFavorited.getString("Collected");
+                String WishList = resultsFavorited.getString("WishList");
+                HashMap<String, String> favorited = new HashMap<String, String>();
+                favorited.put("Name", Name);
+                favorited.put("AmiiboID", AmiiboID);
+                favorited.put("ImageURL", ImageURL);
+                favorited.put("UserID", UserID);
+                favorited.put("Favorited", Favorited);
+                favorited.put("Collected", Collected);
+                favorited.put("WishList", WishList);
+                favoritedAmiibo.add(favorited);
+            }
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("favoritedAmiibo", favoritedAmiibo);
+
+            System.out.println(favoritedAmiibo);
+
+            // Pass amiibos to template
+            return render(model,"templates/profile/favorited.vm");
+        });
+
         // 'Wish List' Tab from Home Page
         get("/wishlist", (rq, rs) -> {
 
@@ -209,7 +306,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectWishList = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.WishList = 'Y' ORDER BY c.ModDate DESC";
+            String selectWishList = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.WishList = 'Y' ORDER BY c.ModDate DESC";
             PreparedStatement psWishList = conn.prepareStatement(selectWishList);
             ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
 
@@ -220,11 +317,17 @@ public class Main {
                 String Name = resultsWishList.getString("Name");
                 String ImageURL = resultsWishList.getString("ImageURL");
                 String UserID = resultsWishList.getString("UserID");
+                String Favorited = resultsWishList.getString("Favorited");
+                String Collected = resultsWishList.getString("Collected");
+                String WishList = resultsWishList.getString("WishList");
                 HashMap<String, String> wishlist = new HashMap<String, String>();
                 wishlist.put("Name", Name);
                 wishlist.put("AmiiboID", AmiiboID);
                 wishlist.put("ImageURL", ImageURL);
                 wishlist.put("UserID", UserID);
+                wishlist.put("Favorited", Favorited);
+                wishlist.put("Collected", Collected);
+                wishlist.put("WishList", WishList);
                 wishlistAmiibo.add(wishlist);
             }
 
@@ -237,6 +340,47 @@ public class Main {
             return render(model,"templates/wishlist.vm");
         });
 
+        // PROFILE 'Wish List' Tab
+        get("/profile/wishlist", (rq, rs) -> {
+
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+
+            String selectWishList = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.WishList = 'Y' ORDER BY c.ModDate DESC";
+            PreparedStatement psWishList = conn.prepareStatement(selectWishList);
+            ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
+
+            ArrayList<HashMap<String,String>> wishlistAmiibo = new ArrayList<HashMap<String,String>>();
+
+            while (resultsWishList.next()) {
+                String AmiiboID = resultsWishList.getString("AmiiboID");
+                String Name = resultsWishList.getString("Name");
+                String ImageURL = resultsWishList.getString("ImageURL");
+                String UserID = resultsWishList.getString("UserID");
+                String Favorited = resultsWishList.getString("Favorited");
+                String Collected = resultsWishList.getString("Collected");
+                String WishList = resultsWishList.getString("WishList");
+                HashMap<String, String> wishlist = new HashMap<String, String>();
+                wishlist.put("Name", Name);
+                wishlist.put("AmiiboID", AmiiboID);
+                wishlist.put("ImageURL", ImageURL);
+                wishlist.put("UserID", UserID);
+                wishlist.put("Favorited", Favorited);
+                wishlist.put("Collected", Collected);
+                wishlist.put("WishList", WishList);
+                wishlistAmiibo.add(wishlist);
+            }
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("wishlistAmiibo", wishlistAmiibo);
+
+            System.out.println(wishlistAmiibo);
+
+            // Pass amiibos to template
+            return render(model,"templates/profile/wishlist.vm");
+        });
+
 
         // 'Missing' Tab from Home Page
         get("/missing", (rq, rs) -> {
@@ -245,7 +389,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectMissing= "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Collected FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL ORDER BY a.AmiiboID ASC";
+            String selectMissing= "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL ORDER BY a.AmiiboID ASC";
             PreparedStatement psMissing = conn.prepareStatement(selectMissing);
             ResultSet resultsMissing = psMissing.executeQuery(selectMissing);
 
@@ -256,11 +400,17 @@ public class Main {
                 String Name = resultsMissing.getString("Name");
                 String ImageURL = resultsMissing.getString("ImageURL");
                 String UserID = resultsMissing.getString("UserID");
+                String Favorited = resultsMissing.getString("Favorited");
+                String Collected = resultsMissing.getString("Collected");
+                String WishList = resultsMissing.getString("WishList");
                 HashMap<String, String> missing = new HashMap<String, String>();
                 missing.put("Name", Name);
                 missing.put("AmiiboID", AmiiboID);
                 missing.put("ImageURL", ImageURL);
                 missing.put("UserID", UserID);
+                missing.put("Favorited", Favorited);
+                missing.put("Collected", Collected);
+                missing.put("WishList", WishList);
                 missingAmiibo.add(missing);
             }
 
@@ -280,7 +430,7 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectSoon = "SELECT  AmiiboID, Name, ImageURL, ReleaseDate FROM Amiibo WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate ASC";
+            String selectSoon = "SELECT  a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate ASC";
             PreparedStatement psSoon = conn.prepareStatement(selectSoon);
             ResultSet resultsSoon = psSoon.executeQuery(selectSoon);
 
@@ -291,11 +441,17 @@ public class Main {
                 String AmiiboID = resultsSoon.getString("AmiiboID");
                 String Name = resultsSoon.getString("Name");
                 String ImageURL = resultsSoon.getString("ImageURL");
+                String Favorited = resultsSoon.getString("Favorited");
+                String Collected = resultsSoon.getString("Collected");
+                String WishList = resultsSoon.getString("WishList");
                 HashMap<String, String> unreleased = new HashMap<String, String>();
                 unreleased.put("ReleaseDate", ReleaseDate);
                 unreleased.put("Name", Name);
                 unreleased.put("AmiiboID", AmiiboID);
                 unreleased.put("ImageURL", ImageURL);
+                unreleased.put("Favorited", Favorited);
+                unreleased.put("Collected", Collected);
+                unreleased.put("WishList", WishList);
                 soonAmiibo.add(unreleased);
             }
 
@@ -324,12 +480,6 @@ public class Main {
         get("/termsofservice", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
             return render(model, "templates/termsofservice.vm");
-        });
-
-        // Terms of Service
-        get("/profile", (rq, rs) -> {
-            Map<String, Object> model = new HashMap<>();
-            return render(model, "templates/profile.vm");
         });
 
         // NavBar

@@ -105,7 +105,7 @@
                                                     <span class="fa-stack">
                                                         <i class="fas fa-star fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                        <input class="mine is-hidden" type="checkbox" id="mine#$amiibo.AmiiboID#$amiibo.Name">
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Collected">
                                                     </span>
                                                 </label>
                                             </div>
@@ -124,7 +124,6 @@
                                                         <i class="fas fa-heart fa-2x "></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
                                                             <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
-                                                            <input class="love is-hidden" type="checkbox" id="love#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.Favorited">
                                                     </span>
                                                 </label>
                                             </div>
@@ -142,13 +141,12 @@
                                                     <span class="fa-stack">
                                                         <i class="fas fa-gem fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                        <input class="want is-hidden" type="checkbox" id="want#$amiibo.AmiiboID#$amiibo.Name">
+                                                            <input class="want is-hidden" type="checkbox" id="want#$amiibo.AmiiboID#$amiibo.Name" value="$amiibo.WishList">
                                                     </span>
                                                 </label>
                                             </div>
                                         </article>
                                     </div>
-
                             </figcaption>
                         </figure>
                     </center>

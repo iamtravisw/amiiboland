@@ -15,16 +15,16 @@
     </head>
 
     <div id="navMenu">
-        <script>
+            <script>
             $.get("/navbar", function(data){
                 $("#navMenu").replaceWith(data);
             });
-        </script>
+    </script>
     </div>
-    <body>
+<body>
 
 
-<section class="hero is-link">
+<section class="hero is-danger">
     <div class="hero-body">
         <div class="container">
 
@@ -49,60 +49,33 @@
     </div>
 </section>
 
-        <div class="column is-gapless">
-            <div class="container is-fluid">
+<div class="column is-gapless">
+    <div class="container is-fluid">
 
         <div class="tabs is-left">
             <ul>
-                <li class="is-active">
-                    <a>
+                <li>
+                    <a href="/profile/collection">
                         <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
                         <span>Collection</span>
                     </a>
                 </li>
-                <li>
-                    <a>
+                <li class="is-active">
+                    <a href="/profile/favorites">
                         <span class="icon is-small"><i class="fas fa-heart" aria-hidden="true"></i></span>
                         <span>Favorites</span>
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="/profile/wishlist">
                         <span class="icon is-small"><i class="fas fa-gem" aria-hidden="true"></i></span>
                         <span>Wish List</span>
                     </a>
                 </li>
             </ul>
         </div>
-            </div>
-        </div>
-
-
-
-
-
-<div class="columns is-multiline">
-    <!-- Here are all of the Amiibo -->
-    #foreach( $amiibo in $amiibos )
-        <div class="column is-one-fifth">
-            <div class="amiibo-id is-hidden" id="amiibo">
-            </div>
-            <article class="message is-large is-link">
-                <div class="message-header" id="$amiibo.Name">
-                    <p></p>
-                    <p>$amiibo.Name</p>
-                    <p></p>
-                </div>
-                <center>   <!-- Amiibo -->
-                    <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
-                    </figure>
-                </center>
-            </article>
-        </div>
-    #end
+    </div>
 </div>
-
 
 
 

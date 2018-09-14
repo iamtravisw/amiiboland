@@ -69,80 +69,91 @@
     </ul>
 </div>
 
-<div class="columns is-multiline">
-    <!-- Here are all of the Amiibo -->
-    #foreach( $favorited in $favoritedAmiibo )
-        <div class="column is-one-fifth">
-            <div class="amiibo-id is-hidden" id="amiibo">$favorited.AmiiboID</div>
-
-            <article class="message is-large is-danger">
-                <div class="message-header">
-                    <p></p>
-                    <p>$favorited.Name</p>
-                    <p></p>
+    <div class="columns is-multiline">
+        <!-- Here are all of the Amiibo -->
+        #foreach( $favorited in $favoritedAmiibo )
+            <div class="column is-one-fifth">
+                <div class="amiibo-id is-hidden" id="amiibo">
                 </div>
-                <center>   <!-- Amiibo -->
-                    <figure class="image has-text-light">
-                        <img class="amiibo-image" src="$favorited.ImageURL" id="inactive-$favorited.AmiiboID">
-                        <!-- Content Over Amiibo -->
-                        <figcaption class="overlay is-overlay is-invisible" id="active-$favorited.AmiiboID">
-                            <!-- Background -->
-                            <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
-                            <div style="height:16px;font-size:16px;">&nbsp;</div>
+                <article class="message is-large is-danger">
+                    <div class="message-header" id="$favorited.Name">
+                        <p></p>
+                        <p>$favorited.Name</p>
+                        <p></p>
+                    </div>
+                    <center>   <!-- Amiibo -->
+                        <figure class="image has-text-light">
+                            <img class="amiibo-image" src="$favorited.ImageURL" id="inactive-$favorited.AmiiboID">
+                            <!-- Content Over Amiibo -->
+                            <figcaption class="overlay is-overlay is-invisible" id="active-$favorited.AmiiboID">
+                                <!-- Background -->
+                                <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                                <div style="height:16px;font-size:16px;">&nbsp;</div>
 
-                            <!-- Buttons -->
-                            <div class="tile is-ancestor">
+                                <!-- Buttons -->
+                                <div class="tile is-ancestor">
 
-                                <!-- Collected "Mine" (Star) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="star">
+                                    <!-- Collected "Mine" (Star) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($favorited.Collected == "Y")
+                                            <div class="star$favorited.AmiiboID has-text-warning">
+                                            #else
+                                            <div class="star$favorited.AmiiboID">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-star fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                        <input class="mine is-hidden" type="checkbox" id="mine-$favorited.AmiiboID">
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$favorited.AmiiboID#$favorited.Name" value="$favorited.Collected">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
-                                <!-- Collected "Love" (Heart) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="heart">
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Love" (Heart) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($favorited.Favorited == "Y")
+                                            <div class="heart$favorited.AmiiboID has-text-danger">
+                                            #else
+                                            <div class="heart$favorited.AmiiboID">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
-                                                        <i class="fas fa-heart fa-2x"></i>
+                                                        <i class="fas fa-heart fa-2x "></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                        <input class="love is-hidden" type="checkbox" id="love-$favorited.AmiiboID" value="$favorited.Favorited">
+                                                            <input class="love is-hidden" type="checkbox" id="love#$favorited.AmiiboID#$favorited.Name" value="$favorited.Favorited">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
-                                <!-- Collected "Want" (Gem) Button -->
-                                <div class="tile is-parent">
-                                    <article class="tile is-child">
-                                        <div class="gem">
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Want" (Gem) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if($favorited.WishList == "Y")
+                                            <div class="gem$favorited.AmiiboID has-text-info">
+                                            #else
+                                            <div class="gem$favorited.AmiiboID ">
+                                            #end
                                             <label>
                                                     <span class="fa-stack">
                                                         <i class="fas fa-gem fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                        <input class="want is-hidden" type="checkbox" id="want-$favorited.AmiiboID">
+                                                            <input class="want is-hidden" type="checkbox" id="want#$favorited.AmiiboID#$favorited.Name" value="$favorited.WishList">
                                                     </span>
                                             </label>
                                         </div>
-                                    </article>
-                                </div>
-
-                        </figcaption>
-                    </figure>
-                </center>
-            </article>
-        </div>
-    #end
-</div>
+                                        </article>
+                                    </div>
+                            </figcaption>
+                        </figure>
+                    </center>
+                </article>
+            </div>
+        #end
+    </div>
 
 <footer class="footer">
     <div class="content">

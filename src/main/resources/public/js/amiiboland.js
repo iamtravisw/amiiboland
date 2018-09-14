@@ -12,6 +12,7 @@ $(document).ready(function(){
         $(".overlay").addClass("is-invisible");
     });
 
+/*  // Begin Mouse Over - Enlarge
     $(".star").mouseover(function() {
         console.log("'Mine' moused over (Star)");
         $(".star").addClass("is-size-3");
@@ -41,11 +42,13 @@ $(document).ready(function(){
         console.log("'Want' mouse left (Gem)");
         $(".gem").removeClass("is-size-3");
     });
-
+*/  // End Mouse Over - Enlarge
 
     $(document).ready(function(){
         $( ".mine" ).change(function() {
-            var newValue = $(this).is(':checked') ? "add" : "remove";
+
+         var newValue = $(this).is(':checked') ? "remove" : "add";
+
             var amiibo = $(this).attr('id');
             var activeAmiiboID = amiibo.split('#')[1];
             var activeAmiiboName = amiibo.split('#')[2];
