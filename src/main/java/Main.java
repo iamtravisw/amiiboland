@@ -2,6 +2,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
@@ -175,6 +176,7 @@ public class Main {
             return render(model,"templates/collected.vm");
         });
 
+        /*
         // PROFILE for 'Collected'
         get("/profile/collection", (rq, rs) -> {
 
@@ -215,7 +217,7 @@ public class Main {
             // Pass amiibos to template
             return render(model,"templates/profile/collection.vm");
         });
-
+*/
 
         // 'Favorited' Tab from Home Page
         get("/favorited", (rq, rs) -> {
@@ -464,6 +466,39 @@ public class Main {
             return render(model,"templates/comingsoon.vm");
         });
 
+
+        // Amiibo Collection Count on Profile Page
+        get("/profile/collection", (rq, rs) -> {
+
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+
+            String selectCount = "SELECT count(c.Collected) AS MyAmiibo, count(*) AS TotalAmiibo FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE c.UserID = 1 AND c.Collected = 'Y' OR a.AmiiboID IS NOT NULL AND c.UserID IS NULL";
+            PreparedStatement psCount = conn.prepareStatement(selectCount);
+            ResultSet resultsCount = psCount.executeQuery(selectCount);
+
+            ArrayList<HashMap<String,String>> countAmiibo = new ArrayList<HashMap<String,String>>();
+
+            while (resultsCount.next()) {
+                String MyAmiibo = resultsCount.getString("MyAmiibo");
+                String TotalAmiibo = resultsCount.getString("TotalAmiibo");
+
+                HashMap<String, String> count = new HashMap<String, String>();
+                count.put("MyAmiibo", MyAmiibo);
+                count.put("TotalAmiibo", TotalAmiibo);
+                countAmiibo.add(count);
+            }
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("countAmiibo", countAmiibo);
+
+            System.out.println(countAmiibo);
+
+            // Pass amiibos to template
+            return render(model,"templates/profile/collection.vm");
+        });
+
         // About
         get("/about", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
@@ -480,6 +515,18 @@ public class Main {
         get("/termsofservice", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
             return render(model, "templates/termsofservice.vm");
+        });
+
+        // Sign Up
+        get("/signup", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            return render(model, "templates/signup.vm");
+        });
+
+        // Sign Up
+        get("/login", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            return render(model, "templates/login.vm");
         });
 
         // NavBar

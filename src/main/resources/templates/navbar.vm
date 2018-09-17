@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var $search = $("#myInput").on('keyup',function(){
+                var matcher = new RegExp($(this).val(), 'gi');
+                $('.column').show().not(function(){
+                    return matcher.test($(this).find('.message-header').text())
+                }).hide();
+            })
+        })
+    </script>
+
+</head>
 
 <div id="header">
     <nav class="navbar is-transparent" id="navMenu">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item has-text-danger has-text-weight-bold" href="/">
                 <img src="https://storage.googleapis.com/amiibo/logo.png" alt="Amiibo.Land">
+                &nbsp; beta
             </a>
             <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
             </div>
@@ -37,15 +53,16 @@
             -->
         </div>
 
-
         <span class="navbar-item">
-                <input class="input" type="text" placeholder="Search">
-              </span>
-        <a class="navbar-item" href="#">
+            <input class="input" type="text" placeholder="Filter amiibo on this page..." id="myInput">
+        </span>
+
+
+        <a class="navbar-item" href="/login">
             Login
         </a>
         <span class="navbar-item">
-                <a class="button is-dark">
+                <a class="button is-dark" href="/signup">
                   <span class="icon">
                     <i class="fas fa-user"></i>
                   </span>

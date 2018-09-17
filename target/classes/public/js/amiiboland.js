@@ -12,7 +12,7 @@ $(document).ready(function(){
         $(".overlay").addClass("is-invisible");
     });
 
-/*  // Begin Mouse Over - Enlarge
+    // Begin Mouse Over - Enlarge
     $(".star").mouseover(function() {
         console.log("'Mine' moused over (Star)");
         $(".star").addClass("is-size-3");
@@ -42,17 +42,17 @@ $(document).ready(function(){
         console.log("'Want' mouse left (Gem)");
         $(".gem").removeClass("is-size-3");
     });
-*/  // End Mouse Over - Enlarge
+    // End Mouse Over - Enlarge
 
     $(document).ready(function(){
         $( ".mine" ).change(function() {
 
-         var newValue = $(this).is(':checked') ? "remove" : "add";
+         var newValue = $(this).is(':checked') ? "add" : "remove";
 
             var amiibo = $(this).attr('id');
             var activeAmiiboID = amiibo.split('#')[1];
             var activeAmiiboName = amiibo.split('#')[2];
-            $(".star"+activeAmiiboID).toggleClass("has-text-warning");
+            $("#star"+activeAmiiboID).toggleClass("has-text-warning");
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("activeAmiiboID is: "+ activeAmiiboID);
             console.log("Sending request to backend");
@@ -91,7 +91,7 @@ $(document).ready(function(){
                 var amiibo = $(this).attr('id');
                 var activeAmiiboID = amiibo.split('#')[1];
                 var activeAmiiboName = amiibo.split('#')[2];
-                $(".heart"+activeAmiiboID).toggleClass("has-text-danger");
+                $("#heart"+activeAmiiboID).toggleClass("has-text-danger");
                 console.log( "Handler for .change() called with value: " + newValue );
                 console.log("activeAmiiboID is: "+ activeAmiiboID);
                 console.log("Sending request to backend");
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 var amiibo = $(this).attr('id');
                 var activeAmiiboID = amiibo.split('#')[1];
                 var activeAmiiboName = amiibo.split('#')[2];
-                $(".gem"+activeAmiiboID).toggleClass("has-text-info");
+                $("#gem"+activeAmiiboID).toggleClass("has-text-info");
                 console.log( "Handler for .change() called with value: " + newValue );
                 console.log("activeAmiiboID is: "+ activeAmiiboID);
                 console.log("Sending request to backend");

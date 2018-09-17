@@ -41,7 +41,9 @@
                     <div style="height:12px;font-size:12px;">&nbsp;</div>
                     <h2 class="subtitle">
                         <strong>Collection</strong><br>
-                        58/167
+                        #foreach($count in $countAmiibo)
+                            $count.MyAmiibo / $count.TotalAmiibo
+                        #end
                     </h2>
                 </div>
             </div>

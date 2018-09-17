@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/amiiboland.js"></script>
+    <link rel="icon" href="/amiibo.ico">
+    <script src="/js/vanillatoasts.js"></script>
+    <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
+    </head>
+
+    <div id="navMenu">
+            <script>
+            $.get("/navbar", function(data){
+                $("#navMenu").replaceWith(data);
+            });
+    </script>
+    </div>
+
+    <section class="hero is-danger">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Login
+                </h1>
+                <h2 class="subtitle">
+                    Login to start tracking your awesome collection!
+                </h2>
+            </div>
+        </div>
+    </section>
+    <br>
+
+
+    <div class="container is-fluid">
+        <div class="notification">
+
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-success" type="text" placeholder="Must be Unique">
+                    <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+                    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+                </div>
+                <p class="help is-success">This username is available</p>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-danger" type="password" placeholder="Password">
+                    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+                    </span> </div>
+
+                    <br>
+                    <div class="field">
+                        <div class="control">
+                               Forgot Password? <a href="#">Click here</a>.
+                            </label>
+                        </div>
+                    </div>
+
+                <div class="field">
+                    <div class="control">
+                        Or <a href="/signup">Sign up</a> here.
+                        </label>
+                    </div>
+                </div>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-link">Submit</button>
+                        </div>
+                        <div class="control">
+                            <button class="button is-text">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="content">
+                    <center>
+                        <strong> Amiibo.Land © <a href="http://iamtravisw.com"> Travis Woodward</strong>.<br></a>
+                        All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.</a><br>
+                        <a href="/privacypolicy">Privacy Policy</a> | <a href="/termsofservice">Terms of Service</a>
+                    </center>
+                </div>
+            </footer>
+
+            </body>
+</html>

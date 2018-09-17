@@ -73,8 +73,7 @@
         <!-- Here are all of the Amiibo -->
         #foreach( $amiibo in $amiibos )
             <div class="column is-one-fifth">
-              <div class="amiibo-id is-hidden" id="amiibo">
-              </div>
+            <div class="amiibo-id is-hidden" id="amiibo"></div>
                 <article class="message is-large is-danger">
                     <div class="message-header" id="$amiibo.Name">
                         <p></p>
@@ -82,24 +81,22 @@
                         <p></p>
                     </div>
                     <center>   <!-- Amiibo -->
-                        <figure class="image has-text-light">
-                            <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
-                            <!-- Content Over Amiibo -->
-                            <figcaption class="overlay is-overlay is-invisible" id="active-$amiibo.AmiiboID">
-                                <!-- Background -->
-                                <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                    <figure class="image has-text-light">
+                        <img class="amiibo-image" src="$amiibo.ImageURL" id="inactive-$amiibo.AmiiboID">
+                        <!-- Content Over Amiibo -->
+                        <figcaption class="overlay is-overlay is-invisible" id="active-$amiibo.AmiiboID">
+                            <!-- Background -->
+                            <img class="background is-overlay" src="https://storage.googleapis.com/amiibo/black.png">
                                 <div style="height:16px;font-size:16px;">&nbsp;</div>
-
                                 <!-- Buttons -->
                                 <div class="tile is-ancestor">
-
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($amiibo.Collected == "Y")
-                                            <div class="star$amiibo.AmiiboID has-text-warning">
+                                            <div class="star has-text-warning" id="star$amiibo.AmiiboID">
                                             #else
-                                            <div class="star$amiibo.AmiiboID">
+                                            <div class="star" id="star$amiibo.AmiiboID">
                                             #end
                                                 <label>
                                                     <span class="fa-stack">
@@ -115,9 +112,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($amiibo.Favorited == "Y")
-                                            <div class="heart$amiibo.AmiiboID has-text-danger">
+                                            <div class="heart has-text-danger" id="heart$amiibo.AmiiboID">
                                             #else
-                                            <div class="heart$amiibo.AmiiboID">
+                                            <div class="heart" id="heart$amiibo.AmiiboID">
                                             #end
                                                 <label>
                                                     <span class="fa-stack">
@@ -133,9 +130,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if($amiibo.WishList == "Y")
-                                            <div class="gem$amiibo.AmiiboID has-text-info">
+                                            <div class="gem has-text-info" id="gem$amiibo.AmiiboID">
                                             #else
-                                            <div class="gem$amiibo.AmiiboID ">
+                                            <div class="gem" id="gem$amiibo.AmiiboID">
                                             #end
                                                 <label>
                                                     <span class="fa-stack">
@@ -147,13 +144,15 @@
                                             </div>
                                         </article>
                                     </div>
-                            </figcaption>
-                        </figure>
-                    </center>
-                </article>
-            </div>
-        #end
-    </div>
+                                </figcaption>
+                            </figure>
+                        </center>
+                    </article>
+                </div>
+            #end
+        </div>
+    </ul>
+
 
 <footer class="footer">
     <div class="content">
