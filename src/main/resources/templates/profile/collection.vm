@@ -40,10 +40,14 @@
                 <div class="column has-text-right">
                     <div style="height:12px;font-size:12px;">&nbsp;</div>
                     <h2 class="subtitle">
-                        <strong>Collection</strong><br>
-                        #foreach($count in $countAmiibo)
-                            $count.MyAmiibo / $count.TotalAmiibo
-                        #end
+                        <strong>Collected</strong><br>
+                        <div id="amiiboCount">
+                            <script>
+                                $.get("/count", function(data){
+                                    $("#amiiboCount").replaceWith(data);
+                                });
+                            </script>
+                        </div>
                     </h2>
                 </div>
             </div>
@@ -77,6 +81,93 @@
             </ul>
         </div>
     </div>
+</div>
+
+<div class="columns is-multiline">
+    <!-- Here are all of the Amiibo -->
+    #foreach( $collected in $collectedAmiibo )
+        <div class="column is-one-fifth">
+            <div class="amiibo-id is-hidden" id="amiibo">
+            </div>
+            <article class="message is-large is-danger">
+                <div class="message-header" id="$collected.Name">
+                    <p></p>
+                    <p>$collected.Name</p>
+                    <p></p>
+                </div>
+                <center>   <!-- Amiibo -->
+                    <figure class="image has-text-light">
+                        <img class="amiibo-image" src="$collected.ImageURL" id="inactive-$collected.AmiiboID">
+                        <!-- Content Over Amiibo -->
+                        <figcaption class="overlay is-overlay is-invisible" id="active-$collected.AmiiboID">
+                            <!-- Background -->
+                            <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                            <div style="height:16px;font-size:16px;">&nbsp;</div>
+
+                            <!-- Buttons -->
+                            <div class="tile is-ancestor">
+
+                                <!-- Collected "Mine" (Star) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        #if ($collected.Collected == "Y")
+                                        <div class="star$collected.AmiiboID has-text-warning">
+                                        #else
+                                        <div class="star$collected.AmiiboID">
+                                        #end
+                                        <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-star fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$collected.AmiiboID#$collected.Name" value="$collected.Collected">
+                                                    </span>
+                                        </label>
+                                    </div>
+                                    </article>
+                                </div>
+                                <!-- Collected "Love" (Heart) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        #if ($collected.Favorited == "Y")
+                                        <div class="heart$collected.AmiiboID has-text-danger">
+                                        #else
+                                        <div class="heart$collected.AmiiboID">
+                                        #end
+                                        <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-heart fa-2x "></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                            <input class="love is-hidden" type="checkbox" id="love#$collected.AmiiboID#$collected.Name" value="$collected.Favorited">
+                                                    </span>
+                                        </label>
+                                    </div>
+                                    </article>
+                                </div>
+                                <!-- Collected "Want" (Gem) Button -->
+                                <div class="tile is-parent">
+                                    <article class="tile is-child">
+                                        #if($collected.WishList == "Y")
+                                        <div class="gem$collected.AmiiboID has-text-info">
+                                        #else
+                                        <div class="gem$collected.AmiiboID ">
+                                        #end
+                                        <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-gem fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                            <input class="want is-hidden" type="checkbox" id="want#$collected.AmiiboID#$collected.Name" value="$collected.WishList">
+                                                    </span>
+                                        </label>
+                                    </div>
+                                    </article>
+                                </div>
+
+                        </figcaption>
+                    </figure>
+                </center>
+            </article>
+        </div>
+    #end
 </div>
 
 

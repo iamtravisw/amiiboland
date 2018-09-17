@@ -1,0 +1,4 @@
+<div id="amiiboCount">
+#foreach($count in $countAmiibo)
+    $count.MyAmiibo / $count.TotalAmiibo
+#end

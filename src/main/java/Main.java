@@ -176,7 +176,7 @@ public class Main {
             return render(model,"templates/collected.vm");
         });
 
-        /*
+
         // PROFILE for 'Collected'
         get("/profile/collection", (rq, rs) -> {
 
@@ -217,7 +217,6 @@ public class Main {
             // Pass amiibos to template
             return render(model,"templates/profile/collection.vm");
         });
-*/
 
         // 'Favorited' Tab from Home Page
         get("/favorited", (rq, rs) -> {
@@ -261,7 +260,7 @@ public class Main {
         });
 
         //  PROFILE 'Favorited' Tab
-        get("/profile/favorited", (rq, rs) -> {
+        get("/profile/favorites", (rq, rs) -> {
 
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
@@ -298,7 +297,7 @@ public class Main {
             System.out.println(favoritedAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/profile/favorited.vm");
+            return render(model,"templates/profile/favorites.vm");
         });
 
         // 'Wish List' Tab from Home Page
@@ -468,13 +467,13 @@ public class Main {
 
 
         // Amiibo Collection Count on Profile Page
-        get("/profile/collection", (rq, rs) -> {
+        get("/count", (rq, rs) -> {
 
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
 
-            String selectCount = "SELECT count(c.Collected) AS MyAmiibo, count(*) AS TotalAmiibo FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE c.UserID = 1 AND c.Collected = 'Y' OR a.AmiiboID IS NOT NULL AND c.UserID IS NULL";
+            String selectCount = "SELECT SUM(CASE WHEN c.UserID = 1 AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Collected = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID";
             PreparedStatement psCount = conn.prepareStatement(selectCount);
             ResultSet resultsCount = psCount.executeQuery(selectCount);
 
@@ -496,7 +495,7 @@ public class Main {
             System.out.println(countAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/profile/collection.vm");
+            return render(model,"templates/count.vm");
         });
 
         // About
