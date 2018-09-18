@@ -1,4 +1,3 @@
-/*
 import org.mindrot.jbcrypt.BCrypt;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +11,6 @@ public class AuthHelper {
   private static String generateSalt() {
     return BCrypt.gensalt();
   }
-
   private static String generateSecurePassword(String password, String salt) {
     return BCrypt.hashpw(password, salt);
   }
@@ -22,7 +20,7 @@ public class AuthHelper {
     // We need to fetch ID, email, salt, and securePassword
   }
 
-  public static int tryLogin(String email, String password) {
+  public static String tryLogin(String email, String password) {
     // TODO: Find user using email
     HashMap<String, String> user = getUserDetails(email);
 
@@ -33,13 +31,15 @@ public class AuthHelper {
 
     if (correctPassword) {
       // TODO: Convert it to an integer
+
+
       return user["id"];
     }
 
     return -1;
   }
 
-  private static int saveNewUser(String email, String securePassword, String salt) {
+  private static String saveNewUser(String email, String securePassword, String salt) {
 
     String dbURL = System.getenv("DB_URL");
     String dbUser = System.getenv("DB_USER");
@@ -51,7 +51,8 @@ public class AuthHelper {
     }
 
     // sql insert statement
-    String storeUser = "insert into Users (UserName, Email, securePassword)"
+    String storeUser = "insert into Users (UserName, Email, " +
+            "securePassword)"
             + "values (?, ?, ?)";
     PreparedStatement psInsertUser = conn.prepareStatement(storeUser);
 
@@ -62,8 +63,6 @@ public class AuthHelper {
     ResultSet rsInsertUser = psInsertUser.executeQuery();   // Execute
 
     System.out.println(rsInsertUser.next());
-
-
 
     }
     catch (Exception e)
@@ -85,5 +84,3 @@ public class AuthHelper {
     return saveNewUser(email, securePassword, salt);
   }
 }
-
-*/
