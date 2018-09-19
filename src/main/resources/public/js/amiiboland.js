@@ -1,10 +1,17 @@
 $(document).ready(function(){
 
+    // Modal for Bulma
     $("#showModal").click(function() {
         $(".modal").addClass("is-active");
     });
 
+    // for built in Bulma-X Button
     $(".modal-close").click(function() {
+        $(".modal").removeClass("is-active");
+    });
+
+    // Custom ID for other areas- Cancel
+    $("#modal-close").click(function() {
         $(".modal").removeClass("is-active");
     });
 
