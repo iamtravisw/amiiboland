@@ -1,14 +1,22 @@
 $(document).ready(function(){
 
+    $("#showModal").click(function() {
+        $(".modal").addClass("is-active");
+    });
+
+    $(".modal-close").click(function() {
+        $(".modal").removeClass("is-active");
+    });
+
     $('.amiibo-image').mouseover(function() {
         var amiibo = $(this).attr('id');
         var activeAmiiboID = amiibo.split('-')[1];
-        console.log("mouse moved on amiibo-image");
+      //  console.log("mouse moved on amiibo-image");
         $("#active-"+ activeAmiiboID).removeClass("is-invisible");
     });
 
     $(".overlay").mouseleave(function() {
-        console.log("mouse moved off amiibo-image");
+    //    console.log("mouse moved off amiibo-image");
         $(".overlay").addClass("is-invisible");
     });
 
@@ -47,11 +55,20 @@ $(document).ready(function(){
     $(document).ready(function(){
         $( ".mine" ).change(function() {
 
-         var newValue = $(this).is(':checked') ? "add" : "remove";
-
             var amiibo = $(this).attr('id');
             var activeAmiiboID = amiibo.split('#')[1];
-            var activeAmiiboName = amiibo.split('#')[2];
+            var activeAmiiboName = amiibo.split('#')[2]
+            var addRemove = document.getElementById("mine#"+activeAmiiboID+"#"+activeAmiiboName).value;
+
+            if (addRemove == 'Y') {
+                console.log("If: Value was "+ addRemove);
+                var newValue = $(this).is(':checked') ? "remove" : "add";
+
+            } else {
+                console.log("Else: Value was "+ addRemove);
+                var newValue = $(this).is(':checked') ? "add" : "remove";
+            }
+
             $("#star"+activeAmiiboID).toggleClass("has-text-warning");
             console.log( "Handler for .change() called with value: " + newValue );
             console.log("activeAmiiboID is: "+ activeAmiiboID);
@@ -87,10 +104,20 @@ $(document).ready(function(){
 
         $(document).ready(function(){
             $( ".love" ).change(function() {
-                var newValue = $(this).is(':checked') ? "love" : "unlove";
                 var amiibo = $(this).attr('id');
                 var activeAmiiboID = amiibo.split('#')[1];
-                var activeAmiiboName = amiibo.split('#')[2];
+                var activeAmiiboName = amiibo.split('#')[2]
+                var addRemove = document.getElementById("love#"+activeAmiiboID+"#"+activeAmiiboName).value;
+
+                if (addRemove == 'Y') {
+                    console.log("If: Value was "+ addRemove);
+                    var newValue = $(this).is(':checked') ? "unlove" : "love";
+
+                } else {
+                    console.log("Else: Value was "+ addRemove);
+                    var newValue = $(this).is(':checked') ? "love" : "unlove";
+                }
+
                 $("#heart"+activeAmiiboID).toggleClass("has-text-danger");
                 console.log( "Handler for .change() called with value: " + newValue );
                 console.log("activeAmiiboID is: "+ activeAmiiboID);
@@ -127,10 +154,19 @@ $(document).ready(function(){
 
         $(document).ready(function(){
             $( ".want" ).change(function() {
-                var newValue = $(this).is(':checked') ? "want" : "unwant";
                 var amiibo = $(this).attr('id');
                 var activeAmiiboID = amiibo.split('#')[1];
-                var activeAmiiboName = amiibo.split('#')[2];
+                var activeAmiiboName = amiibo.split('#')[2]
+                var addRemove = document.getElementById("want#"+activeAmiiboID+"#"+activeAmiiboName).value;
+
+                if (addRemove == 'Y') {
+                    console.log("If: Value was "+ addRemove);
+                    var newValue = $(this).is(':checked') ? "unwant" : "want";
+
+                } else {
+                    console.log("Else: Value was "+ addRemove);
+                    var newValue = $(this).is(':checked') ? "want" : "unwant";
+                }
                 $("#gem"+activeAmiiboID).toggleClass("has-text-info");
                 console.log( "Handler for .change() called with value: " + newValue );
                 console.log("activeAmiiboID is: "+ activeAmiiboID);

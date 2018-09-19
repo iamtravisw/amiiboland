@@ -57,7 +57,7 @@
             <input class="input" type="text" placeholder="Filter amiibo on this page..." id="myInput">
         </span>
 
-        <a class="navbar-item" href="/login">
+        <a class="navbar-item" href="#" id="showModal">
             Login
         </a>
         <span class="navbar-item">

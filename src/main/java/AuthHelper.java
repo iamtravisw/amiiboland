@@ -1,4 +1,6 @@
+/*
 import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -84,3 +86,4 @@ public class AuthHelper {
     return saveNewUser(email, securePassword, salt);
   }
 }
+*/

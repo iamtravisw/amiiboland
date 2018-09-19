@@ -23,6 +23,20 @@
     </div>
 <body>
 
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div id="login">
+            <script>
+                $.get("/login", function(data){
+                    $("#login").replaceWith(data);
+                });
+            </script>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
 
 <section class="hero is-danger">
     <div class="hero-body">

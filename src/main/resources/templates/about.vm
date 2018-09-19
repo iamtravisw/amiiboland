@@ -22,42 +22,52 @@
     </script>
 </div>
 
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div id="login">
+                <script>
+                    $.get("/login", function(data){
+                        $("#login").replaceWith(data);
+                    });
+                </script>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
 <body>
 <section class="section">
     <div class="container">
-        <div class="columns">
-            <div class="column is-one-quarter">
-                <img src="https://storage.googleapis.com/amiibo/mii.png" alt="Italian Trulli">
-            </div>
 
-            <div class="column">
-                <h1 class="title">
-                    Here's a little bit about Amiibo.Land
-                </h1>
-                <h2 class="subtitle">
-                    Amiibo.Land is a non profit website that was created out of passion. I am a huge Nintendo fan and always will be.
-                    Amiibo.Land was created with Java, Spark, Velocity, HTML5, CSS3, JavaScript and Bulma.io. I host it on Google Cloud.
-                    If you're interested in Amiibo.Land's code you can find that information on my <a href="https://github.com/iamtravisw/amiiboland">GitHub</a>.
-                </h2>
-                <br>
-                <h1 class="title">
-                    A little about the Creator
-                </h1>
-                <h2 class="subtitle">
-                    My name is Travis Woodward, I'm 28 years old and I'm a husband and father. I'm a student and I started to learn how to program in 2018 so I'm still quite new to all of this. I am hoping to find a career
-                    as a software engineer soon. If you have any questions or suggestions about Amiibo.Land you can <a href="https://www.iamtravisw.com/p/amiiboland.html">
-                    post a comment on my website</a>.
-                </h2>
-                <br>
-                <h1 class="title">
-                    Extras
-                </h1>
-                <h2 class="subtitle">
-                    If you want up to date news you can follow me on <a href="https://twitter.com/iamtravisw">Twitter</a> or subscribe to my <a href="https://www.iamtravisw.com/"> blog</a>.<br>
-                    Amiibo.Land is and always will be free to use, but you can <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PYZX4TVFNM2GA">buy me a cheeseburger </a> if you want.
-                </h2>
-            </div>
+        <div class="column">
+            <img src="https://storage.googleapis.com/amiibo/mii.png" class="is-pulled-left">
+            <img src="https://i.imgur.com/CnHYva2.png" class="is-pulled-left">
         </div>
+
+        <div class="column">
+            <h1 class="title">Here's a little bit about Amiibo.Land</h1>
+            <h2 class="subtitle">
+                Amiibo.Land is a non profit website that was created out of passion. I am a huge Nintendo fan and always will be.
+                Amiibo.Land was created with Java, Spark, Velocity, HTML5, CSS3, JavaScript and Bulma.io. I host it on Google Cloud.
+                If you're interested in Amiibo.Land's code you can find that information on my <a href="https://github.com/iamtravisw/amiiboland">GitHub</a>.
+            </h2>
+            <br>
+            <h1 class="title"> A little about the Creator</h1>
+            <h2 class="subtitle">
+                My name is Travis Woodward, I'm 28 years old and I'm a husband and father. I'm a student and I started to learn how to program in 2018 so I'm still quite new to all of this. I am hoping to find a career
+                as a software engineer soon. If you have any questions or suggestions about Amiibo.Land you can <a href="https://www.iamtravisw.com/p/amiiboland.html">
+                post a comment on my website</a>.
+            </h2>
+            <br>
+                <h1 class="title"> Extras</h1>
+                <h2 class="subtitle">
+            If you want up to date news you can follow me on <a href="https://twitter.com/iamtravisw">Twitter</a> or subscribe to my <a href="https://www.iamtravisw.com/"> blog</a>.<br>
+            Amiibo.Land is and always will be free to use, but you can <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PYZX4TVFNM2GA">buy me a cheeseburger </a> if you want.
+        </h2>
+        </div>
+    </div>
 </section>
 
 <footer class="footer">
