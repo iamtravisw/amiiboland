@@ -2,7 +2,6 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
@@ -17,6 +16,33 @@ public class Main {
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
+
+
+
+
+
+        AuthHelper auth = new AuthHelper();
+
+
+
+
+        System.out.println();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // ==================================================
         // Spark Configuration
@@ -628,6 +654,32 @@ public class Main {
                 removeWishList.main(args);
             }
             return String.join(want + ". AmiiboID is: " +amiiboID + ".");
+        });
+        // SignUp
+        post("/newuser", (request, response) -> {
+            AuthHelper authHelper = new AuthHelper();
+
+            String name;
+            name = request.queryParams("name");
+            String userName;
+            userName = request.queryParams("userName");
+            String email;
+            email = request.queryParams("email");
+            String password;
+            password = request.queryParams("password");
+
+            if (name != null) {
+                System.out.println("------------------------------------------");
+                System.out.println("User Signup Started");
+                System.out.println("------------------------------------------");
+                System.out.println("User: " +userName+ "\n Name: " +name+ "\n Email: " +email+ "\n Password: " +password);
+
+                authHelper.register(email, password, userName, name);
+                System.out.println("Sending data to AuthHelper...");
+                response.redirect("/signup"); // Take the user to another page
+
+            }
+            return String.join(" / ", name, userName, email, password);
         });
     }
     public static String render(Map<String, Object> model, String templatePath) {
