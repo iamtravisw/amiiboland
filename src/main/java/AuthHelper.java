@@ -4,19 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 public class AuthHelper {
 
     private static String generateSalt() {
         return BCrypt.gensalt();
     }
-
     private static String generateSecurePassword(String password, String salt) {
         return BCrypt.hashpw(password, salt);
     }
-
     private static HashMap<String, String> getUserDetails(String email) {
         System.out.println("Starting getUserDetails module...");
         String dbURL = System.getenv("DB_URL");
@@ -26,7 +23,7 @@ public class AuthHelper {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-            String checkExists = "SELECT Email, salt FROM Users WHERE Email = ? LIMIT 1";
+            String checkExists = "SELECT Email, salt, securePassword, UserID FROM Users WHERE Email = ? LIMIT 1";
             PreparedStatement psEmail = conn.prepareStatement(checkExists);
             psEmail.setString(1, email);                                  // Email
             ResultSet rs = psEmail.executeQuery();                          // Execute
@@ -35,34 +32,41 @@ public class AuthHelper {
                 System.out.println(email + " does not exist... ");
             } else {
                 System.out.println("Login found for: " + email);
+                rs.first();
+                HashMap<String, String> map = new HashMap<String, String>();
+                String mapEmail = rs.getString("Email");
+                String mapSalt = rs.getString("salt");
+                String mapSecurePassword = rs.getString("securePassword");
+                String mapUserID = rs.getString("UserID");
+                    map.put("eMail", mapEmail);
+                    map.put("salt", mapSalt);
+                    map.put("securePassword", mapSecurePassword);
+                    map.put("userID", mapUserID);
+
+                System.out.println(mapEmail+" "+mapSalt+" "+mapSecurePassword+" "+mapUserID);
+                // System.out.println(map); // for troubleshooting
+                return map;
             }
         } catch (Exception e) {
             System.out.println(e); // Did it work? If not, why.
         }
-        HashMap<String, String> map = new HashMap<>();
-        map.put("email", email);
-        return map;
+        return null; // need to return something
     }
-
     public static int tryLogin(String email, String password) {
         System.out.println("Starting tryLogin module...");
         HashMap<String, String> user = getUserDetails(email);
-
-        String salt = "$2a$10$5sWhVHo9iRDfBlQldYsxVOXlxOlZJH2fh0iyHeZct1sdOWracbkyG";
-        System.out.println("tryLogin retrieved email: " + user.get("email") + " and salt: " +salt);
-
-        String securePassword = generateSecurePassword(password, salt);
-
+        System.out.println("tryLogin retrieved email: " + user.get("eMail") + " and salt: "+ user.get("salt"));
+        String securePassword = generateSecurePassword(password, user.get("salt"));
+        user.put("securePassword", securePassword);
         // Should be true if they're equal, false otherwise
-        boolean correctPassword = securePassword.equals(user.get("securePassword"));
+        boolean correctPassword = securePassword.equals(user.get("securePassword")); // Need to store securePassword in user
         if (correctPassword) {
-            System.out.println("Success... email is: " + email + ". securePassword is: " + securePassword);
-            return Integer.parseInt(user.get("email"));
+            System.out.println("Password Match: " +correctPassword+ " for " +email+ " with " +securePassword);
+            return Integer.parseInt(user.get("userID"));
         }
-        System.out.println("Password did not match.");
-        return -1;
+            System.out.println("Password Match: " + correctPassword);
+            return Integer.parseInt(user.get("userID")); // return something
     }
-
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
         Date addDate = new Date();
         Date modDate = new Date();
@@ -88,22 +92,19 @@ public class AuthHelper {
             psInsertUser.setString(8, "root@localhost");     // AddUser
             psInsertUser.setString(9, addDate.toString());      // AddDate
             psInsertUser.execute();                                // Execute
-
             // Get userID of the last row
             ResultSet rs = psInsertUser.getGeneratedKeys();
             if (rs.next()) {
                 int lastUserID = rs.getInt(1);
                 System.out.println("UserID: " + lastUserID);
-
                 return lastUserID;
             }
         } catch (Exception e) {
             System.out.println(e); // Did it work? If not, why.
-            return -1;
+            return -1; // return something
         }
         return -1; // Need to return something
     }
-
     public static int register(String email, String password, String userName, String name) {
         // Generate salt
         String salt = generateSalt();
