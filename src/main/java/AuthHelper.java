@@ -9,72 +9,60 @@ import java.util.HashMap;
 
 public class AuthHelper {
 
-    // Variables
-    public int userID;
-    public String name;
-    public String userName;
-    public String email;
-    public String password;
-
-    /*
-    // Setters and Getters
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-    public int getUserID() {
-        return userID;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setuserName(String userID) {
-        this.userName = userName;
-    }
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getPassword() {
-        return password;
-    }
-    */
-
     private static String generateSalt() {
         return BCrypt.gensalt();
     }
+
     private static String generateSecurePassword(String password, String salt) {
         return BCrypt.hashpw(password, salt);
     }
+
     private static HashMap<String, String> getUserDetails(String email) {
-        // TODO: Fetch user from database and return their data as a HashMap
-        return new HashMap<String, String>();
+        System.out.println("Starting getUserDetails module...");
+        String dbURL = System.getenv("DB_URL");
+        String dbUser = System.getenv("DB_USER");
+        String dbPassword = System.getenv("DB_PASSWORD");
+        try {
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+            String checkExists = "SELECT Email, salt FROM Users WHERE Email = ? LIMIT 1";
+            PreparedStatement psEmail = conn.prepareStatement(checkExists);
+            psEmail.setString(1, email);                                  // Email
+            ResultSet rs = psEmail.executeQuery();                          // Execute
+            // If the row does not exist, insert a new row for this user
+            if (!rs.isBeforeFirst()) {
+                System.out.println(email + " does not exist... ");
+            } else {
+                System.out.println("Login found for: " + email);
+            }
+        } catch (Exception e) {
+            System.out.println(e); // Did it work? If not, why.
+        }
+        HashMap<String, String> map = new HashMap<>();
+        map.put("email", email);
+        return map;
     }
+
     public static int tryLogin(String email, String password) {
-        // TODO: Find user using email
+        System.out.println("Starting tryLogin module...");
         HashMap<String, String> user = getUserDetails(email);
-        String securePassword = generateSecurePassword(password, user.get("salt"));
+
+        String salt = "$2a$10$5sWhVHo9iRDfBlQldYsxVOXlxOlZJH2fh0iyHeZct1sdOWracbkyG";
+        System.out.println("tryLogin retrieved email: " + user.get("email") + " and salt: " +salt);
+
+        String securePassword = generateSecurePassword(password, salt);
 
         // Should be true if they're equal, false otherwise
         boolean correctPassword = securePassword.equals(user.get("securePassword"));
         if (correctPassword) {
-            return Integer.parseInt(user.get("id"));
+            System.out.println("Success... email is: " + email + ". securePassword is: " + securePassword);
+            return Integer.parseInt(user.get("email"));
         }
+        System.out.println("Password did not match.");
         return -1;
     }
+
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
         Date addDate = new Date();
         Date modDate = new Date();
@@ -87,17 +75,18 @@ public class AuthHelper {
             }
             // sql insert statement
             String storeUser = "insert into Users (Name, UserName, Email, " +
-                    "securePassword, ModUser, ModDate, AddUser, AddDate)"
-                    + "values (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "securePassword, salt, ModUser, ModDate, AddUser, AddDate)"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psInsertUser = conn.prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
             psInsertUser.setString(1, name);                    // Name
             psInsertUser.setString(2, userName);                // UserName
             psInsertUser.setString(3, email);                   // UserID
             psInsertUser.setString(4, securePassword);          // securePassword
-            psInsertUser.setString(5, "root@localhost");     // ModUser
-            psInsertUser.setString(6, modDate.toString());      // ModDate
-            psInsertUser.setString(7, "root@localhost");     // AddUser
-            psInsertUser.setString(8, addDate.toString());      // AddDate
+            psInsertUser.setString(5, salt);                    // salt
+            psInsertUser.setString(6, "root@localhost");     // ModUser
+            psInsertUser.setString(7, modDate.toString());      // ModDate
+            psInsertUser.setString(8, "root@localhost");     // AddUser
+            psInsertUser.setString(9, addDate.toString());      // AddDate
             psInsertUser.execute();                                // Execute
 
             // Get userID of the last row
@@ -108,17 +97,14 @@ public class AuthHelper {
 
                 return lastUserID;
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e); // Did it work? If not, why.
             return -1;
         }
-        // TODO: Return User ID
-
-        return -1;
+        return -1; // Need to return something
     }
-    public int register(String email, String password, String userName, String name) {
+
+    public static int register(String email, String password, String userName, String name) {
         // Generate salt
         String salt = generateSalt();
         // Append salt to password and hash them both

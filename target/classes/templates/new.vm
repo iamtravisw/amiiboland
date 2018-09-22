@@ -36,8 +36,6 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-
-
     <div class="tabs is-centered is-boxed">
     <ul>
         <li class="is-active">
@@ -88,8 +86,7 @@
         <!-- Here are all of the Amiibo -->
         #foreach( $recents in $newAmiibo )
             <div class="column is-one-fifth">
-                <div class="amiibo-id is-hidden" id="amiibo">
-                </div>
+                <div class="amiibo-id is-hidden" id="amiibo"></div>
                 <article class="message is-large is-danger">
                     <div class="message-header" id="$recents.Name">
                         <p></p>
@@ -102,19 +99,17 @@
                             <!-- Content Over Amiibo -->
                             <figcaption class="overlay is-overlay is-invisible" id="active-$recents.AmiiboID">
                                 <!-- Background -->
-                                <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                                <img class="background is-overlay" src="https://storage.googleapis.com/amiibo/black.png">
                                 <div style="height:16px;font-size:16px;">&nbsp;</div>
-
                                 <!-- Buttons -->
                                 <div class="tile is-ancestor">
-
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($recents.Collected == "Y")
-                                            <div class="star$recents.AmiiboID has-text-warning">
+                                            <div class="star has-text-warning" id="star$recents.AmiiboID">
                                             #else
-                                            <div class="star$recents.AmiiboID">
+                                            <div class="star" id="star$recents.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">
@@ -130,9 +125,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($recents.Favorited == "Y")
-                                            <div class="heart$recents.AmiiboID has-text-danger">
+                                            <div class="heart has-text-danger" id="heart$recents.AmiiboID">
                                             #else
-                                            <div class="heart$recents.AmiiboID">
+                                            <div class="heart" id="heart$recents.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">
@@ -148,9 +143,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if($recents.WishList == "Y")
-                                            <div class="gem$recents.AmiiboID has-text-info">
+                                            <div class="gem has-text-info" id="gem$recents.AmiiboID">
                                             #else
-                                            <div class="gem$recents.AmiiboID ">
+                                            <div class="gem" id="gem$recents.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">
@@ -162,7 +157,6 @@
                                         </div>
                                         </article>
                                     </div>
-
                             </figcaption>
                         </figure>
                     </center>
@@ -170,7 +164,6 @@
             </div>
         #end
     </div>
-
 
         <footer class="footer">
     <div class="content">

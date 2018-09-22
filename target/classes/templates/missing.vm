@@ -36,8 +36,6 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-
-
     <div class="tabs is-centered is-boxed">
     <ul>
         <li class="">
@@ -88,8 +86,7 @@
         <!-- Here are all of the Amiibo -->
         #foreach( $missing in $missingAmiibo )
             <div class="column is-one-fifth">
-                <div class="amiibo-id is-hidden" id="amiibo">
-                </div>
+                <div class="amiibo-id is-hidden" id="amiibo"></div>
                 <article class="message is-large is-danger">
                     <div class="message-header" id="$missing.Name">
                         <p></p>
@@ -102,19 +99,17 @@
                             <!-- Content Over Amiibo -->
                             <figcaption class="overlay is-overlay is-invisible" id="active-$missing.AmiiboID">
                                 <!-- Background -->
-                                <img class="background is-overlay" alt="Mario" src="https://storage.googleapis.com/amiibo/black.png">
+                                <img class="background is-overlay" src="https://storage.googleapis.com/amiibo/black.png">
                                 <div style="height:16px;font-size:16px;">&nbsp;</div>
-
                                 <!-- Buttons -->
                                 <div class="tile is-ancestor">
-
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($missing.Collected == "Y")
-                                            <div class="star$missing.AmiiboID has-text-warning">
+                                            <div class="star has-text-warning" id="star$missing.AmiiboID">
                                             #else
-                                            <div class="star$missing.AmiiboID">
+                                            <div class="star" id="star$missing.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">
@@ -130,9 +125,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if ($missing.Favorited == "Y")
-                                            <div class="heart$missing.AmiiboID has-text-danger">
+                                            <div class="heart has-text-danger" id="heart$missing.AmiiboID">
                                             #else
-                                            <div class="heart$missing.AmiiboID">
+                                            <div class="heart" id="heart$missing.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">
@@ -148,9 +143,9 @@
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
                                             #if($missing.WishList == "Y")
-                                            <div class="gem$missing.AmiiboID has-text-info">
+                                            <div class="gem has-text-info" id="gem$missing.AmiiboID">
                                             #else
-                                            <div class="gem$missing.AmiiboID ">
+                                            <div class="gem" id="gem$missing.AmiiboID">
                                             #end
                                             <label>
                                                     <span class="fa-stack">

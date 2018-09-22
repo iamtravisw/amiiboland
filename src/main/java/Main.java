@@ -17,33 +17,6 @@ public class Main {
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
 
-
-
-
-
-        AuthHelper auth = new AuthHelper();
-
-
-
-
-        System.out.println();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // ==================================================
         // Spark Configuration
         // ==================================================
@@ -62,7 +35,7 @@ public class Main {
             PreparedStatement psAll = conn.prepareStatement(selectAll);
             ResultSet resultsAll = psAll.executeQuery(selectAll);
 
-            ArrayList<HashMap<String,String>> amiibos = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
 
             while (resultsAll.next()) {
                 String AmiiboID = resultsAll.getString("AmiiboID");
@@ -87,7 +60,7 @@ public class Main {
             System.out.println(amiibos);
             // Pass amiibos to template
 
-            return render(model,"templates/index.vm");
+            return render(model, "templates/index.vm");
         });
 
        /*
@@ -130,7 +103,7 @@ public class Main {
             PreparedStatement psNew = conn.prepareStatement(selectNew);
             ResultSet resultsNew = psNew.executeQuery(selectNew);
 
-            ArrayList<HashMap<String,String>> newAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> newAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsNew.next()) {
                 String ReleaseDate = resultsNew.getString("ReleaseDate");
@@ -157,7 +130,7 @@ public class Main {
             System.out.println(newAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/new.vm");
+            return render(model, "templates/new.vm");
 
         });
 
@@ -172,7 +145,7 @@ public class Main {
             PreparedStatement psCollected = conn.prepareStatement(selectCollected);
             ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
 
-            ArrayList<HashMap<String,String>> collectedAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsCollected.next()) {
                 String AmiiboID = resultsCollected.getString("AmiiboID");
@@ -199,7 +172,7 @@ public class Main {
             System.out.println(collectedAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/collected.vm");
+            return render(model, "templates/collected.vm");
         });
 
 
@@ -214,7 +187,7 @@ public class Main {
             PreparedStatement psCollected = conn.prepareStatement(selectCollected);
             ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
 
-            ArrayList<HashMap<String,String>> collectedAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsCollected.next()) {
                 String AmiiboID = resultsCollected.getString("AmiiboID");
@@ -241,7 +214,7 @@ public class Main {
             System.out.println(collectedAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/profile/collection.vm");
+            return render(model, "templates/profile/collection.vm");
         });
 
         // 'Favorited' Tab from Home Page
@@ -255,7 +228,7 @@ public class Main {
             PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
             ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
 
-            ArrayList<HashMap<String,String>> favoritedAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsFavorited.next()) {
                 String AmiiboID = resultsFavorited.getString("AmiiboID");
@@ -282,7 +255,7 @@ public class Main {
             System.out.println(favoritedAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/favorited.vm");
+            return render(model, "templates/favorited.vm");
         });
 
         //  PROFILE 'Favorited' Tab
@@ -296,7 +269,7 @@ public class Main {
             PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
             ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
 
-            ArrayList<HashMap<String,String>> favoritedAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsFavorited.next()) {
                 String AmiiboID = resultsFavorited.getString("AmiiboID");
@@ -323,7 +296,7 @@ public class Main {
             System.out.println(favoritedAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/profile/favorites.vm");
+            return render(model, "templates/profile/favorites.vm");
         });
 
         // 'Wish List' Tab from Home Page
@@ -337,7 +310,7 @@ public class Main {
             PreparedStatement psWishList = conn.prepareStatement(selectWishList);
             ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
 
-            ArrayList<HashMap<String,String>> wishlistAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsWishList.next()) {
                 String AmiiboID = resultsWishList.getString("AmiiboID");
@@ -364,7 +337,7 @@ public class Main {
             System.out.println(wishlistAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/wishlist.vm");
+            return render(model, "templates/wishlist.vm");
         });
 
         // PROFILE 'Wish List' Tab
@@ -378,7 +351,7 @@ public class Main {
             PreparedStatement psWishList = conn.prepareStatement(selectWishList);
             ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
 
-            ArrayList<HashMap<String,String>> wishlistAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsWishList.next()) {
                 String AmiiboID = resultsWishList.getString("AmiiboID");
@@ -405,7 +378,7 @@ public class Main {
             System.out.println(wishlistAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/profile/wishlist.vm");
+            return render(model, "templates/profile/wishlist.vm");
         });
 
 
@@ -416,11 +389,11 @@ public class Main {
             if (conn != null) {
             }
 
-            String selectMissing= "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL ORDER BY a.AmiiboID ASC";
+            String selectMissing = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL ORDER BY a.AmiiboID ASC";
             PreparedStatement psMissing = conn.prepareStatement(selectMissing);
             ResultSet resultsMissing = psMissing.executeQuery(selectMissing);
 
-            ArrayList<HashMap<String,String>> missingAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> missingAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsMissing.next()) {
                 String AmiiboID = resultsMissing.getString("AmiiboID");
@@ -447,7 +420,7 @@ public class Main {
             System.out.println(missingAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/missing.vm");
+            return render(model, "templates/missing.vm");
         });
 
         // 'Coming Soon' Tab from Home Page
@@ -461,7 +434,7 @@ public class Main {
             PreparedStatement psSoon = conn.prepareStatement(selectSoon);
             ResultSet resultsSoon = psSoon.executeQuery(selectSoon);
 
-            ArrayList<HashMap<String,String>> soonAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> soonAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsSoon.next()) {
                 String ReleaseDate = resultsSoon.getString("ReleaseDate");
@@ -488,7 +461,7 @@ public class Main {
             System.out.println(soonAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/comingsoon.vm");
+            return render(model, "templates/comingsoon.vm");
         });
 
 
@@ -503,7 +476,7 @@ public class Main {
             PreparedStatement psCount = conn.prepareStatement(selectCount);
             ResultSet resultsCount = psCount.executeQuery(selectCount);
 
-            ArrayList<HashMap<String,String>> countAmiibo = new ArrayList<HashMap<String,String>>();
+            ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
 
             while (resultsCount.next()) {
                 String MyAmiibo = resultsCount.getString("MyAmiibo");
@@ -521,7 +494,7 @@ public class Main {
             System.out.println(countAmiibo);
 
             // Pass amiibos to template
-            return render(model,"templates/count.vm");
+            return render(model, "templates/count.vm");
         });
 
         // About
@@ -579,7 +552,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Add Amiibo Started");
                 System.out.println("------------------------------------------");
-                System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID +". Adding to collection.");
+                System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID + ". Adding to collection.");
                 addAmiibo.setAmiiboID(Integer.parseInt(amiiboID));
                 System.out.println("Main class has an ID of: " + addAmiibo.getAmiiboID());
                 addAmiibo.main(args);
@@ -588,12 +561,12 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Remove Amiibo Started");
                 System.out.println("------------------------------------------");
-                System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID +". Removing from collection.");
+                System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID + ". Removing from collection.");
                 removeAmiibo.setAmiiboID(Integer.parseInt(amiiboID));
                 System.out.println("Main class has an ID of: " + removeAmiibo.getAmiiboID());
                 removeAmiibo.main(args);
             }
-            return String.join("Action:" + mine + ". AmiiboID is: " +amiiboID + ".");
+            return String.join("Action:" + mine + ". AmiiboID is: " + amiiboID + ".");
         });
 
         // Favorites (Add/Remove)
@@ -623,7 +596,7 @@ public class Main {
                 System.out.println("Main class has an ID of: " + removeFavorite.getAmiiboID());
                 removeFavorite.main(args);
             }
-            return String.join(love + ". AmiiboID is: " +amiiboID + ".");
+            return String.join(love + ". AmiiboID is: " + amiiboID + ".");
         });
 
         // WishList (Add/Remove)
@@ -653,8 +626,9 @@ public class Main {
                 System.out.println("Main class has an ID of: " + removeWishList.getAmiiboID());
                 removeWishList.main(args);
             }
-            return String.join(want + ". AmiiboID is: " +amiiboID + ".");
+            return String.join(want + ". AmiiboID is: " + amiiboID + ".");
         });
+
         // SignUp
         post("/newuser", (request, response) -> {
             AuthHelper authHelper = new AuthHelper();
@@ -672,14 +646,35 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("User Signup Started");
                 System.out.println("------------------------------------------");
-                System.out.println("User: " +userName+ "\n Name: " +name+ "\n Email: " +email+ "\n Password: " +password);
+                System.out.println("User: " + userName + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
 
                 authHelper.register(email, password, userName, name);
                 System.out.println("Sending data to AuthHelper...");
                 response.redirect("/signup"); // Take the user to another page
-
             }
             return String.join(" / ", name, userName, email, password);
+        });
+
+        // Login
+        post("/loginuser", (request, response) -> {
+            AuthHelper authHelper = new AuthHelper();
+
+            String email;
+            email = request.queryParams("email");
+            String password;
+            password = request.queryParams("password");
+
+            if (email != null) {
+                System.out.println("------------------------------------------");
+                System.out.println("User Login Started");
+                System.out.println("------------------------------------------");
+                System.out.println("User: " + email + "\nPassword: " + password);
+
+                authHelper.tryLogin(email, password);
+                System.out.println("Sending data to AuthHelper...");
+                response.redirect("/"); // Take the user to another page
+            }
+            return String.join(" / ", email, password);
         });
     }
     public static String render(Map<String, Object> model, String templatePath) {
