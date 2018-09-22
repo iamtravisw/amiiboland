@@ -57,15 +57,15 @@ public class AuthHelper {
         HashMap<String, String> user = getUserDetails(email);
         System.out.println("tryLogin retrieved email: " + user.get("eMail") + " and salt: "+ user.get("salt"));
         String securePassword = generateSecurePassword(password, user.get("salt"));
-        user.put("securePassword", securePassword);
         // Should be true if they're equal, false otherwise
-        boolean correctPassword = securePassword.equals(user.get("securePassword")); // Need to store securePassword in user
+        boolean correctPassword = securePassword.equals(user.get("securePassword"));
         if (correctPassword) {
             System.out.println("Password Match: " +correctPassword+ " for " +email+ " with " +securePassword);
             return Integer.parseInt(user.get("userID"));
-        }
+        } else {
             System.out.println("Password Match: " + correctPassword);
             return Integer.parseInt(user.get("userID")); // return something
+        }
     }
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
         Date addDate = new Date();

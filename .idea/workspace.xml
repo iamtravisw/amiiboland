@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/AuthHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AuthHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AuthHelper.class" beforeDir="false" />
     </list>
@@ -70,7 +69,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="221" />
-          <entry key="java" value="12261" />
+          <entry key="java" value="12297" />
           <entry key="js" value="4229" />
           <entry key="sass" value="16" />
           <entry key="vm" value="10765" />
@@ -80,7 +79,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="221" />
-          <entry key="JAVA" value="12258" />
+          <entry key="JAVA" value="12294" />
           <entry key="JavaScript" value="4229" />
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="SQL" value="3" />
@@ -105,8 +104,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/AuthHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="50" column="63" lean-forward="true" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
+            <state relative-caret-position="357">
+              <caret line="55" column="58" lean-forward="true" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#307#308#0" expanded="true" />
@@ -312,7 +311,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537617663233" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537618691409" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -450,12 +449,12 @@
       <workItem from="1537539543126" duration="13552000" />
       <workItem from="1537569259685" duration="8250000" />
       <workItem from="1537577974303" duration="1782000" />
-      <workItem from="1537610631163" duration="6979000" />
+      <workItem from="1537610631163" duration="8007000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="482342000" />
+    <option name="totallyTimeSpent" value="483370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -798,8 +797,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/AuthHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="50" column="63" lean-forward="true" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
+        <state relative-caret-position="357">
+          <caret line="55" column="58" lean-forward="true" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#307#308#0" expanded="true" />
