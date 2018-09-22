@@ -5,11 +5,20 @@ import java.util.ArrayList;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
+
+import spark.Filter;
 import spark.ModelAndView;
 import static spark.Spark.get;
+
+import spark.Request;
+import spark.Response;
 import spark.template.velocity.*;
 
 public class Main {
+
+    public static boolean isAuthenticated(Request request) {
+        return request.session().attribute("userID") != null; 
+    }
 
     public static void main(String[] args) {
 
@@ -22,6 +31,48 @@ public class Main {
         // ==================================================
 
         staticFiles.location("/public");
+
+        /* List all the routes that you want to have protected by authentication here:
+         *
+         * 1. Let them see the page but view-only mode, unable to take any action.
+         * /index
+         * /new
+         * /comingsoon
+         *
+         *2. Redirect them to login, they should not even see this page.
+         * /collection
+         * /favorites
+         * /wishlist
+         * /profile/collection
+         * /profile/favorites
+         * /profile/wishlist
+        */
+
+
+
+        // Repeat this for all routes that add entries to the database
+        before("/profile/*", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                halt(401, "Please login");
+            }
+        });       
+        
+        before("/collection", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                halt(401, "Please login");
+            }
+        }); 
+
+        before("/favorites", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                halt(401, "Please login");
+            }
+        }); 
+        before("/wishlist", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                halt(401, "Please login");
+            }
+        }); 
 
         // Index 'All Amiibo'
         get("/", (rq, rs) -> {
@@ -56,6 +107,9 @@ public class Main {
 
             Map<String, Object> model = new HashMap<>();
             model.put("amiibos", amiibos);
+
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
 
             System.out.println(amiibos);
             // Pass amiibos to template
@@ -545,6 +599,7 @@ public class Main {
             RemoveAmiibo removeAmiibo = new RemoveAmiibo();
             String mine;
             String amiiboID;
+            int userID = request.session().attribute("userID");
             amiiboID = request.queryParams("amiiboID");
             mine = request.queryParams("mine");
 
@@ -554,6 +609,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID + ". Adding to collection.");
                 addAmiibo.setAmiiboID(Integer.parseInt(amiiboID));
+                addAmiibo.setUserID(userID);
                 System.out.println("Main class has an ID of: " + addAmiibo.getAmiiboID());
                 addAmiibo.main(args);
 
@@ -563,6 +619,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Action is " + mine + ". AmiiboID is " + amiiboID + ". Removing from collection.");
                 removeAmiibo.setAmiiboID(Integer.parseInt(amiiboID));
+                removeAmiibo.setUserID(userID);
                 System.out.println("Main class has an ID of: " + removeAmiibo.getAmiiboID());
                 removeAmiibo.main(args);
             }
@@ -575,6 +632,7 @@ public class Main {
             RemoveFavorite removeFavorite = new RemoveFavorite();
             String amiiboID;
             amiiboID = request.queryParams("amiiboID");
+            int userID = request.session().attribute("userID");
             String love;
             love = request.queryParams("love");
 
@@ -584,6 +642,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Value is " + love + ". Adding to Favorites.");
                 addFavorite.setAmiiboID(Integer.parseInt(amiiboID));
+                addFavorite.setUserID(userID);
                 System.out.println("Main class has an ID of: " + addFavorite.getAmiiboID());
                 addFavorite.main(args);
 
@@ -593,6 +652,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Value is " + love + ". Removing from Favorites.");
                 removeFavorite.setAmiiboID(Integer.parseInt(amiiboID));
+                removeFavorite.setUserID(userID);
                 System.out.println("Main class has an ID of: " + removeFavorite.getAmiiboID());
                 removeFavorite.main(args);
             }
@@ -605,6 +665,7 @@ public class Main {
             RemoveWishList removeWishList = new RemoveWishList();
             String amiiboID;
             amiiboID = request.queryParams("amiiboID");
+            int userID = request.session().attribute("userID");
             String want;
             want = request.queryParams("want");
 
@@ -614,6 +675,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Value is " + want + ". Adding to WishList.");
                 addWishList.setAmiiboID(Integer.parseInt(amiiboID));
+                addWishList.setUserID(userID);
                 System.out.println("Main class has an ID of: " + addWishList.getAmiiboID());
                 addWishList.main(args);
 
@@ -623,7 +685,7 @@ public class Main {
                 System.out.println("------------------------------------------");
                 System.out.println("Value is " + want + ". Removing from WishList.");
                 removeWishList.setAmiiboID(Integer.parseInt(amiiboID));
-                System.out.println("Main class has an ID of: " + removeWishList.getAmiiboID());
+                removeWishList.setUserID(userID);                System.out.println("Main class has an ID of: " + removeWishList.getAmiiboID());
                 removeWishList.main(args);
             }
             return String.join(want + ". AmiiboID is: " + amiiboID + ".");
@@ -631,8 +693,6 @@ public class Main {
 
         // SignUp
         post("/newuser", (request, response) -> {
-            AuthHelper authHelper = new AuthHelper();
-
             String name;
             name = request.queryParams("name");
             String userName;
@@ -647,32 +707,41 @@ public class Main {
                 System.out.println("User Signup Started");
                 System.out.println("------------------------------------------");
                 System.out.println("User: " + userName + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
-
-                authHelper.register(email, password, userName, name);
+                int userID = AuthHelper.register(email, password, userName, name);
                 System.out.println("Sending data to AuthHelper...");
-                response.redirect("/signup"); // Take the user to another page
+                if (userID != -1) { 
+                    request.session().attribute("userID", userID);                    
+                    response.redirect("/signup"); // Take the user to another page
+                }
+                else {
+                    // TODO: Handle cases where register fails
+                    request.session().removeAttribute("userID");
+                }
             }
             return String.join(" / ", name, userName, email, password);
         });
 
         // Login
         post("/loginuser", (request, response) -> {
-            AuthHelper authHelper = new AuthHelper();
-
             String email;
             email = request.queryParams("email");
             String password;
             password = request.queryParams("password");
-
             if (email != null) {
                 System.out.println("------------------------------------------");
                 System.out.println("User Login Started");
                 System.out.println("------------------------------------------");
                 System.out.println("User: " + email + "\nPassword: " + password);
-
-                authHelper.tryLogin(email, password);
+                int userID = AuthHelper.tryLogin(email, password);
                 System.out.println("Sending data to AuthHelper...");
-                response.redirect("/"); // Take the user to another page
+                if (userID != -1) { 
+                    request.session().attribute("userID", userID);
+                    response.redirect("/profile/collection"); // Take the user to another page
+                }
+                else {
+                    // TODO: Handle cases where login fails
+                    request.session().removeAttribute("userID");
+                }
             }
             return String.join(" / ", email, password);
         });

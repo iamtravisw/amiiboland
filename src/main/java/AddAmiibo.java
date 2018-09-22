@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class AddAmiibo {
 
     // Variables
-    public int userID = 1;
+    public int userID;
     public int amiiboID;
 
     // Setters and Getters
@@ -25,6 +25,7 @@ public class AddAmiibo {
 
     public void main(String[] args) {
 
+
         Date addDate = new Date();
         Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");
@@ -32,6 +33,10 @@ public class AddAmiibo {
         String dbPassword = System.getenv("DB_PASSWORD");
         int amiiboID = this.amiiboID;
         int userID = this.userID;
+
+        System.out.println("UserID is: " +userID);
+
+        System.out.println("UserID is: " +userID);
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
@@ -41,7 +46,7 @@ public class AddAmiibo {
                 String checkExists = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
                 PreparedStatement psAdd = conn.prepareStatement(checkExists);
                 psAdd.setInt(1, this.amiiboID);                              // AmiiboID
-                psAdd.setInt(2, this.userID);                           // UserID
+                psAdd.setInt(2, userID);                           // UserID
                 ResultSet rsAdd = psAdd.executeQuery();               // Execute
 
                 // If the row does not exist, insert a new row for this user

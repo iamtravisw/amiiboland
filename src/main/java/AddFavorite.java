@@ -33,6 +33,7 @@ public class AddFavorite {
         int amiiboID = this.amiiboID;
         int userID = this.userID;
 
+        System.out.println("UserID is: " +userID);
 
         try {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);

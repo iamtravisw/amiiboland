@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class AuthHelper {
-
+    
     private static String generateSalt() {
         return BCrypt.gensalt();
     }
@@ -23,7 +23,7 @@ public class AuthHelper {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-            String checkExists = "SELECT Email, salt, securePassword, UserID FROM Users WHERE Email = ? LIMIT 1";
+            String checkExists = "SELECT Email, salt, securePassword, UserID, UserName FROM Users WHERE Email = ? LIMIT 1";
             PreparedStatement psEmail = conn.prepareStatement(checkExists);
             psEmail.setString(1, email);                                  // Email
             ResultSet rs = psEmail.executeQuery();                          // Execute
@@ -38,12 +38,13 @@ public class AuthHelper {
                 String mapSalt = rs.getString("salt");
                 String mapSecurePassword = rs.getString("securePassword");
                 String mapUserID = rs.getString("UserID");
+                String mapUserName = rs.getString("UserName");
                     map.put("eMail", mapEmail);
                     map.put("salt", mapSalt);
                     map.put("securePassword", mapSecurePassword);
                     map.put("userID", mapUserID);
-
-                System.out.println(mapEmail+" "+mapSalt+" "+mapSecurePassword+" "+mapUserID);
+                    map.put("userName", mapUserName);
+                System.out.println(mapEmail+" / "+mapSalt+" / "+mapSecurePassword+" / "+mapUserID+" / "+mapUserName);
                 // System.out.println(map); // for troubleshooting
                 return map;
             }
