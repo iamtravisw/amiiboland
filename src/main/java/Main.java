@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
-
 import spark.Filter;
 import spark.ModelAndView;
 import static spark.Spark.get;
-
 import spark.Request;
 import spark.Response;
 import spark.template.velocity.*;
@@ -48,8 +46,6 @@ public class Main {
          * /profile/wishlist
         */
 
-
-
         // Repeat this for all routes that add entries to the database
         before("/profile/*", (request, response) -> {
             if (!isAuthenticated(request)) {
@@ -76,45 +72,39 @@ public class Main {
 
         // Index 'All Amiibo'
         get("/", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
             // 'All' Tab from Home Page
-            String selectAll = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE UserID IS NULL OR UserID = 1 ORDER BY a.AmiiboID ASC";
-            PreparedStatement psAll = conn.prepareStatement(selectAll);
-            ResultSet resultsAll = psAll.executeQuery(selectAll);
-
-            ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
-
-            while (resultsAll.next()) {
-                String AmiiboID = resultsAll.getString("AmiiboID");
-                String Name = resultsAll.getString("Name");
-                String ImageURL = resultsAll.getString("ImageURL");
-                String Favorited = resultsAll.getString("Favorited");
-                String Collected = resultsAll.getString("Collected");
-                String WishList = resultsAll.getString("WishList");
-                HashMap<String, String> amiibo = new HashMap<String, String>();
-                amiibo.put("Name", Name);
-                amiibo.put("AmiiboID", AmiiboID);
-                amiibo.put("ImageURL", ImageURL);
-                amiibo.put("Favorited", Favorited);
-                amiibo.put("Collected", Collected);
-                amiibo.put("WishList", WishList);
-                amiibos.add(amiibo);
+            PreparedStatement psAll = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE UserID IS NULL OR UserID = ? ORDER BY a.AmiiboID ASC");
+            psAll.setInt(1, 22); // UserID
+            ResultSet resultsAll = psAll.executeQuery();
+                ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
+                while (resultsAll.next()) {
+                    String AmiiboID = resultsAll.getString("AmiiboID");
+                    String Name = resultsAll.getString("Name");
+                    String ImageURL = resultsAll.getString("ImageURL");
+                    String Favorited = resultsAll.getString("Favorited");
+                    String Collected = resultsAll.getString("Collected");
+                    String WishList = resultsAll.getString("WishList");
+                    HashMap<String, String> amiibo = new HashMap<String, String>();
+                    amiibo.put("Name", Name);
+                    amiibo.put("AmiiboID", AmiiboID);
+                    amiibo.put("ImageURL", ImageURL);
+                    amiibo.put("Favorited", Favorited);
+                    amiibo.put("Collected", Collected);
+                    amiibo.put("WishList", WishList);
+                    amiibos.add(amiibo);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("amiibos", amiibos);
-
             // Add authenticated status to model
             model.put("authenticated", isAuthenticated(rq));
-
             System.out.println(amiibos);
             // Pass amiibos to template
-
             return render(model, "templates/index.vm");
+
         });
 
        /*
@@ -148,17 +138,14 @@ public class Main {
 
         // 'New' Tab from Home Page
         get("/new", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectNew = "SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC";
-            PreparedStatement psNew = conn.prepareStatement(selectNew);
-            ResultSet resultsNew = psNew.executeQuery(selectNew);
-
+            PreparedStatement selectNew = conn.prepareStatement
+                    ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC");
+            //selectNew.setInt(1, 22); // UserID
+            ResultSet resultsNew = selectNew.executeQuery();
             ArrayList<HashMap<String, String>> newAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsNew.next()) {
                 String ReleaseDate = resultsNew.getString("ReleaseDate");
                 String AmiiboID = resultsNew.getString("AmiiboID");
@@ -177,30 +164,23 @@ public class Main {
                 recents.put("WishList", WishList);
                 newAmiibo.add(recents);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("newAmiibo", newAmiibo);
-
             System.out.println(newAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/new.vm");
-
         });
 
         // 'Collected' Tab from Home Page
         get("/collected", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectCollected = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND Collected = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psCollected = conn.prepareStatement(selectCollected);
-            ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
-
+            PreparedStatement psCollected = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
+            psCollected.setInt(1, 22); // UserID
+            ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsCollected.next()) {
                 String AmiiboID = resultsCollected.getString("AmiiboID");
                 String Name = resultsCollected.getString("Name");
@@ -219,30 +199,23 @@ public class Main {
                 collected.put("WishList", WishList);
                 collectedAmiibo.add(collected);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
-
             System.out.println(collectedAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/collected.vm");
         });
 
-
         // PROFILE for 'Collected'
         get("/profile/collection", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectCollected = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND Collected = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psCollected = conn.prepareStatement(selectCollected);
-            ResultSet resultsCollected = psCollected.executeQuery(selectCollected);
-
+            PreparedStatement psCollected = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
+            psCollected.setInt(1, 22); // UserID
+            ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsCollected.next()) {
                 String AmiiboID = resultsCollected.getString("AmiiboID");
                 String Name = resultsCollected.getString("Name");
@@ -261,29 +234,23 @@ public class Main {
                 collected.put("WishList", WishList);
                 collectedAmiibo.add(collected);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
-
             System.out.println(collectedAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/profile/collection.vm");
         });
 
         // 'Favorited' Tab from Home Page
         get("/favorited", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectFavorited = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.Favorited = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
-            ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
-
+            PreparedStatement selectFavorited = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
+            selectFavorited.setInt(1, 22); // UserID
+            ResultSet resultsFavorited = selectFavorited.executeQuery();
             ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsFavorited.next()) {
                 String AmiiboID = resultsFavorited.getString("AmiiboID");
                 String Name = resultsFavorited.getString("Name");
@@ -302,29 +269,23 @@ public class Main {
                 favorited.put("WishList", WishList);
                 favoritedAmiibo.add(favorited);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
-
             System.out.println(favoritedAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/favorited.vm");
         });
 
         //  PROFILE 'Favorited' Tab
         get("/profile/favorites", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectFavorited = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.Favorited = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psFavorited = conn.prepareStatement(selectFavorited);
-            ResultSet resultsFavorited = psFavorited.executeQuery(selectFavorited);
-
+            PreparedStatement selectFavorited = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
+            selectFavorited.setInt(1, 22); // UserID
+            ResultSet resultsFavorited = selectFavorited.executeQuery();
             ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsFavorited.next()) {
                 String AmiiboID = resultsFavorited.getString("AmiiboID");
                 String Name = resultsFavorited.getString("Name");
@@ -343,29 +304,23 @@ public class Main {
                 favorited.put("WishList", WishList);
                 favoritedAmiibo.add(favorited);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
-
             System.out.println(favoritedAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/profile/favorites.vm");
         });
 
         // 'Wish List' Tab from Home Page
         get("/wishlist", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectWishList = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.WishList = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psWishList = conn.prepareStatement(selectWishList);
-            ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
-
+            PreparedStatement selectWishList = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
+            selectWishList.setInt(1, 22); // UserID
+            ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsWishList.next()) {
                 String AmiiboID = resultsWishList.getString("AmiiboID");
                 String Name = resultsWishList.getString("Name");
@@ -384,29 +339,23 @@ public class Main {
                 wishlist.put("WishList", WishList);
                 wishlistAmiibo.add(wishlist);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
-
             System.out.println(wishlistAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/wishlist.vm");
         });
 
         // PROFILE 'Wish List' Tab
         get("/profile/wishlist", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectWishList = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = 1 AND c.WishList = 'Y' ORDER BY c.ModDate DESC";
-            PreparedStatement psWishList = conn.prepareStatement(selectWishList);
-            ResultSet resultsWishList = psWishList.executeQuery(selectWishList);
-
+            PreparedStatement selectWishList = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
+            selectWishList.setInt(1, 22); // UserID
+            ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsWishList.next()) {
                 String AmiiboID = resultsWishList.getString("AmiiboID");
                 String Name = resultsWishList.getString("Name");
@@ -425,30 +374,25 @@ public class Main {
                 wishlist.put("WishList", WishList);
                 wishlistAmiibo.add(wishlist);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
-
             System.out.println(wishlistAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/profile/wishlist.vm");
         });
 
-
         // 'Missing' Tab from Home Page
         get("/missing", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectMissing = "SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = 1 AND c.Collected = 'N' OR c.UserID = 1 AND c.Collected IS NULL ORDER BY a.AmiiboID ASC";
-            PreparedStatement psMissing = conn.prepareStatement(selectMissing);
-            ResultSet resultsMissing = psMissing.executeQuery(selectMissing);
+            PreparedStatement selectMissing = conn.prepareStatement
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = ? AND c.Collected = 'N' OR c.UserID = ? AND c.Collected IS NULL ORDER BY a.AmiiboID ASC");
+            selectMissing.setInt(1, 22); // UserID
+            selectMissing.setInt(2, 22); // UserID
+            ResultSet resultsMissing = selectMissing.executeQuery();
 
             ArrayList<HashMap<String, String>> missingAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsMissing.next()) {
                 String AmiiboID = resultsMissing.getString("AmiiboID");
                 String Name = resultsMissing.getString("Name");
@@ -467,29 +411,23 @@ public class Main {
                 missing.put("WishList", WishList);
                 missingAmiibo.add(missing);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("missingAmiibo", missingAmiibo);
-
             System.out.println(missingAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/missing.vm");
         });
 
         // 'Coming Soon' Tab from Home Page
         get("/comingsoon", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectSoon = "SELECT  a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate ASC";
-            PreparedStatement psSoon = conn.prepareStatement(selectSoon);
-            ResultSet resultsSoon = psSoon.executeQuery(selectSoon);
-
+            PreparedStatement selectSoon = conn.prepareStatement
+                    ("SELECT  a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate ASC");
+            //selectSoon.setInt(1, 22); // UserID
+            ResultSet resultsSoon = selectSoon.executeQuery();
             ArrayList<HashMap<String, String>> soonAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsSoon.next()) {
                 String ReleaseDate = resultsSoon.getString("ReleaseDate");
                 String AmiiboID = resultsSoon.getString("AmiiboID");
@@ -508,45 +446,34 @@ public class Main {
                 unreleased.put("WishList", WishList);
                 soonAmiibo.add(unreleased);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("soonAmiibo", soonAmiibo);
-
             System.out.println(soonAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/comingsoon.vm");
         });
 
-
         // Amiibo Collection Count on Profile Page
         get("/count", (rq, rs) -> {
-
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-
-            String selectCount = "SELECT SUM(CASE WHEN c.UserID = 1 AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Collected = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID";
-            PreparedStatement psCount = conn.prepareStatement(selectCount);
-            ResultSet resultsCount = psCount.executeQuery(selectCount);
-
+            PreparedStatement selectCount = conn.prepareStatement
+                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Collected = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+            selectCount.setInt(1, 22); // UserID
+            ResultSet resultsCount = selectCount.executeQuery();
             ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
-
             while (resultsCount.next()) {
                 String MyAmiibo = resultsCount.getString("MyAmiibo");
                 String TotalAmiibo = resultsCount.getString("TotalAmiibo");
-
                 HashMap<String, String> count = new HashMap<String, String>();
                 count.put("MyAmiibo", MyAmiibo);
                 count.put("TotalAmiibo", TotalAmiibo);
                 countAmiibo.add(count);
             }
-
             Map<String, Object> model = new HashMap<>();
             model.put("countAmiibo", countAmiibo);
-
             System.out.println(countAmiibo);
-
             // Pass amiibos to template
             return render(model, "templates/count.vm");
         });
