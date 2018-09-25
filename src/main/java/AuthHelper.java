@@ -1,5 +1,6 @@
 import com.mysql.jdbc.Statement;
 import org.mindrot.jbcrypt.BCrypt;
+import spark.Request;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +14,9 @@ public class AuthHelper {
     }
     private static String generateSecurePassword(String password, String salt) {
         return BCrypt.hashpw(password, salt);
+    }
+    public static boolean isAuthenticated(Request request) {
+        return request.session().attribute("userID") != null;
     }
     private static HashMap<String, String> getUserDetails(String email) {
         System.out.println("Starting getUserDetails module...");

@@ -109,7 +109,7 @@
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($recents.Collected == "Y")
+                                            #if ($recents.Collected == "Y" && $recents.UserID == $UserID)
                                             <div class="star has-text-warning" id="star$recents.AmiiboID">
                                             #else
                                             <div class="star" id="star$recents.AmiiboID">
@@ -127,7 +127,7 @@
                                     <!-- Collected "Love" (Heart) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($recents.Favorited == "Y")
+                                            #if ($recents.Favorited == "Y" && $recents.UserID == $UserID)
                                             <div class="heart has-text-danger" id="heart$recents.AmiiboID">
                                             #else
                                             <div class="heart" id="heart$recents.AmiiboID">
@@ -145,7 +145,7 @@
                                     <!-- Collected "Want" (Gem) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if($recents.WishList == "Y")
+                                            #if($recents.WishList == "Y" && $recents.UserID == $UserID)
                                             <div class="gem has-text-info" id="gem$recents.AmiiboID">
                                             #else
                                             <div class="gem" id="gem$recents.AmiiboID">

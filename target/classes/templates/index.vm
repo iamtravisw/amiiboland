@@ -109,7 +109,7 @@
                                     <!-- Collected "Mine" (Star) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($amiibo.Collected == "Y")
+                                            #if ($amiibo.Collected == "Y" && $amiibo.UserID == $UserID)
                                             <div class="star has-text-warning" id="star$amiibo.AmiiboID">
                                             #else
                                             <div class="star" id="star$amiibo.AmiiboID">
@@ -127,7 +127,7 @@
                                     <!-- Collected "Love" (Heart) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if ($amiibo.Favorited == "Y")
+                                            #if ($amiibo.Favorited == "Y" && $amiibo.UserID == $UserID)
                                             <div class="heart has-text-danger" id="heart$amiibo.AmiiboID">
                                             #else
                                             <div class="heart" id="heart$amiibo.AmiiboID">
@@ -145,7 +145,7 @@
                                     <!-- Collected "Want" (Gem) Button -->
                                     <div class="tile is-parent">
                                         <article class="tile is-child">
-                                            #if($amiibo.WishList == "Y")
+                                            #if($amiibo.WishList == "Y" && $amiibo.UserID == $UserID)
                                             <div class="gem has-text-info" id="gem$amiibo.AmiiboID">
                                             #else
                                             <div class="gem" id="gem$amiibo.AmiiboID">

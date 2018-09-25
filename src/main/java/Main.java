@@ -14,10 +14,6 @@ import spark.template.velocity.*;
 
 public class Main {
 
-    public static boolean isAuthenticated(Request request) {
-        return request.session().attribute("userID") != null; 
-    }
-
     public static void main(String[] args) {
 
         String dbURL = System.getenv("DB_URL");
@@ -48,62 +44,63 @@ public class Main {
 
         // Repeat this for all routes that add entries to the database
         before("/profile/*", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         });
 
         before("/collected", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         });
         before("/favorited", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         });
 
         before("/missing", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         });
 
         before("/collection", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         }); 
 
         before("/favorites", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
         }); 
         before("/wishlist", (request, response) -> {
-            if (!isAuthenticated(request)) {
+            if (!AuthHelper.isAuthenticated(request)) {
                 //halt(401, "Please login");
                 response.redirect("/pleaselogin");
             }
-        }); 
-
+        });
         // Index 'All Amiibo'
         get("/", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             // 'All' Tab from Home Page
-            PreparedStatement psAll = conn.prepareStatement
-                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE UserID IS NULL OR UserID = ? ORDER BY a.AmiiboID ASC");
-            psAll.setInt(1, 22); // UserID
-            ResultSet resultsAll = psAll.executeQuery();
+            PreparedStatement psAll = conn.prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID\n" +
+                        "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
+                        "ORDER BY a.AmiiboID ASC");
+                ResultSet resultsAll = psAll.executeQuery();
                 ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
                 while (resultsAll.next()) {
                     String AmiiboID = resultsAll.getString("AmiiboID");
@@ -112,6 +109,7 @@ public class Main {
                     String Favorited = resultsAll.getString("Favorited");
                     String Collected = resultsAll.getString("Collected");
                     String WishList = resultsAll.getString("WishList");
+                    String UserID = resultsAll.getString("UserID");
                     HashMap<String, String> amiibo = new HashMap<String, String>();
                     amiibo.put("Name", Name);
                     amiibo.put("AmiiboID", AmiiboID);
@@ -119,17 +117,19 @@ public class Main {
                     amiibo.put("Favorited", Favorited);
                     amiibo.put("Collected", Collected);
                     amiibo.put("WishList", WishList);
+                    amiibo.put("UserID", UserID);
                     amiibos.add(amiibo);
-            }
-            Map<String, Object> model = new HashMap<>();
-            model.put("amiibos", amiibos);
-            // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
-            System.out.println(amiibos);
-            // Pass amiibos to template
-            return render(model, "templates/index.vm");
+                }
+                Map<String, Object> model = new HashMap<>();
+                model.put("amiibos", amiibos);
+                // Add authenticated status to model
+                model.put("authenticated", AuthHelper.isAuthenticated(rq));
+                model.put("UserID", userID);
+                System.out.println(amiibos);
+                // Pass amiibos to template
 
-        });
+                return render(model, "templates/index.vm");
+            });
 
        /*
         // NavBar for Series
@@ -162,12 +162,15 @@ public class Main {
 
         // 'New' Tab from Home Page
         get("/new", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-            PreparedStatement selectNew = conn.prepareStatement
-                    ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC");
-            //selectNew.setInt(1, 22); // UserID
+            PreparedStatement selectNew = conn.prepareStatement ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID\n" +
+                    "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
+                    "WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() \n" +
+                    "GROUP BY a.AmiiboID ORDER BY a.ReleaseDate DESC");
             ResultSet resultsNew = selectNew.executeQuery();
             ArrayList<HashMap<String, String>> newAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsNew.next()) {
@@ -178,6 +181,7 @@ public class Main {
                 String Favorited = resultsNew.getString("Favorited");
                 String Collected = resultsNew.getString("Collected");
                 String WishList = resultsNew.getString("WishList");
+                String UserID = resultsNew.getString("UserID");
                 HashMap<String, String> recents = new HashMap<String, String>();
                 recents.put("ReleaseDate", ReleaseDate);
                 recents.put("Name", Name);
@@ -186,12 +190,14 @@ public class Main {
                 recents.put("Favorited", Favorited);
                 recents.put("Collected", Collected);
                 recents.put("WishList", WishList);
+                recents.put("UserID", UserID);
                 newAmiibo.add(recents);
             }
             Map<String, Object> model = new HashMap<>();
             model.put("newAmiibo", newAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            model.put("UserID", userID);
             System.out.println(newAmiibo);
             // Pass amiibos to template
             return render(model, "templates/new.vm");
@@ -199,12 +205,14 @@ public class Main {
 
         // 'Collected' Tab from Home Page
         get("/collected", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement psCollected = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
-            psCollected.setInt(1, 22); // UserID
+            psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsCollected.next()) {
@@ -228,7 +236,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(collectedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/collected.vm");
@@ -236,12 +244,14 @@ public class Main {
 
         // PROFILE for 'Collected'
         get("/profile/collection", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement psCollected = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
-            psCollected.setInt(1, 22); // UserID
+            psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsCollected.next()) {
@@ -265,7 +275,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(collectedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/collection.vm");
@@ -273,12 +283,14 @@ public class Main {
 
         // 'Favorited' Tab from Home Page
         get("/favorited", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectFavorited = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
-            selectFavorited.setInt(1, 22); // UserID
+            selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
             ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsFavorited.next()) {
@@ -302,7 +314,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(favoritedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/favorited.vm");
@@ -310,12 +322,14 @@ public class Main {
 
         //  PROFILE 'Favorited' Tab
         get("/profile/favorites", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectFavorited = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
-            selectFavorited.setInt(1, 22); // UserID
+            selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
             ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsFavorited.next()) {
@@ -339,7 +353,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(favoritedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/favorites.vm");
@@ -347,12 +361,14 @@ public class Main {
 
         // 'Wish List' Tab from Home Page
         get("/wishlist", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectWishList = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
-            selectWishList.setInt(1, 22); // UserID
+            selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsWishList.next()) {
@@ -376,7 +392,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(wishlistAmiibo);
             // Pass amiibos to template
             return render(model, "templates/wishlist.vm");
@@ -384,12 +400,14 @@ public class Main {
 
         // PROFILE 'Wish List' Tab
         get("/profile/wishlist", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectWishList = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
-            selectWishList.setInt(1, 22); // UserID
+            selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsWishList.next()) {
@@ -413,7 +431,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(wishlistAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/wishlist.vm");
@@ -421,13 +439,15 @@ public class Main {
 
         // 'Missing' Tab from Home Page
         get("/missing", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectMissing = conn.prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = ? AND c.Collected = 'N' OR c.UserID = ? AND c.Collected IS NULL ORDER BY a.AmiiboID ASC");
-            selectMissing.setInt(1, 22); // UserID
-            selectMissing.setInt(2, 22); // UserID
+            selectMissing.setInt(1, userID); // UserID
+            selectMissing.setInt(2, userID); // UserID
             ResultSet resultsMissing = selectMissing.executeQuery();
 
             ArrayList<HashMap<String, String>> missingAmiibo = new ArrayList<HashMap<String, String>>();
@@ -452,7 +472,7 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("missingAmiibo", missingAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             System.out.println(missingAmiibo);
             // Pass amiibos to template
             return render(model, "templates/missing.vm");
@@ -460,11 +480,16 @@ public class Main {
 
         // 'Coming Soon' Tab from Home Page
         get("/comingsoon", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectSoon = conn.prepareStatement
-                    ("SELECT  a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID WHERE ReleaseDate > CURDATE() ORDER BY ReleaseDate ASC");
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList, c.UserID \n" +
+                            "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID \n" +
+                            "WHERE ReleaseDate > CURDATE() \n" +
+                            "GROUP BY a.AmiiboID ORDER BY a.ReleaseDate ASC");
             //selectSoon.setInt(1, 22); // UserID
             ResultSet resultsSoon = selectSoon.executeQuery();
             ArrayList<HashMap<String, String>> soonAmiibo = new ArrayList<HashMap<String, String>>();
@@ -476,6 +501,7 @@ public class Main {
                 String Favorited = resultsSoon.getString("Favorited");
                 String Collected = resultsSoon.getString("Collected");
                 String WishList = resultsSoon.getString("WishList");
+                String UserID = resultsSoon.getString("UserID");
                 HashMap<String, String> unreleased = new HashMap<String, String>();
                 unreleased.put("ReleaseDate", ReleaseDate);
                 unreleased.put("Name", Name);
@@ -484,12 +510,14 @@ public class Main {
                 unreleased.put("Favorited", Favorited);
                 unreleased.put("Collected", Collected);
                 unreleased.put("WishList", WishList);
+                unreleased.put("UserID", UserID);
                 soonAmiibo.add(unreleased);
             }
             Map<String, Object> model = new HashMap<>();
             model.put("soonAmiibo", soonAmiibo);
             // Add authenticated status to model
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            model.put("UserID", userID);
             System.out.println(soonAmiibo);
             // Pass amiibos to template
             return render(model, "templates/comingsoon.vm");
@@ -497,12 +525,14 @@ public class Main {
 
         // Amiibo Collection Count on Profile Page
         get("/count", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
             PreparedStatement selectCount = conn.prepareStatement
                     ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Collected = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
-            selectCount.setInt(1, 22); // UserID
+            selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
             ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsCount.next()) {
@@ -523,56 +553,56 @@ public class Main {
         // About
         get("/about", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/about.vm");
         });
 
         // Thanks
         get("/thanks", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/thanks.vm");
         });
 
         // Privacy Policy
         get("/privacypolicy", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/privacypolicy.vm");
         });
 
         // Reset Password
         get("/resetpassword", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/resetpassword.vm");
         });
 
         // Please Login
         get("/pleaselogin", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/pleaselogin.vm");
         });
 
         // Terms of Service
         get("/termsofservice", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/termsofservice.vm");
         });
 
         // Sign Up
         get("/signup", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/signup.vm");
         });
 
         // Login
         get("/login", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("authenticated", isAuthenticated(rq));
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
             return render(model, "templates/login.vm");
         });
 

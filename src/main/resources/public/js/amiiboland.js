@@ -11,6 +11,9 @@ $(document).ready(function(){
         $("#logout").addClass("is-hidden");
         $("#showModal").removeClass("is-hidden");
         $("#signup").removeClass("is-hidden");
+        $(".star").removeClass("has-text-warning");
+        $(".heart").removeClass("has-text-danger");
+        $(".gem").removeClass("has-text-info");
         console.log("Authenticated: "+authenticated);
     }
 
