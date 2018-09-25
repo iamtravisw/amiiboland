@@ -49,24 +49,48 @@ public class Main {
         // Repeat this for all routes that add entries to the database
         before("/profile/*", (request, response) -> {
             if (!isAuthenticated(request)) {
-                halt(401, "Please login");
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
             }
-        });       
-        
+        });
+
+        before("/collected", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
+            }
+        });
+        before("/favorited", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
+            }
+        });
+
+        before("/missing", (request, response) -> {
+            if (!isAuthenticated(request)) {
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
+            }
+        });
+
         before("/collection", (request, response) -> {
             if (!isAuthenticated(request)) {
-                halt(401, "Please login");
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
             }
         }); 
 
         before("/favorites", (request, response) -> {
             if (!isAuthenticated(request)) {
-                halt(401, "Please login");
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
             }
         }); 
         before("/wishlist", (request, response) -> {
             if (!isAuthenticated(request)) {
-                halt(401, "Please login");
+                //halt(401, "Please login");
+                response.redirect("/pleaselogin");
             }
         }); 
 
@@ -166,6 +190,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("newAmiibo", newAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(newAmiibo);
             // Pass amiibos to template
             return render(model, "templates/new.vm");
@@ -201,6 +227,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(collectedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/collected.vm");
@@ -236,6 +264,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("collectedAmiibo", collectedAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(collectedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/collection.vm");
@@ -271,6 +301,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(favoritedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/favorited.vm");
@@ -306,6 +338,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("favoritedAmiibo", favoritedAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(favoritedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/favorites.vm");
@@ -341,6 +375,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(wishlistAmiibo);
             // Pass amiibos to template
             return render(model, "templates/wishlist.vm");
@@ -376,6 +412,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("wishlistAmiibo", wishlistAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(wishlistAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/wishlist.vm");
@@ -413,6 +451,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("missingAmiibo", missingAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(missingAmiibo);
             // Pass amiibos to template
             return render(model, "templates/missing.vm");
@@ -448,6 +488,8 @@ public class Main {
             }
             Map<String, Object> model = new HashMap<>();
             model.put("soonAmiibo", soonAmiibo);
+            // Add authenticated status to model
+            model.put("authenticated", isAuthenticated(rq));
             System.out.println(soonAmiibo);
             // Pass amiibos to template
             return render(model, "templates/comingsoon.vm");
@@ -481,30 +523,56 @@ public class Main {
         // About
         get("/about", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
             return render(model, "templates/about.vm");
+        });
+
+        // Thanks
+        get("/thanks", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
+            return render(model, "templates/thanks.vm");
         });
 
         // Privacy Policy
         get("/privacypolicy", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
             return render(model, "templates/privacypolicy.vm");
+        });
+
+        // Reset Password
+        get("/resetpassword", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
+            return render(model, "templates/resetpassword.vm");
+        });
+
+        // Please Login
+        get("/pleaselogin", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
+            return render(model, "templates/pleaselogin.vm");
         });
 
         // Terms of Service
         get("/termsofservice", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
             return render(model, "templates/termsofservice.vm");
         });
 
         // Sign Up
         get("/signup", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
             return render(model, "templates/signup.vm");
         });
 
-        // Sign Up
+        // Login
         get("/login", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", isAuthenticated(rq));
             return render(model, "templates/login.vm");
         });
 
@@ -628,22 +696,20 @@ public class Main {
             email = request.queryParams("email");
             String password;
             password = request.queryParams("password");
+            //int userID = AuthHelper.register(email, password, userName, name);
 
             if (name != null) {
                 System.out.println("------------------------------------------");
                 System.out.println("User Signup Started");
                 System.out.println("------------------------------------------");
                 System.out.println("User: " + userName + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
-                int userID = AuthHelper.register(email, password, userName, name);
+                //request.session().attribute("userID", userID);
+                AuthHelper.register(email, password, userName, name);
                 System.out.println("Sending data to AuthHelper...");
-                if (userID != -1) { 
-                    request.session().attribute("userID", userID);                    
-                    response.redirect("/signup"); // Take the user to another page
-                }
-                else {
+                response.redirect("/thanks"); // Take the user to another page
+                } else {
                     // TODO: Handle cases where register fails
                     request.session().removeAttribute("userID");
-                }
             }
             return String.join(" / ", name, userName, email, password);
         });
@@ -661,16 +727,24 @@ public class Main {
                 System.out.println("User: " + email + "\nPassword: " + password);
                 int userID = AuthHelper.tryLogin(email, password);
                 System.out.println("Sending data to AuthHelper...");
-                if (userID != -1) { 
+                if (userID != -1) {
                     request.session().attribute("userID", userID);
-                    response.redirect("/profile/collection"); // Take the user to another page
+                    response.redirect("/"); // Take the user to another page
                 }
                 else {
                     // TODO: Handle cases where login fails
                     request.session().removeAttribute("userID");
+                    response.redirect("/signup"); // Take the user to another page
                 }
             }
             return String.join(" / ", email, password);
+        });
+
+        // Log Out
+        post("/signout", (request, response) -> {
+            request.session().removeAttribute("userID");
+            response.redirect("/"); // Take the user to another page
+            return String.join("You are logged out.");
         });
     }
     public static String render(Map<String, Object> model, String templatePath) {

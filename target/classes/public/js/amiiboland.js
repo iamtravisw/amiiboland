@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+    // Show or Hide Login/ SignUp/ Logout
+    if (authenticated) {
+        $("#logout").removeClass("is-hidden");
+        $("#showModal").addClass("is-hidden");
+        $("#signup").addClass("is-hidden");
+        console.log("Authenticated: "+authenticated);
+
+    } else {
+        $("#logout").addClass("is-hidden");
+        $("#showModal").removeClass("is-hidden");
+        $("#signup").removeClass("is-hidden");
+        console.log("Authenticated: "+authenticated);
+    }
+
     // Modal for Bulma
     $("#showModal").click(function() {
         $(".modal").addClass("is-active");

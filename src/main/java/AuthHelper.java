@@ -69,6 +69,7 @@ public class AuthHelper {
         }
     }
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
+        System.out.println("Starting saveNewUser");
         Date addDate = new Date();
         Date modDate = new Date();
         String dbURL = System.getenv("DB_URL");

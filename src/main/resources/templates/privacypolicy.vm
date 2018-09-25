@@ -12,8 +12,10 @@
     <link rel="icon" href="/amiibo.ico">
     <script src="/js/vanillatoasts.js"></script>
     <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
-    </head>
-
+    <script type="text/javascript">
+        var authenticated = $authenticated;
+    </script>
+</head>
 <div id="navMenu">
     <script>
         $.get("/navbar", function(data){
