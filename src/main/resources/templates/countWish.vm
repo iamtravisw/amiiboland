@@ -1,0 +1,4 @@
+<div id="amiiboCountWish">
+#foreach($count in $countAmiibo)
+    $count.MyAmiibo wanted
+#end

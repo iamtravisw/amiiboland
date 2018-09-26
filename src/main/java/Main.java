@@ -250,7 +250,7 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement psCollected = conn.prepareStatement
-                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
             psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
@@ -262,6 +262,7 @@ public class Main {
                 String Favorited = resultsCollected.getString("Favorited");
                 String Collected = resultsCollected.getString("Collected");
                 String WishList = resultsCollected.getString("WishList");
+                String UserName = resultsCollected.getString("UserName");
                 HashMap<String, String> collected = new HashMap<String, String>();
                 collected.put("Name", Name);
                 collected.put("AmiiboID", AmiiboID);
@@ -270,6 +271,7 @@ public class Main {
                 collected.put("Favorited", Favorited);
                 collected.put("Collected", Collected);
                 collected.put("WishList", WishList);
+                collected.put("UserName", UserName);
                 collectedAmiibo.add(collected);
             }
             Map<String, Object> model = new HashMap<>();
@@ -328,7 +330,7 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectFavorited = conn.prepareStatement
-                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
             selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
             ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
@@ -340,6 +342,7 @@ public class Main {
                 String Favorited = resultsFavorited.getString("Favorited");
                 String Collected = resultsFavorited.getString("Collected");
                 String WishList = resultsFavorited.getString("WishList");
+                String UserName = resultsFavorited.getString("UserName");
                 HashMap<String, String> favorited = new HashMap<String, String>();
                 favorited.put("Name", Name);
                 favorited.put("AmiiboID", AmiiboID);
@@ -348,6 +351,7 @@ public class Main {
                 favorited.put("Favorited", Favorited);
                 favorited.put("Collected", Collected);
                 favorited.put("WishList", WishList);
+                favorited.put("UserName", UserName);
                 favoritedAmiibo.add(favorited);
             }
             Map<String, Object> model = new HashMap<>();
@@ -406,7 +410,7 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectWishList = conn.prepareStatement
-                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserID, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
             selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
@@ -418,6 +422,7 @@ public class Main {
                 String Favorited = resultsWishList.getString("Favorited");
                 String Collected = resultsWishList.getString("Collected");
                 String WishList = resultsWishList.getString("WishList");
+                String UserName = resultsWishList.getString("UserName");
                 HashMap<String, String> wishlist = new HashMap<String, String>();
                 wishlist.put("Name", Name);
                 wishlist.put("AmiiboID", AmiiboID);
@@ -426,6 +431,7 @@ public class Main {
                 wishlist.put("Favorited", Favorited);
                 wishlist.put("Collected", Collected);
                 wishlist.put("WishList", WishList);
+                wishlist.put("UserName", UserName);
                 wishlistAmiibo.add(wishlist);
             }
             Map<String, Object> model = new HashMap<>();
@@ -548,6 +554,60 @@ public class Main {
             System.out.println(countAmiibo);
             // Pass amiibos to template
             return render(model, "templates/count.vm");
+        });
+
+        // Amiibo Favorites Count on Profile Page
+        get("/countFave", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+            PreparedStatement selectCount = conn.prepareStatement
+                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Favorited = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Favorited = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+            selectCount.setInt(1, userID); // UserID
+            ResultSet resultsCount = selectCount.executeQuery();
+            ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
+            while (resultsCount.next()) {
+                String MyAmiibo = resultsCount.getString("MyAmiibo");
+                String TotalAmiibo = resultsCount.getString("TotalAmiibo");
+                HashMap<String, String> count = new HashMap<String, String>();
+                count.put("MyAmiibo", MyAmiibo);
+                count.put("TotalAmiibo", TotalAmiibo);
+                countAmiibo.add(count);
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("countAmiibo", countAmiibo);
+            System.out.println(countAmiibo);
+            // Pass amiibos to template
+            return render(model, "templates/countFave.vm");
+        });
+
+        // Amiibo Favorites Count on Profile Page
+        get("/countWish", (rq, rs) -> {
+            boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
+            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+            PreparedStatement selectCount = conn.prepareStatement
+                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.WishList = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.WishList = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+            selectCount.setInt(1, userID); // UserID
+            ResultSet resultsCount = selectCount.executeQuery();
+            ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
+            while (resultsCount.next()) {
+                String MyAmiibo = resultsCount.getString("MyAmiibo");
+                String TotalAmiibo = resultsCount.getString("TotalAmiibo");
+                HashMap<String, String> count = new HashMap<String, String>();
+                count.put("MyAmiibo", MyAmiibo);
+                count.put("TotalAmiibo", TotalAmiibo);
+                countAmiibo.add(count);
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("countAmiibo", countAmiibo);
+            System.out.println(countAmiibo);
+            // Pass amiibos to template
+            return render(model, "templates/countWish.vm");
         });
 
         // About
@@ -768,7 +828,8 @@ public class Main {
                 if (userID != -1) {
                     System.out.println("IF: Logging in");
                     request.session().attribute("userID", userID);
-                    response.redirect("/"); // Take the user to another page
+                    response.redirect("/profile/collection"); // Take the user to another page
+
                 } else {
                     System.out.println("ELSE: Not logging in");
                     request.session().removeAttribute("userID");

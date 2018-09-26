@@ -48,10 +48,22 @@
             <div class="columns is-half">
                 <div class="column">
                     <h1 class="title">
-                        TravisaurusREKT's profile
+                        #foreach($collected in $collectedAmiibo)
+                            #if($velocityCount > 1)
+                                #break
+                            #end
+                        $collected.UserName
+                        's profile
+                            #end
                     </h1>
                     <h2 class="subtitle">
-                        Welcome to the Collection of TravisaurusREKT
+                        Welcome to the Collection of
+                            #foreach($collected in $collectedAmiibo)
+                                #if($velocityCount > 1)
+                                    #break
+                                #end
+                                $collected.UserName
+                            #end
                     </h2>
                 </div>
                 <div class="column has-text-right">

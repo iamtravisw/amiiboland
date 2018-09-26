@@ -59,14 +59,14 @@
     <div class="field">
         <label class="label">Name</label>
         <div class="control">
-            <input class="input" type="text" input name="name" id="name" placeholder="Enter your name" required>
+            <input class="input" type="text" input name="name" id="name" placeholder="Enter your name" maxlength="45" required>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Username</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" input name="userName" id="userName" placeholder="Must be Unique" required>
+            <input class="input" type="text" input name="userName" id="userName" placeholder="Must be Unique" maxlength="45" required>
             <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -77,7 +77,7 @@
     <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" input name="email" id="email" placeholder="Email" required>
+            <input class="input" type="email" input name="email" id="email" placeholder="Email" maxlength="45" required>
             <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -88,7 +88,7 @@
      <div class="field">
          <label class="label">Password</label>
          <div class="control has-icons-left has-icons-right">
-             <input class="input" type="password" input name="password" id="password" placeholder="Password" required>
+             <input class="input" type="password" input name="password" id="password" placeholder="Password" maxlength="45" required>
              <span class="icon is-small is-left">
        <i class="fas fa-envelope"></i>
      </span>

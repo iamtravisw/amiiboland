@@ -47,20 +47,33 @@
             <div class="columns is-half">
                 <div class="column">
                     <h1 class="title">
-                        TravisaurusREKT's profile
+                        #foreach( $favorited in $favoritedAmiibo )
+                            #if($velocityCount > 1)
+                                #break
+                            #end
+                            $favorited.UserName
+                            's profile
+                        #end
                     </h1>
                     <h2 class="subtitle">
-                        Welcome to the Collection of TravisaurusREKT
+                        You're viewing
+                        #foreach( $favorited in $favoritedAmiibo )
+                            #if($velocityCount > 1)
+                                #break
+                            #end
+                            $favorited.UserName
+                        #end
+                        's favorite Amiibo
                     </h2>
                 </div>
                 <div class="column has-text-right">
                     <div style="height:12px;font-size:12px;">&nbsp;</div>
                     <h2 class="subtitle">
-                        <strong>Collection</strong><br>
-                        <div id="amiiboCount">
+                        <strong>Favorites</strong><br>
+                        <div id="amiiboCountFave">
                             <script>
-                                $.get("/count", function(data){
-                                    $("#amiiboCount").replaceWith(data);
+                                $.get("/countFave", function(data){
+                                    $("#amiiboCountFave").replaceWith(data);
                                 });
                             </script>
                         </div>
