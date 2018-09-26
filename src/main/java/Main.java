@@ -766,10 +766,11 @@ public class Main {
                 int userID = AuthHelper.tryLogin(email, password);
                 System.out.println("Sending data to AuthHelper...");
                 if (userID != -1) {
+                    System.out.println("IF: Logging in");
                     request.session().attribute("userID", userID);
                     response.redirect("/"); // Take the user to another page
-                }
-                else {
+                } else {
+                    System.out.println("ELSE: Not logging in");
                     request.session().removeAttribute("userID");
                     response.redirect("/pleaselogin"); // Take the user to another page
                 }

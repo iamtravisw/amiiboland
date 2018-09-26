@@ -32,12 +32,13 @@ public class AuthHelper {
             psEmail.setString(1, email);                                  // Email
             ResultSet rs = psEmail.executeQuery();                          // Execute
             // If the row does not exist, insert a new row for this user
+            HashMap<String, String> map = new HashMap<String, String>();
             if (!rs.isBeforeFirst()) {
                 System.out.println(email + " does not exist... ");
+                return map;
             } else {
                 System.out.println("Login found for: " + email);
                 rs.first();
-                HashMap<String, String> map = new HashMap<String, String>();
                 String mapEmail = rs.getString("Email");
                 String mapSalt = rs.getString("salt");
                 String mapSecurePassword = rs.getString("securePassword");
@@ -61,11 +62,15 @@ public class AuthHelper {
         System.out.println("Starting tryLogin module...");
         HashMap<String, String> user = getUserDetails(email);
         System.out.println("tryLogin retrieved email: " + user.get("eMail") + " and salt: "+ user.get("salt"));
+        if (user.get("salt") == null) { // Catch emails that do not exist
+            System.out.println(user.get("salt"));
+            return -1;
+        }
         String securePassword = generateSecurePassword(password, user.get("salt"));
         // Should be true if they're equal, false otherwise
         boolean correctPassword = securePassword.equals(user.get("securePassword"));
         if (correctPassword) {
-            System.out.println("Password Match: " +correctPassword+ " for " +email+ " with " +securePassword);
+            System.out.println("Password Match: " + correctPassword + " for " + email + " with " + securePassword);
             return Integer.parseInt(user.get("userID"));
         } else {
             System.out.println("Password Match: " + correctPassword);
