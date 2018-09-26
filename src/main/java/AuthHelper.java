@@ -69,7 +69,7 @@ public class AuthHelper {
             return Integer.parseInt(user.get("userID"));
         } else {
             System.out.println("Password Match: " + correctPassword);
-            return Integer.parseInt(user.get("userID")); // return something
+            return -1;
         }
     }
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
@@ -111,11 +111,54 @@ public class AuthHelper {
         }
         return -1; // Need to return something
     }
+    private static int saveNewPassword(String email, String securePassword, String salt) {
+        System.out.println("Starting saveNewPassword");
+        Date addDate = new Date();
+        Date modDate = new Date();
+        String dbURL = System.getenv("DB_URL");
+        String dbUser = System.getenv("DB_USER");
+        String dbPassword = System.getenv("DB_PASSWORD");
+        try {
+            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            if (conn != null) {
+            }
+            // sql insert statement
+            String storeUser = "UPDATE Users SET securePassword = ?, salt = ?, ModUser = ?, ModDate = ?, AddUser = ?, AddDate = ? WHERE Email = ?";
+
+            PreparedStatement psInsertUser = conn.prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
+            psInsertUser.setString(1, securePassword);                   // UserID
+            psInsertUser.setString(2, salt);          // securePassword
+            psInsertUser.setString(3, "root@localhost");     // ModUser
+            psInsertUser.setString(4, modDate.toString());      // ModDate
+            psInsertUser.setString(5, "root@localhost");     // AddUser
+            psInsertUser.setString(6, addDate.toString());      // AddDate
+            psInsertUser.setString(7, email);                    // Email
+            psInsertUser.execute();                                // Execute
+            // Get userID of the last row
+            ResultSet rs = psInsertUser.getGeneratedKeys();
+            if (rs.next()) {
+                int lastUserID = rs.getInt(1);
+                System.out.println("UserID: " + lastUserID);
+                return lastUserID;
+            }
+        } catch (Exception e) {
+            System.out.println(e); // Did it work? If not, why.
+            return -1; // return something
+        }
+        return -1; // Need to return something
+    }
     public static int register(String email, String password, String userName, String name) {
         // Generate salt
         String salt = generateSalt();
         // Append salt to password and hash them both
         String securePassword = generateSecurePassword(password, salt);
         return saveNewUser(name, email, securePassword, userName, salt);
+    }
+    public static int updatePassword(String email, String password) {
+        // Generate salt
+        String salt = generateSalt();
+        // Append salt to password and hash them both
+        String securePassword = generateSecurePassword(password, salt);
+        return saveNewPassword(email, securePassword, salt);
     }
 }

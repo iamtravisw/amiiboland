@@ -564,6 +564,13 @@ public class Main {
             return render(model, "templates/thanks.vm");
         });
 
+        // Sorry
+        get("/sorry", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            return render(model, "templates/sorry.vm");
+        });
+
         // Privacy Policy
         get("/privacypolicy", (rq, rs) -> {
             Map<String, Object> model = new HashMap<>();
@@ -726,20 +733,21 @@ public class Main {
             email = request.queryParams("email");
             String password;
             password = request.queryParams("password");
-            //int userID = AuthHelper.register(email, password, userName, name);
-
             if (name != null) {
                 System.out.println("------------------------------------------");
                 System.out.println("User Signup Started");
                 System.out.println("------------------------------------------");
                 System.out.println("User: " + userName + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
-                //request.session().attribute("userID", userID);
-                AuthHelper.register(email, password, userName, name);
+                int userID = AuthHelper.register(email, password, userName, name);
+                System.out.println(userID);
+                request.session().attribute("userID", userID);
                 System.out.println("Sending data to AuthHelper...");
+                if(userID != -1) {
                 response.redirect("/thanks"); // Take the user to another page
                 } else {
-                    // TODO: Handle cases where register fails
-                    request.session().removeAttribute("userID");
+                    // TODO Make this more granular and give the user more specific reasoning
+                    response.redirect("/sorry"); // Take the user to another page
+                }
             }
             return String.join(" / ", name, userName, email, password);
         });
@@ -762,9 +770,8 @@ public class Main {
                     response.redirect("/"); // Take the user to another page
                 }
                 else {
-                    // TODO: Handle cases where login fails
                     request.session().removeAttribute("userID");
-                    response.redirect("/signup"); // Take the user to another page
+                    response.redirect("/pleaselogin"); // Take the user to another page
                 }
             }
             return String.join(" / ", email, password);
@@ -775,6 +782,24 @@ public class Main {
             request.session().removeAttribute("userID");
             response.redirect("/"); // Take the user to another page
             return String.join("You are logged out.");
+        });
+
+        // Reset Password
+        post("/reset", (request, response) -> {
+            String email;
+            email = request.queryParams("email");
+            String password;
+            password = request.queryParams("password");
+            if (email != null) {
+                System.out.println("------------------------------------------");
+                System.out.println("Password Reset Started");
+                System.out.println("------------------------------------------");
+                System.out.println("Email: " + email + "\nNew Password: " + password);
+                System.out.println("Sending data to AuthHelper...");
+                int resetPassword = AuthHelper.updatePassword(email, password);
+                response.redirect("/pleaselogin"); // Take the user to another page
+            }
+            return String.join(" / ", email, password);
         });
     }
     public static String render(Map<String, Object> model, String templatePath) {

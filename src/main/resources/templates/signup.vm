@@ -39,7 +39,6 @@
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-
     <section class="hero is-danger">
         <div class="hero-body">
             <div class="container">

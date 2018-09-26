@@ -25,6 +25,19 @@
     </script>
 </div>
 
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div id="login">
+            <script>
+                $.get("/login", function(data){
+                    $("#login").replaceWith(data);
+                });
+            </script>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
 <section class="hero is-danger">
     <div class="hero-body">
@@ -33,19 +46,27 @@
                 Congratulations!
             </h1>
             <h2 class="subtitle">
-                You can log in using the form below.
+                You're signed up and logged in.
             </h2>
         </div>
     </div>
 </section>
 <br>
 
-<div id="login">
-    <script>
-        $.get("/login", function(data){
-            $("#login").replaceWith(data);
-        });
-    </script>
+<div class="container is-fluid">
+    <div class="notification">
+
+<strong>Thanks for signing up!</strong><br>
+        Now that you're signed up and logged in you can start adding Amiibo to your collection.<br><br>
+
+        <strong>Go to the 'Home' page and pick a tab, it's usually best to start on the 'All' tab:</strong><br>
+        <i class="fas fa-star"></i> To add an Amiibo to your collection click on the star icon. This will go into your 'Collected' tab.<br>
+        <i class="fas fa-heart"></i> To add an Amiibo to your favorites click on the heart icon. This will go into your 'Favorited' tab.<br>
+        <i class="fas fa-gem"></i> To add an Amiibo to your wish list click on the gem icon. This will go into your 'Wish List' tab.<br><br>
+
+        I am open to any and all feedback on Amiibo.Land. If you have any questions or suggestions about Amiibo.Land you can <a href="https://www.iamtravisw.com/p/amiiboland.html">
+        post a comment on my website</a>.
+    </div>
 </div>
 
 <footer class="footer">

@@ -43,10 +43,10 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
-                Congratulations!
+                Sign up incomplete
             </h1>
             <h2 class="subtitle">
-                You're signed up and logged in.
+                Error signing up
             </h2>
         </div>
     </div>
@@ -56,16 +56,17 @@
 <div class="container is-fluid">
     <div class="notification">
 
-<strong>Thanks for signing up!</strong><br>
-        Now that you're signed up and logged in you can start adding Amiibo to your collection.<br><br>
+        <strong>Sorry, your attempt to sign up failed for one of the reasons below.</strong><br><br>
 
-        <strong>Go to the 'Home' page and pick a tab, it's usually best to start on the 'All' tab:</strong><br>
-        <i class="fas fa-star"></i> To add an Amiibo to your collection click on the star icon. This will go into your 'Collected' tab.<br>
-        <i class="fas fa-heart"></i> To add an Amiibo to your favorites click on the heart icon. This will go into your 'Favorited' tab.<br>
-        <i class="fas fa-gem"></i> To add an Amiibo to your wish list click on the gem icon. This will go into your 'Wish List' tab.<br><br>
+        <strong>Possibilities:</strong><br>
+        1. Your email is already being used.<br>
+        2. Your username is already being used.<br><br>
 
-        I am open to any and all feedback on Amiibo.Land. If you have any questions or suggestions about Amiibo.Land you can <a href="https://www.iamtravisw.com/p/amiiboland.html">
-        post a comment on my website</a>.
+        If you believe this is an error you can <a href="https://www.iamtravisw.com/p/amiiboland.html">
+        leave a comment on my website</a>.<br><br>
+
+        You can try to <a href="/signup">sign up again</a>.<br><br>
+
     </div>
 </div>
 
