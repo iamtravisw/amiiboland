@@ -98,8 +98,8 @@ public class Main {
             }
             // 'All' Tab from Home Page
             PreparedStatement psAll = conn.prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID\n" +
-                        "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
-                        "ORDER BY a.AmiiboID ASC");
+                    "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
+                    "GROUP BY AmiiboID ASC");
                 ResultSet resultsAll = psAll.executeQuery();
                 ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
                 while (resultsAll.next()) {
