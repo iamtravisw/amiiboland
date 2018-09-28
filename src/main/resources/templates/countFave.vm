@@ -1,4 +1,4 @@
 <div id="amiiboCountFave">
 #foreach($count in $countAmiibo)
-    $count.MyAmiibo loved
+    $count.Total loved
 #end

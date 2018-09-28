@@ -97,9 +97,8 @@ public class Main {
             if (conn != null) {
             }
             // 'All' Tab from Home Page
-            PreparedStatement psAll = conn.prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID\n" +
-                    "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
-                    "GROUP BY AmiiboID ASC");
+            PreparedStatement psAll = conn.prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? ORDER BY a.AmiiboID ASC");
+            psAll.setInt(1, userID); // UserID
                 ResultSet resultsAll = psAll.executeQuery();
                 ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
                 while (resultsAll.next()) {
@@ -167,10 +166,8 @@ public class Main {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-            PreparedStatement selectNew = conn.prepareStatement ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID\n" +
-                    "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID\n" +
-                    "WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() \n" +
-                    "GROUP BY a.AmiiboID ORDER BY a.ReleaseDate DESC");
+            PreparedStatement selectNew = conn.prepareStatement ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC");
+            selectNew.setInt(1, userID); // UserID
             ResultSet resultsNew = selectNew.executeQuery();
             ArrayList<HashMap<String, String>> newAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsNew.next()) {
@@ -492,11 +489,8 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectSoon = conn.prepareStatement
-                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList, c.UserID \n" +
-                            "FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID \n" +
-                            "WHERE ReleaseDate > CURDATE() \n" +
-                            "GROUP BY a.AmiiboID ORDER BY a.ReleaseDate ASC");
-            //selectSoon.setInt(1, 22); // UserID
+                    ("SELECT a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? WHERE ReleaseDate > CURDATE() ORDER BY a.ReleaseDate ASC");
+            selectSoon.setInt(1, userID); // UserID
             ResultSet resultsSoon = selectSoon.executeQuery();
             ArrayList<HashMap<String, String>> soonAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsSoon.next()) {
@@ -537,7 +531,7 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectCount = conn.prepareStatement
-                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Collected = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, COUNT(DISTINCT a.AmiiboID ) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
             ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
@@ -564,16 +558,14 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectCount = conn.prepareStatement
-                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Favorited = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.Favorited = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+                    ("SELECT COUNT(*) AS Total FROM Collection WHERE UserID = ? AND Favorited = 'Y'");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
             ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsCount.next()) {
-                String MyAmiibo = resultsCount.getString("MyAmiibo");
-                String TotalAmiibo = resultsCount.getString("TotalAmiibo");
+                String Total = resultsCount.getString("Total");
                 HashMap<String, String> count = new HashMap<String, String>();
-                count.put("MyAmiibo", MyAmiibo);
-                count.put("TotalAmiibo", TotalAmiibo);
+                count.put("Total", Total);
                 countAmiibo.add(count);
             }
             Map<String, Object> model = new HashMap<>();
@@ -591,16 +583,14 @@ public class Main {
             if (conn != null) {
             }
             PreparedStatement selectCount = conn.prepareStatement
-                    ("SELECT SUM(CASE WHEN c.UserID = ? AND c.WishList = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, SUM(CASE WHEN a.AmiiboID IS NOT NULL AND c.UserID IS NULL AND c.WishList = 'N' THEN 0 ELSE 1 END) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
+                    ("SELECT COUNT(*) AS Total FROM Collection WHERE UserID = ? AND WishList = 'Y'");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
             ArrayList<HashMap<String, String>> countAmiibo = new ArrayList<HashMap<String, String>>();
             while (resultsCount.next()) {
-                String MyAmiibo = resultsCount.getString("MyAmiibo");
-                String TotalAmiibo = resultsCount.getString("TotalAmiibo");
+                String Total = resultsCount.getString("Total");
                 HashMap<String, String> count = new HashMap<String, String>();
-                count.put("MyAmiibo", MyAmiibo);
-                count.put("TotalAmiibo", TotalAmiibo);
+                count.put("Total", Total);
                 countAmiibo.add(count);
             }
             Map<String, Object> model = new HashMap<>();
