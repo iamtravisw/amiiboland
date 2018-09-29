@@ -6,22 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AuthHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AuthHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/AmiiboLand.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/AmiiboLand.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuthHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile/collection.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile/collection.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile/favorites.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile/favorites.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile/wishlist.vm" afterDir="false" />
-    </list>
+    <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +32,7 @@
     <session id="5524229">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="62" />
+          <entry key="project.closed" value="63" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.17" value="1" />
@@ -133,17 +118,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="824" column="12" lean-forward="true" selection-start-line="824" selection-start-column="12" selection-end-line="824" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -515,12 +490,12 @@
       <workItem from="1538141314501" duration="12613000" />
       <workItem from="1538176136924" duration="1868000" />
       <workItem from="1538178221154" duration="1024000" />
-      <workItem from="1538231614208" duration="8682000" />
+      <workItem from="1538231614208" duration="9144000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="624297000" />
+    <option name="totallyTimeSpent" value="624759000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,9 +508,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="16" width="1920" height="1048" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17412141" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17412141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -544,7 +518,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.70074546" visible="true" weight="0.27348644" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.70074546" weight="0.27348644" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.39874738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

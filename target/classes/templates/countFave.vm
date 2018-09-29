@@ -1,4 +1,0 @@
-<div id="amiiboCountFave">
-#foreach($count in $countAmiibo)
-    $count.Total loved
-#end
