@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class AuthHelper {
-    
+
     private static String generateSalt() {
         return BCrypt.gensalt();
     }
@@ -18,7 +18,7 @@ public class AuthHelper {
     public static boolean isAuthenticated(Request request) {
         return request.session().attribute("userID") != null;
     }
-    private static HashMap<String, String> getUserDetails(String email) {
+    private static HashMap<String, String> getUserDetails(String userName) {
         System.out.println("Starting getUserDetails module...");
         String dbURL = System.getenv("DB_URL");
         String dbUser = System.getenv("DB_USER");
@@ -27,17 +27,17 @@ public class AuthHelper {
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
-            String checkExists = "SELECT Email, salt, securePassword, UserID, UserName FROM Users WHERE Email = ? LIMIT 1";
-            PreparedStatement psEmail = conn.prepareStatement(checkExists);
-            psEmail.setString(1, email);                                  // Email
-            ResultSet rs = psEmail.executeQuery();                          // Execute
+            String checkExists = "SELECT Email, salt, securePassword, UserID, UserName FROM Users WHERE UserName = ? LIMIT 1";
+            PreparedStatement userQuery = conn.prepareStatement(checkExists);
+            userQuery.setString(1, userName);                                  // UserName
+            ResultSet rs = userQuery.executeQuery();                              // Execute
             // If the row does not exist, insert a new row for this user
             HashMap<String, String> map = new HashMap<String, String>();
             if (!rs.isBeforeFirst()) {
-                System.out.println(email + " does not exist... ");
+                System.out.println(userName + " does not exist... ");
                 return map;
             } else {
-                System.out.println("Login found for: " + email);
+                System.out.println("Login found for: " + userName);
                 rs.first();
                 String mapEmail = rs.getString("Email");
                 String mapSalt = rs.getString("salt");
@@ -58,10 +58,10 @@ public class AuthHelper {
         }
         return null; // need to return something
     }
-    public static int tryLogin(String email, String password) {
+    public static int tryLogin(String userName, String password) {
         System.out.println("Starting tryLogin module...");
-        HashMap<String, String> user = getUserDetails(email);
-        System.out.println("tryLogin retrieved email: " + user.get("eMail") + " and salt: "+ user.get("salt"));
+        HashMap<String, String> user = getUserDetails(userName);
+        System.out.println("tryLogin retrieved user name: " + user.get("userName") + " and salt: "+ user.get("salt"));
         if (user.get("salt") == null) { // Catch emails that do not exist
             System.out.println(user.get("salt"));
             return -1;
@@ -70,7 +70,7 @@ public class AuthHelper {
         // Should be true if they're equal, false otherwise
         boolean correctPassword = securePassword.equals(user.get("securePassword"));
         if (correctPassword) {
-            System.out.println("Password Match: " + correctPassword + " for " + email + " with " + securePassword);
+            System.out.println("Password Match: " + correctPassword + " for " + userName + " with " + securePassword);
             return Integer.parseInt(user.get("userID"));
         } else {
             System.out.println("Password Match: " + correctPassword);

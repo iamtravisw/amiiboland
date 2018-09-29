@@ -47,23 +47,10 @@
             <div class="columns is-half">
                 <div class="column">
                     <h1 class="title">
-                        #foreach( $favorited in $favoritedAmiibo )
-                            #if($velocityCount > 1)
-                                #break
-                            #end
-                            $favorited.UserName
-                            's profile
-                        #end
+                        $userName's profile
                     </h1>
                     <h2 class="subtitle">
-                        You're viewing
-                        #foreach( $favorited in $favoritedAmiibo )
-                            #if($velocityCount > 1)
-                                #break
-                            #end
-                            $favorited.UserName
-                        #end
-                        's favorite Amiibo
+                        You're viewing $userName's favorite Amiibo
                     </h2>
                 </div>
                 <div class="column has-text-right">

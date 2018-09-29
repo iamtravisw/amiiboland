@@ -243,6 +243,8 @@ public class Main {
         get("/profile/collection", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            String userName = rq.session().attribute("userName");
+            System.out.println(rq.session().attributes());
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
@@ -275,6 +277,7 @@ public class Main {
             model.put("collectedAmiibo", collectedAmiibo);
             // Add authenticated status to model
             model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            model.put("userName", userName);
             System.out.println(collectedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/collection.vm");
@@ -323,6 +326,7 @@ public class Main {
         get("/profile/favorites", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            String userName = rq.session().attribute("userName");
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
@@ -355,6 +359,7 @@ public class Main {
             model.put("favoritedAmiibo", favoritedAmiibo);
             // Add authenticated status to model
             model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            model.put("userName", userName);
             System.out.println(favoritedAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/favorites.vm");
@@ -403,6 +408,7 @@ public class Main {
         get("/profile/wishlist", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            String userName = rq.session().attribute("userName");
             Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             if (conn != null) {
             }
@@ -435,6 +441,7 @@ public class Main {
             model.put("wishlistAmiibo", wishlistAmiibo);
             // Add authenticated status to model
             model.put("authenticated", AuthHelper.isAuthenticated(rq));
+            model.put("userName", userName);
             System.out.println(wishlistAmiibo);
             // Pass amiibos to template
             return render(model, "templates/profile/wishlist.vm");
@@ -791,6 +798,7 @@ public class Main {
                 int userID = AuthHelper.register(email, password, userName, name);
                 System.out.println(userID);
                 request.session().attribute("userID", userID);
+                request.session().attribute("userName", userName);
                 System.out.println("Sending data to AuthHelper...");
                 if(userID != -1) {
                 response.redirect("/thanks"); // Take the user to another page
@@ -804,29 +812,30 @@ public class Main {
 
         // Login
         post("/loginuser", (request, response) -> {
-            String email;
-            email = request.queryParams("email");
+            String userName;
+            userName = request.queryParams("userName");
             String password;
             password = request.queryParams("password");
-            if (email != null) {
+            if (userName != null) {
                 System.out.println("------------------------------------------");
                 System.out.println("User Login Started");
                 System.out.println("------------------------------------------");
-                System.out.println("User: " + email + "\nPassword: " + password);
-                int userID = AuthHelper.tryLogin(email, password);
+                System.out.println("User: " + userName + "\nPassword: " + password);
+                int userID = AuthHelper.tryLogin(userName, password);
                 System.out.println("Sending data to AuthHelper...");
                 if (userID != -1) {
                     System.out.println("IF: Logging in");
                     request.session().attribute("userID", userID);
+                    request.session().attribute("userName", userName);
                     response.redirect("/profile/collection"); // Take the user to another page
-
                 } else {
                     System.out.println("ELSE: Not logging in");
                     request.session().removeAttribute("userID");
+                    request.session().removeAttribute("userName");
                     response.redirect("/pleaselogin"); // Take the user to another page
                 }
             }
-            return String.join(" / ", email, password);
+            return String.join(" / ", userName, password);
         });
 
         // Log Out

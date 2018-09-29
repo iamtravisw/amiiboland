@@ -7,9 +7,9 @@
         <h1 class="title">Login to Amiibo.Land</h1>
 
         <div class="field">
-            <label class="label">Email</label>
+            <label class="label">Username</label>
             <div class="control has-icons-left has-icons-right">
-                <input class="input" type="email" input name="email" id="email" placeholder="Email" maxlength="45" required>
+                <input class="input" input name="userName" id="userName" placeholder="Username" maxlength="45" required>
                 <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
