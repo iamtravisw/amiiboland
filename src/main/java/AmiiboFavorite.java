@@ -1,29 +1,31 @@
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
-import java.sql.Connection;
-import java.sql.DriverManager;
 
-public class AddFavorite {
+public class AmiiboFavorite {
 
     // Variables
-    public int userID = 1;
+    public int userID;
     public int amiiboID;
 
     // Setters and Getters
     public void setAmiiboID(int amiiboID) {
         this.amiiboID = amiiboID;
     }
+
     public int getAmiiboID() {
         return amiiboID;
     }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
     public int getUserID() {
         return userID;
     }
 
-    public void main(String[] args) {
+    public void favoriteAmiibo(String[] args) {
 
         ConnHelper connHelper = new ConnHelper();
         Date addDate = new Date();
@@ -85,6 +87,52 @@ public class AddFavorite {
             connHelper.db().close();
         }
         catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    public void unfavoriteAmiibo(String[] args) {
+
+        ConnHelper connHelper = new ConnHelper();
+        Date modDate = new Date();
+        int amiiboID = this.amiiboID;
+        int userID = this.userID;
+
+        System.out.println("UserID is: " +userID);
+
+        try {
+            // Check to see if the row already exists before inserting any new rows
+            String checkExistsFaveRemove = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
+            PreparedStatement psAddFaveRemove = connHelper.db().prepareStatement(checkExistsFaveRemove);
+            psAddFaveRemove.setInt(1, amiiboID);                                 // AmiiboID
+            psAddFaveRemove.setInt(2, userID);                               // UserID
+            ResultSet rsFaveRemove = psAddFaveRemove.executeQuery();               // Execute
+            System.out.println("RemoveFavorite class has an ID of: " + this.amiiboID);
+            // If the row does not exist, insert a new row for this user
+            if (!rsFaveRemove.isBeforeFirst()) {
+                System.out.println("Data does not exist... No need to add it.");
+                // If the row does exist, simply update it
+            } else {
+                while (rsFaveRemove.next()) {
+                    int collectionID = rsFaveRemove.getInt("CollectionID");
+                    System.out.println("This row already exists as CollectionID: " + collectionID + ". Updating database...");
+
+                    // update the data
+                    PreparedStatement psFaveUpdateRemove = connHelper.db().prepareStatement(
+                            "UPDATE Collection SET Favorited = ?, ModUser = ?, ModDate = ? WHERE CollectionID = ?");
+
+                    // set the preparedstatement parameters
+                    psFaveUpdateRemove.setString(1, "N");             // Favorited
+                    psFaveUpdateRemove.setInt(2, userID);                 // ModUser
+                    psFaveUpdateRemove.setString(3, modDate.toString()); // ModDate
+                    psFaveUpdateRemove.setInt(4, collectionID);           // CollectionID
+                    psFaveUpdateRemove.executeUpdate();                    // Execute
+
+                    System.out.println("RemoveFavorite class has an ID of: " + this.amiiboID);
+                }
+                connHelper.db().close();
+            }
+        } catch (Exception e)
         {
             System.out.println(e);
         }
