@@ -5,20 +5,15 @@ import java.util.ArrayList;
 import java.util.Map;
 import static spark.Spark.*;
 import java.util.HashMap;
-import spark.Filter;
 import spark.ModelAndView;
 import static spark.Spark.get;
-import spark.Request;
-import spark.Response;
 import spark.template.velocity.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String dbURL = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPassword = System.getenv("DB_PASSWORD");
+        ConnHelper connHelper = new ConnHelper(); // Make a database connection
 
         // ==================================================
         // Spark Configuration
@@ -93,11 +88,14 @@ public class Main {
         get("/", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
+           // Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+           // if (conn != null) {
+           // }
+
+
+
             // 'All' Tab from Home Page
-            PreparedStatement psAll = conn.prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? ORDER BY a.AmiiboID ASC");
+            PreparedStatement psAll = connHelper.db().prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? ORDER BY a.ReleaseDate ASC");
             psAll.setInt(1, userID); // UserID
                 ResultSet resultsAll = psAll.executeQuery();
                 ArrayList<HashMap<String, String>> amiibos = new ArrayList<HashMap<String, String>>();
@@ -163,10 +161,7 @@ public class Main {
         get("/new", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectNew = conn.prepareStatement ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC");
+            PreparedStatement selectNew = connHelper.db().prepareStatement ("SELECT a.ReleaseDate, a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? WHERE a.ReleaseDate BETWEEN DATE_SUB(now(), INTERVAL 12 MONTH) AND CURDATE() ORDER BY a.ReleaseDate DESC");
             selectNew.setInt(1, userID); // UserID
             ResultSet resultsNew = selectNew.executeQuery();
             ArrayList<HashMap<String, String>> newAmiibo = new ArrayList<HashMap<String, String>>();
@@ -204,10 +199,7 @@ public class Main {
         get("/collected", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement psCollected = conn.prepareStatement
+            PreparedStatement psCollected = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList  FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
             psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
@@ -245,10 +237,7 @@ public class Main {
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             String userName = rq.session().attribute("userName");
             System.out.println(rq.session().attributes());
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement psCollected = conn.prepareStatement
+            PreparedStatement psCollected = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND Collected = 'Y' ORDER BY c.ModDate DESC");
             psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
@@ -287,10 +276,7 @@ public class Main {
         get("/favorited", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectFavorited = conn.prepareStatement
+            PreparedStatement selectFavorited = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
             selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
@@ -327,10 +313,7 @@ public class Main {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             String userName = rq.session().attribute("userName");
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectFavorited = conn.prepareStatement
+            PreparedStatement selectFavorited = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
             selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
@@ -369,10 +352,7 @@ public class Main {
         get("/wishlist", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectWishList = conn.prepareStatement
+            PreparedStatement selectWishList = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
             selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
@@ -409,10 +389,7 @@ public class Main {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
             String userName = rq.session().attribute("userName");
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectWishList = conn.prepareStatement
+            PreparedStatement selectWishList = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserID, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
             selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
@@ -451,10 +428,7 @@ public class Main {
         get("/missing", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectMissing = conn.prepareStatement
+            PreparedStatement selectMissing = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList FROM Amiibo a LEFT JOIN Collection c ON c.AmiiboID = a.AmiiboID WHERE c.AmiiboID IS NULL OR c.UserID = ? AND c.Collected = 'N' OR c.UserID = ? AND c.Collected IS NULL ORDER BY a.AmiiboID ASC");
             selectMissing.setInt(1, userID); // UserID
             selectMissing.setInt(2, userID); // UserID
@@ -492,10 +466,7 @@ public class Main {
         get("/comingsoon", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectSoon = conn.prepareStatement
+            PreparedStatement selectSoon = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, a.ReleaseDate, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? WHERE ReleaseDate > CURDATE() ORDER BY a.ReleaseDate ASC");
             selectSoon.setInt(1, userID); // UserID
             ResultSet resultsSoon = selectSoon.executeQuery();
@@ -534,10 +505,7 @@ public class Main {
         get("/count", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectCount = conn.prepareStatement
+            PreparedStatement selectCount = connHelper.db().prepareStatement
                     ("SELECT SUM(CASE WHEN c.UserID = ? AND c.Collected = 'Y' THEN 1 ELSE 0 END) AS MyAmiibo, COUNT(DISTINCT a.AmiiboID ) TotalAmiibo FROM Amiibo a LEFT OUTER JOIN Collection c ON a.AmiiboID = c.AmiiboID");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
@@ -561,10 +529,7 @@ public class Main {
         get("/countFave", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectCount = conn.prepareStatement
+            PreparedStatement selectCount = connHelper.db().prepareStatement
                     ("SELECT COUNT(*) AS Total FROM Collection WHERE UserID = ? AND Favorited = 'Y'");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
@@ -586,10 +551,7 @@ public class Main {
         get("/countWish", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
-            PreparedStatement selectCount = conn.prepareStatement
+            PreparedStatement selectCount = connHelper.db().prepareStatement
                     ("SELECT COUNT(*) AS Total FROM Collection WHERE UserID = ? AND WishList = 'Y'");
             selectCount.setInt(1, userID); // UserID
             ResultSet resultsCount = selectCount.executeQuery();
