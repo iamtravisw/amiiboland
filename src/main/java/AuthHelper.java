@@ -20,15 +20,10 @@ public class AuthHelper {
     }
     private static HashMap<String, String> getUserDetails(String userName) {
         System.out.println("Starting getUserDetails module...");
-        String dbURL = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPassword = System.getenv("DB_PASSWORD");
+        ConnHelper connHelper = new ConnHelper();
         try {
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
             String checkExists = "SELECT Email, salt, securePassword, UserID, UserName FROM Users WHERE UserName = ? LIMIT 1";
-            PreparedStatement userQuery = conn.prepareStatement(checkExists);
+            PreparedStatement userQuery = connHelper.db().prepareStatement(checkExists);
             userQuery.setString(1, userName);                                  // UserName
             ResultSet rs = userQuery.executeQuery();                              // Execute
             // If the row does not exist, insert a new row for this user
@@ -81,18 +76,13 @@ public class AuthHelper {
         System.out.println("Starting saveNewUser");
         Date addDate = new Date();
         Date modDate = new Date();
-        String dbURL = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPassword = System.getenv("DB_PASSWORD");
+        ConnHelper connHelper = new ConnHelper();
         try {
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
             // sql insert statement
             String storeUser = "insert into Users (Name, UserName, Email, " +
                     "securePassword, salt, ModUser, ModDate, AddUser, AddDate)"
                     + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement psInsertUser = conn.prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement psInsertUser = connHelper.db().prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
             psInsertUser.setString(1, name);                    // Name
             psInsertUser.setString(2, userName);                // UserName
             psInsertUser.setString(3, email);                   // UserID
@@ -120,17 +110,12 @@ public class AuthHelper {
         System.out.println("Starting saveNewPassword");
         Date addDate = new Date();
         Date modDate = new Date();
-        String dbURL = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPassword = System.getenv("DB_PASSWORD");
+        ConnHelper connHelper = new ConnHelper();
         try {
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null) {
-            }
             // sql insert statement
             String storeUser = "UPDATE Users SET securePassword = ?, salt = ?, ModUser = ?, ModDate = ?, AddUser = ?, AddDate = ? WHERE Email = ?";
 
-            PreparedStatement psInsertUser = conn.prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement psInsertUser = connHelper.db().prepareStatement(storeUser, Statement.RETURN_GENERATED_KEYS);
             psInsertUser.setString(1, securePassword);                   // UserID
             psInsertUser.setString(2, salt);          // securePassword
             psInsertUser.setString(3, "root@localhost");     // ModUser

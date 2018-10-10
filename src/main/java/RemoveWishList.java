@@ -25,23 +25,17 @@ public class RemoveWishList {
 
     public void main(String[] args) {
 
+        ConnHelper connHelper = new ConnHelper();
         Date modDate = new Date();
-        String dbURL = System.getenv("DB_URL");
-        String dbUser = System.getenv("DB_USER");
-        String dbPassword = System.getenv("DB_PASSWORD");
         int amiiboID = this.amiiboID;
         int userID = this.userID;
 
         System.out.println("UserID is: " +userID);
 
         try {
-            Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-            if (conn != null)
-            {
-
                 // Check to see if the row already exists before inserting any new rows
                 String checkExistsWishRemove = "SELECT CollectionID FROM Collection WHERE AmiiboID = ? AND UserID = ? LIMIT 1";
-                PreparedStatement psWishRemove = conn.prepareStatement(checkExistsWishRemove);
+                PreparedStatement psWishRemove = connHelper.db().prepareStatement(checkExistsWishRemove);
                 psWishRemove.setInt(1, amiiboID);                                 // AmiiboID
                 psWishRemove.setInt(2, userID);                               // UserID
                 ResultSet rsWishRemove = psWishRemove.executeQuery();         // Execute
@@ -60,7 +54,7 @@ public class RemoveWishList {
                         System.out.println("This row already exists as CollectionID: " + collectionID + ". Updating database...");
 
                         // update the data
-                        PreparedStatement psFaveUpdateRemove = conn.prepareStatement(
+                        PreparedStatement psFaveUpdateRemove = connHelper.db().prepareStatement(
                                 "UPDATE Collection SET WishList = ?, ModUser = ?, ModDate = ? WHERE CollectionID = ?");
 
                         // set the preparedstatement parameters
@@ -72,8 +66,7 @@ public class RemoveWishList {
 
                         System.out.println("RemoveWishList class has an ID of: " + this.amiiboID);
                     }
-                }
-                conn.close();
+            connHelper.db().close();
             }
         }
         catch (Exception e)
@@ -82,4 +75,3 @@ public class RemoveWishList {
         }
     }
 }
-
