@@ -1,8 +1,6 @@
 import com.mysql.jdbc.Statement;
 import org.mindrot.jbcrypt.BCrypt;
 import spark.Request;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
@@ -12,12 +10,15 @@ public class AuthHelper {
     private static String generateSalt() {
         return BCrypt.gensalt();
     }
+
     private static String generateSecurePassword(String password, String salt) {
         return BCrypt.hashpw(password, salt);
     }
+
     public static boolean isAuthenticated(Request request) {
         return request.session().attribute("userID") != null;
     }
+
     private static HashMap<String, String> getUserDetails(String userName) {
         System.out.println("Starting getUserDetails module...");
         ConnHelper connHelper = new ConnHelper();
@@ -39,12 +40,12 @@ public class AuthHelper {
                 String mapSecurePassword = rs.getString("securePassword");
                 String mapUserID = rs.getString("UserID");
                 String mapUserName = rs.getString("UserName");
-                    map.put("eMail", mapEmail);
-                    map.put("salt", mapSalt);
-                    map.put("securePassword", mapSecurePassword);
-                    map.put("userID", mapUserID);
-                    map.put("userName", mapUserName);
-                System.out.println(mapEmail+" / "+mapSalt+" / "+mapSecurePassword+" / "+mapUserID+" / "+mapUserName);
+                map.put("eMail", mapEmail);
+                map.put("salt", mapSalt);
+                map.put("securePassword", mapSecurePassword);
+                map.put("userID", mapUserID);
+                map.put("userName", mapUserName);
+                System.out.println(mapEmail + " / " + mapSalt + " / " + mapSecurePassword + " / " + mapUserID + " / " + mapUserName);
                 // System.out.println(map); // for troubleshooting
                 return map;
             }
@@ -53,10 +54,11 @@ public class AuthHelper {
         }
         return null; // need to return something
     }
+
     public static int tryLogin(String userName, String password) {
         System.out.println("Starting tryLogin module...");
         HashMap<String, String> user = getUserDetails(userName);
-        System.out.println("tryLogin retrieved user name: " + user.get("userName") + " and salt: "+ user.get("salt"));
+        System.out.println("tryLogin retrieved user name: " + user.get("userName") + " and salt: " + user.get("salt"));
         if (user.get("salt") == null) { // Catch emails that do not exist
             System.out.println(user.get("salt"));
             return -1;
@@ -72,6 +74,7 @@ public class AuthHelper {
             return -1;
         }
     }
+
     private static int saveNewUser(String name, String email, String securePassword, String userName, String salt) {
         System.out.println("Starting saveNewUser");
         Date addDate = new Date();
@@ -106,6 +109,7 @@ public class AuthHelper {
         }
         return -1; // Need to return something
     }
+
     private static int saveNewPassword(String email, String securePassword, String salt) {
         System.out.println("Starting saveNewPassword");
         Date addDate = new Date();
@@ -137,6 +141,7 @@ public class AuthHelper {
         }
         return -1; // Need to return something
     }
+
     public static int register(String email, String password, String userName, String name) {
         // Generate salt
         String salt = generateSalt();
@@ -144,6 +149,7 @@ public class AuthHelper {
         String securePassword = generateSecurePassword(password, salt);
         return saveNewUser(name, email, securePassword, userName, salt);
     }
+
     public static int updatePassword(String email, String password) {
         // Generate salt
         String salt = generateSalt();

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     // Show or Hide Login/ SignUp/ Logout
     if (authenticated) {
         $("#logout").removeClass("is-hidden");

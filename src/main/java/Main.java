@@ -19,80 +19,45 @@ public class Main {
 
         staticFiles.location("/public");
 
-        /* List all the routes that you want to have protected by authentication here:
-         *
-         * 1. Let them see the page but view-only mode, unable to take any action.
-         * /index
-         * /new
-         * /comingsoon
-         *
-         *2. Redirect them to login, they should not even see this page.
-         * /collection
-         * /favorites
-         * /wishlist
-         * /profile/collection
-         * /profile/favorites
-         * /profile/wishlist
-        */
-
         // Repeat this for all routes that add entries to the database
         before("/profile/*", (request, response) -> {
             if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
                 response.redirect("/pleaselogin");
+                halt();
             }
         });
 
         before("/collected", (request, response) -> {
             if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
                 response.redirect("/pleaselogin");
+                halt();
             }
         });
         before("/favorited", (request, response) -> {
             if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
                 response.redirect("/pleaselogin");
+                halt();
+            }
+        });
+
+        before("/wishlist", (request, response) -> {
+            if (!AuthHelper.isAuthenticated(request)) {
+                response.redirect("/pleaselogin");
+                halt();
             }
         });
 
         before("/missing", (request, response) -> {
             if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
                 response.redirect("/pleaselogin");
+                halt();
             }
         });
 
-        before("/collection", (request, response) -> {
-            if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
-                response.redirect("/pleaselogin");
-            }
-        }); 
-
-        before("/favorites", (request, response) -> {
-            if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
-                response.redirect("/pleaselogin");
-            }
-        }); 
-        before("/wishlist", (request, response) -> {
-            if (!AuthHelper.isAuthenticated(request)) {
-                //halt(401, "Please login");
-                response.redirect("/pleaselogin");
-            }
-        });
         // Index 'All Amiibo'
         get("/", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
             int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
-           // Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-           // if (conn != null) {
-           // }
-
-
-
-            // 'All' Tab from Home Page
             PreparedStatement psAll = connHelper.db().prepareStatement ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.Favorited, c.Collected, c.WishList, c.UserID FROM Amiibo a LEFT JOIN Collection c ON a.AmiiboID = c.AmiiboID AND c.UserID = ? ORDER BY a.ReleaseDate ASC");
             psAll.setInt(1, userID); // UserID
                 ResultSet resultsAll = psAll.executeQuery();
@@ -230,9 +195,11 @@ public class Main {
         });
 
         // PROFILE for 'Collected'
-        get("/profile/collection", (rq, rs) -> {
+        get("/profile/:user/collection", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
-            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int user = Integer.parseInt(rq.params(":user")); // Take searched userid and parse into int
+            int userID = loggedIn ? user : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int currentUser = rq.session().attribute("userID");
             String userName = rq.session().attribute("userName");
             System.out.println(rq.session().attributes());
             PreparedStatement psCollected = connHelper.db().prepareStatement
@@ -240,33 +207,49 @@ public class Main {
             psCollected.setInt(1, userID); // UserID
             ResultSet resultsCollected = psCollected.executeQuery();
             ArrayList<HashMap<String, String>> collectedAmiibo = new ArrayList<HashMap<String, String>>();
-            while (resultsCollected.next()) {
-                String AmiiboID = resultsCollected.getString("AmiiboID");
-                String Name = resultsCollected.getString("Name");
-                String ImageURL = resultsCollected.getString("ImageURL");
-                String UserID = resultsCollected.getString("UserID");
-                String Favorited = resultsCollected.getString("Favorited");
-                String Collected = resultsCollected.getString("Collected");
-                String WishList = resultsCollected.getString("WishList");
-                String UserName = resultsCollected.getString("UserName");
-                HashMap<String, String> collected = new HashMap<String, String>();
-                collected.put("Name", Name);
-                collected.put("AmiiboID", AmiiboID);
-                collected.put("ImageURL", ImageURL);
-                collected.put("UserID", UserID);
-                collected.put("Favorited", Favorited);
-                collected.put("Collected", Collected);
-                collected.put("WishList", WishList);
-                collected.put("UserName", UserName);
-                collectedAmiibo.add(collected);
-            }
             Map<String, Object> model = new HashMap<>();
-            model.put("collectedAmiibo", collectedAmiibo);
-            // Add authenticated status to model
-            model.put("authenticated", AuthHelper.isAuthenticated(rq));
-            model.put("userName", userName);
-            System.out.println(collectedAmiibo);
-            // Pass amiibos to template
+            boolean queryResults = resultsCollected.next(); //next() returns false if there are no-rows retrieved
+            if (queryResults == false) {
+                System.out.println("resultsCollected is empty");
+                PreparedStatement psCollectedAlt = connHelper.db().prepareStatement
+                        ("SELECT UserName FROM Users WHERE UserID = ?");
+                psCollectedAlt.setInt(1, userID); // UserID
+                ResultSet resultsCollectedAlt = psCollectedAlt.executeQuery();
+                while (resultsCollectedAlt.next()) {
+                    String UserName = resultsCollectedAlt.getString("UserName");
+                    System.out.println("UserName is: " +UserName);
+                    model.put("UserName", UserName);
+                    model.put("userID", userID);
+                }
+            } else { // only runs when there are rows in the resultset
+                while (resultsCollected.next()) {
+                    String AmiiboID = resultsCollected.getString("AmiiboID");
+                    String Name = resultsCollected.getString("Name");
+                    String ImageURL = resultsCollected.getString("ImageURL");
+                    String UserID = resultsCollected.getString("UserID");
+                    String Favorited = resultsCollected.getString("Favorited");
+                    String Collected = resultsCollected.getString("Collected");
+                    String WishList = resultsCollected.getString("WishList");
+                    String UserName = resultsCollected.getString("UserName");
+                    HashMap<String, String> collected = new HashMap<String, String>();
+                    collected.put("Name", Name);
+                    collected.put("AmiiboID", AmiiboID);
+                    collected.put("ImageURL", ImageURL);
+                    collected.put("UserID", UserID);
+                    collected.put("Favorited", Favorited);
+                    collected.put("Collected", Collected);
+                    collected.put("WishList", WishList);
+                    collected.put("UserName", UserName);
+                    collectedAmiibo.add(collected);
+                    model.put("UserName", UserName);
+                    model.put("collectedAmiibo", collectedAmiibo);
+                    model.put("authenticated", AuthHelper.isAuthenticated(rq));
+                    model.put("userName", userName);
+                    model.put("userID", userID);
+                    model.put("currentUser", currentUser);
+                    System.out.println(collectedAmiibo);
+                }
+            }
             return render(model, "templates/profile/collection.vm");
         });
 
@@ -307,42 +290,62 @@ public class Main {
         });
 
         //  PROFILE 'Favorited' Tab
-        get("/profile/favorites", (rq, rs) -> {
+        get("/profile/:user/favorites", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
-            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int user = Integer.parseInt(rq.params(":user")); // Take searched userid and parse into int
+            int userID = loggedIn ? user : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int currentUser = rq.session().attribute("userID");
             String userName = rq.session().attribute("userName");
+            System.out.println(rq.session().attributes());
             PreparedStatement selectFavorited = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.Favorited = 'Y' ORDER BY c.ModDate DESC");
             selectFavorited.setInt(1, userID); // UserID
             ResultSet resultsFavorited = selectFavorited.executeQuery();
-            ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
-            while (resultsFavorited.next()) {
-                String AmiiboID = resultsFavorited.getString("AmiiboID");
-                String Name = resultsFavorited.getString("Name");
-                String ImageURL = resultsFavorited.getString("ImageURL");
-                String UserID = resultsFavorited.getString("UserID");
-                String Favorited = resultsFavorited.getString("Favorited");
-                String Collected = resultsFavorited.getString("Collected");
-                String WishList = resultsFavorited.getString("WishList");
-                String UserName = resultsFavorited.getString("UserName");
-                HashMap<String, String> favorited = new HashMap<String, String>();
-                favorited.put("Name", Name);
-                favorited.put("AmiiboID", AmiiboID);
-                favorited.put("ImageURL", ImageURL);
-                favorited.put("UserID", UserID);
-                favorited.put("Favorited", Favorited);
-                favorited.put("Collected", Collected);
-                favorited.put("WishList", WishList);
-                favorited.put("UserName", UserName);
-                favoritedAmiibo.add(favorited);
-            }
             Map<String, Object> model = new HashMap<>();
-            model.put("favoritedAmiibo", favoritedAmiibo);
-            // Add authenticated status to model
-            model.put("authenticated", AuthHelper.isAuthenticated(rq));
-            model.put("userName", userName);
-            System.out.println(favoritedAmiibo);
-            // Pass amiibos to template
+            boolean queryResults = resultsFavorited.next(); //next() returns false if there are no-rows retrieved
+            if (queryResults == false) {
+                System.out.println("resultsFavorited is empty");
+                PreparedStatement selectFavoritedAlt = connHelper.db().prepareStatement
+                        ("SELECT UserName FROM Users WHERE UserID = ?");
+                selectFavoritedAlt.setInt(1, userID); // UserID
+                ResultSet resultsFavoritedAlt = selectFavoritedAlt.executeQuery();
+                while (resultsFavoritedAlt.next()) {
+                    String UserName = resultsFavoritedAlt.getString("UserName");
+                    System.out.println("UserName is: " +UserName);
+                    model.put("UserName", UserName);
+                    model.put("userID", userID);
+                }
+            } else { // only runs when there are rows in the resultset
+                System.out.println("resultsFavorited has data");
+                ArrayList<HashMap<String, String>> favoritedAmiibo = new ArrayList<HashMap<String, String>>();
+                while (resultsFavorited.next()) {
+                    String AmiiboID = resultsFavorited.getString("AmiiboID");
+                    String Name = resultsFavorited.getString("Name");
+                    String ImageURL = resultsFavorited.getString("ImageURL");
+                    String UserID = resultsFavorited.getString("UserID");
+                    String Favorited = resultsFavorited.getString("Favorited");
+                    String Collected = resultsFavorited.getString("Collected");
+                    String WishList = resultsFavorited.getString("WishList");
+                    String UserName = resultsFavorited.getString("UserName");
+                    HashMap<String, String> favorited = new HashMap<String, String>();
+                    favorited.put("Name", Name);
+                    favorited.put("AmiiboID", AmiiboID);
+                    favorited.put("ImageURL", ImageURL);
+                    favorited.put("UserID", UserID);
+                    favorited.put("Favorited", Favorited);
+                    favorited.put("Collected", Collected);
+                    favorited.put("WishList", WishList);
+                    favorited.put("UserName", UserName);
+                    favoritedAmiibo.add(favorited);
+                    System.out.println(favoritedAmiibo);
+                    model.put("UserName", UserName);
+                    model.put("favoritedAmiibo", favoritedAmiibo);
+                    model.put("authenticated", AuthHelper.isAuthenticated(rq));
+                    model.put("userName", userName);
+                    model.put("userID", userID);
+                    model.put("currentUser", currentUser);
+                }
+            }
             return render(model, "templates/profile/favorites.vm");
         });
 
@@ -383,42 +386,62 @@ public class Main {
         });
 
         // PROFILE 'Wish List' Tab
-        get("/profile/wishlist", (rq, rs) -> {
+        get("/profile/:user/wishlist", (rq, rs) -> {
             boolean loggedIn = rq.session().attribute("userID") != null; // Return UserID if value is not NULL
-            int userID = loggedIn ? rq.session().attribute("userID") : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int user = Integer.parseInt(rq.params(":user")); // Take searched userid and parse into int
+            int userID = loggedIn ? user : -1; // 1=True and 0=False ... if loggedIn is NULL, assign value to prevent Server500 error.
+            int currentUser = rq.session().attribute("userID");
             String userName = rq.session().attribute("userName");
+            System.out.println(rq.session().attributes());
             PreparedStatement selectWishList = connHelper.db().prepareStatement
                     ("SELECT a.AmiiboID, a.Name, a.ImageURL, c.UserID, c.Favorited, c.Collected, c.WishList, u.UserID, u.UserName FROM Collection c JOIN Amiibo a ON c.AmiiboID = a.AmiiboID JOIN Users u ON c.UserID = u.UserID WHERE c.UserID = ? AND c.WishList = 'Y' ORDER BY c.ModDate DESC");            selectWishList.setInt(1, 22); // UserID
             selectWishList.setInt(1, userID); // UserID
             ResultSet resultsWishList = selectWishList.executeQuery();
             ArrayList<HashMap<String, String>> wishlistAmiibo = new ArrayList<HashMap<String, String>>();
-            while (resultsWishList.next()) {
-                String AmiiboID = resultsWishList.getString("AmiiboID");
-                String Name = resultsWishList.getString("Name");
-                String ImageURL = resultsWishList.getString("ImageURL");
-                String UserID = resultsWishList.getString("UserID");
-                String Favorited = resultsWishList.getString("Favorited");
-                String Collected = resultsWishList.getString("Collected");
-                String WishList = resultsWishList.getString("WishList");
-                String UserName = resultsWishList.getString("UserName");
-                HashMap<String, String> wishlist = new HashMap<String, String>();
-                wishlist.put("Name", Name);
-                wishlist.put("AmiiboID", AmiiboID);
-                wishlist.put("ImageURL", ImageURL);
-                wishlist.put("UserID", UserID);
-                wishlist.put("Favorited", Favorited);
-                wishlist.put("Collected", Collected);
-                wishlist.put("WishList", WishList);
-                wishlist.put("UserName", UserName);
-                wishlistAmiibo.add(wishlist);
-            }
             Map<String, Object> model = new HashMap<>();
-            model.put("wishlistAmiibo", wishlistAmiibo);
-            // Add authenticated status to model
-            model.put("authenticated", AuthHelper.isAuthenticated(rq));
-            model.put("userName", userName);
-            System.out.println(wishlistAmiibo);
-            // Pass amiibos to template
+            boolean queryResults = resultsWishList.next(); //next() returns false if there are no-rows retrieved
+            if (queryResults == false) {
+                System.out.println("resultsCollected is empty");
+                PreparedStatement selectWishListAlt = connHelper.db().prepareStatement
+                        ("SELECT UserName FROM Users WHERE UserID = ?");
+                selectWishListAlt.setInt(1, userID); // UserID
+                ResultSet resultsWishListAlt = selectWishListAlt.executeQuery();
+                while (resultsWishListAlt.next()) {
+                    String UserName = resultsWishListAlt.getString("UserName");
+                    System.out.println("UserName is: " + UserName);
+                    model.put("UserName", UserName);
+                    model.put("userID", userID);
+                }
+            } else {
+                while (resultsWishList.next()) {
+                    String AmiiboID = resultsWishList.getString("AmiiboID");
+                    String Name = resultsWishList.getString("Name");
+                    String ImageURL = resultsWishList.getString("ImageURL");
+                    String UserID = resultsWishList.getString("UserID");
+                    String Favorited = resultsWishList.getString("Favorited");
+                    String Collected = resultsWishList.getString("Collected");
+                    String WishList = resultsWishList.getString("WishList");
+                    String UserName = resultsWishList.getString("UserName");
+                    HashMap<String, String> wishlist = new HashMap<String, String>();
+                    wishlist.put("Name", Name);
+                    wishlist.put("AmiiboID", AmiiboID);
+                    wishlist.put("ImageURL", ImageURL);
+                    wishlist.put("UserID", UserID);
+                    wishlist.put("Favorited", Favorited);
+                    wishlist.put("Collected", Collected);
+                    wishlist.put("WishList", WishList);
+                    wishlist.put("UserName", UserName);
+                    wishlistAmiibo.add(wishlist);
+                    model.put("UserName", UserName);
+                    model.put("wishlistAmiibo", wishlistAmiibo);
+                    model.put("authenticated", AuthHelper.isAuthenticated(rq));
+                    model.put("userName", userName);
+                    model.put("currentUser", currentUser);
+                    model.put("userID", userID);
+                    System.out.println(wishlistAmiibo);
+                    // Pass amiibos to template
+                }
+            }
             return render(model, "templates/profile/wishlist.vm");
         });
 
@@ -642,6 +665,30 @@ public class Main {
             return render(model, "templates/index.vm");
         });
 
+        // Profile Redirect / Collection
+        get("/profile/collection", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            int currentUser = rq.session().attribute("userID");
+            rs.redirect("/profile/"+currentUser+"/collection");
+            return render(model, "templates/profile/"+currentUser+"/collection.vm");
+        });
+
+        // Profile Redirect / Favorites
+        get("/profile/favorites", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            int currentUser = rq.session().attribute("userID");
+            rs.redirect("/profile/"+currentUser+"/favorites");
+            return render(model, "templates/profile/"+currentUser+"/favorites.vm");
+        });
+
+        // Profile Redirect / WishList
+        get("/profile/wishlist", (rq, rs) -> {
+            Map<String, Object> model = new HashMap<>();
+            int currentUser = rq.session().attribute("userID");
+            rs.redirect("/profile/"+currentUser+"/wishlist");
+            return render(model, "templates/profile/"+currentUser+"/wishlist.vm");
+        });
+
         // Collection (Add/Remove)
         post("/collection", (request, response) -> {
             AmiiboCollect addRemove = new AmiiboCollect();
@@ -784,7 +831,7 @@ public class Main {
                     System.out.println("IF: Logging in");
                     request.session().attribute("userID", userID);
                     request.session().attribute("userName", userName);
-                    response.redirect("/profile/collection"); // Take the user to another page
+                    response.redirect("/profile/" +userID+ "/collection"); // Take the user to another page
                 } else {
                     System.out.println("ELSE: Not logging in");
                     request.session().removeAttribute("userID");

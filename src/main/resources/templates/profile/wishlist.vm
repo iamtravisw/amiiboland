@@ -47,10 +47,10 @@
             <div class="columns is-half">
                 <div class="column">
                     <h1 class="title">
-                        $userName's profile
+                        $UserName's profile
                     </h1>
                     <h2 class="subtitle">
-                        You're viewing $userName's Wish List
+                        You're viewing $UserName's Wish List
                     </h2>
                 </div>
                 <div class="column has-text-right">
@@ -77,19 +77,19 @@
         <div class="tabs is-left">
             <ul>
                 <li>
-                    <a href="/profile/collection">
+                    <a href="/profile/$userID/collection">
                         <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
                         <span>Collection</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/profile/favorites">
+                    <a href="/profile/$userID/favorites">
                         <span class="icon is-small"><i class="fas fa-heart" aria-hidden="true"></i></span>
                         <span>Favorites</span>
                     </a>
                 </li>
                 <li class="is-active">
-                    <a href="/profile/wishlist">
+                    <a href="/profile/$userID/wishlist">
                         <span class="icon is-small"><i class="fas fa-gem" aria-hidden="true"></i></span>
                         <span>Wish List</span>
                     </a>
@@ -103,6 +103,8 @@
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
     #foreach( $wishlist in $wishlistAmiibo )
+        <!-- Handle AuthUser vs NonAuthUser -->
+        #if($userID == $currentUser)  <!-- NOT AUTH USER -->
         <div class="column is-one-fifth">
             <div class="amiibo-id is-hidden" id="amiibo"></div>
             <article class="message is-large is-danger">
@@ -130,11 +132,11 @@
                                         <div class="star" id="star$wishlist.AmiiboID">
                                         #end
                                         <label>
-                                                    <span class="fa-stack">
-                                                        <i class="fas fa-star fa-2x"></i>
-                                                        <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
-                                                        <input class="mine is-hidden" type="checkbox" id="mine#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Collected">
-                                                    </span>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-star fa-2x"></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                <input class="mine is-hidden" type="checkbox" id="mine#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Collected">
+                                            </span>
                                         </label>
                                     </div>
                                     </article>
@@ -148,11 +150,11 @@
                                         <div class="heart" id="heart$wishlist.AmiiboID">
                                         #end
                                         <label>
-                                                    <span class="fa-stack">
-                                                        <i class="fas fa-heart fa-2x "></i>
-                                                        <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
-                                                            <input class="love is-hidden" type="checkbox" id="love#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Favorited">
-                                                    </span>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-heart fa-2x "></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                <input class="love is-hidden" type="checkbox" id="love#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Favorited">
+                                            </span>
                                         </label>
                                     </div>
                                     </article>
@@ -166,11 +168,11 @@
                                         <div class="gem" id="gem$wishlist.AmiiboID">
                                         #end
                                         <label>
-                                                    <span class="fa-stack">
-                                                        <i class="fas fa-gem fa-2x"></i>
-                                                        <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
-                                                            <input class="want is-hidden" type="checkbox" id="want#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.WishList">
-                                                    </span>
+                                            <span class="fa-stack">
+                                                <i class="fas fa-gem fa-2x"></i>
+                                                <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                <input class="want is-hidden" type="checkbox" id="want#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.WishList">
+                                            </span>
                                         </label>
                                     </div>
                                     </article>
@@ -180,6 +182,23 @@
                 </center>
             </article>
         </div>
+    #else <!-- NOT AUTH USER -->
+        <div class="column is-one-fifth">
+            <div class="amiibo-id is-hidden" id="amiibo"></div>
+            <article class="message is-large is-danger">
+                <div class="message-header" id="$wishlist.Name">
+                    <p></p>
+                    <p>$wishlist.Name</p>
+                    <p></p>
+                </div>
+                <center>   <!-- Amiibo -->
+                    <figure class="image has-text-light">
+                        <img class="amiibo-image" src="$wishlist.ImageURL" id="inactive-$wishlist.AmiiboID">
+                    </figure>
+                </center>
+            </article>
+        </div>
+        #end
     #end
 </div>
 
