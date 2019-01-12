@@ -44,7 +44,6 @@
 <section class="hero is-danger">
     <div class="hero-body">
         <div class="container">
-
             <div class="columns is-half">
                 <div class="column">
                     <h1 class="title">
@@ -74,7 +73,6 @@
 
 <div class="column is-gapless">
     <div class="container is-fluid">
-
         <div class="tabs is-left">
             <ul>
                 <li class="is-active">
@@ -99,6 +97,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="columns is-multiline">
     <!-- Here are all of the Amiibo -->
@@ -201,6 +201,7 @@
         #end
     #end
 </div>
+
 
 <footer class="footer">
     <div class="content">
