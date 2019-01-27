@@ -8,9 +8,18 @@
   <component name="ChangeListManager">
     <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/about.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/about.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/collected.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/collected.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/missing.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/missing.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/series/30th Anniversary - The Legend of Zelda series.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/series/30th Anniversary - The Legend of Zelda series.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/thanks.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/thanks.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +46,7 @@
     <session id="5524229">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="90" />
+          <entry key="project.closed" value="91" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="1" />
@@ -64,10 +73,11 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="100" />
+          <entry key="project.opened" value="101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -79,7 +89,7 @@
           <entry key="map" value="7" />
           <entry key="php" value="1" />
           <entry key="sass" value="27" />
-          <entry key="vm" value="385" />
+          <entry key="vm" value="387" />
           <entry key="xml" value="10" />
         </counts>
       </usages-collector>
@@ -92,7 +102,7 @@
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Sass" value="27" />
           <entry key="SourceMap" value="7" />
-          <entry key="VTL" value="384" />
+          <entry key="VTL" value="386" />
           <entry key="XML" value="10" />
         </counts>
       </usages-collector>
@@ -102,7 +112,7 @@
           <entry key="java" value="21608" />
           <entry key="js" value="4721" />
           <entry key="sass" value="16" />
-          <entry key="vm" value="15021" />
+          <entry key="vm" value="15026" />
           <entry key="xml" value="48" />
         </counts>
       </usages-collector>
@@ -114,7 +124,7 @@
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="SQL" value="4" />
           <entry key="Sass" value="16" />
-          <entry key="VTL" value="15007" />
+          <entry key="VTL" value="15012" />
           <entry key="XML" value="48" />
         </counts>
       </usages-collector>
@@ -132,19 +142,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.vm">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="20" column="92" selection-start-line="20" selection-start-column="92" selection-end-line="20" selection-end-column="92" />
+            <state relative-caret-position="332">
+              <caret line="150" column="38" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.vm">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="69" column="19" lean-forward="true" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+            <state relative-caret-position="462">
+              <caret line="94" column="21" lean-forward="true" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -162,9 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>amiiboID</find>
-      <find>session()</find>
-      <find>authenticated</find>
       <find>session</find>
       <find>isAuthenticated</find>
       <find>int userID = loggedIn ? 1 : 0;</find>
@@ -192,6 +199,9 @@
       <find>resultsFavoritedAlt</find>
       <find>userName</find>
       <find>beta</find>
+      <find>&lt;i class=&quot;fas fa-gem fa-2x&quot;&gt;&lt;/i&gt;</find>
+      <find>gem</find>
+      <find>fas fa-gem</find>
     </findStrings>
     <replaceStrings>
       <replace>$collectedAmiibo</replace>
@@ -203,6 +213,8 @@
       <replace>$wishlist</replace>
       <replace>AuthHelper.isAuthenticated</replace>
       <replace>int userID = loggedIn ? rq.session().attribute(&quot;userID&quot;) : -1;</replace>
+      <replace />
+      <replace>fas fa-gift</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -241,7 +253,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/countWish.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/countFave.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
         <option value="$PROJECT_DIR$/src/main/java/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/AddAmiibo.java" />
         <option value="$PROJECT_DIR$/src/main/java/AddFavorite.java" />
@@ -259,9 +270,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js" />
         <option value="$PROJECT_DIR$/src/main/java/eBayAPI.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/about.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" />
       </list>
     </option>
   </component>
@@ -301,6 +313,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,22 +347,30 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="profile" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539919325930" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548429446338" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
@@ -550,11 +571,12 @@
       <workItem from="1545984621319" duration="132000" />
       <workItem from="1547265817864" duration="924000" />
       <workItem from="1547266828245" duration="374000" />
+      <workItem from="1548427718017" duration="1908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="665345000" />
+    <option name="totallyTimeSpent" value="667253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -568,7 +590,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="2400" height="1536" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20387931" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20732759" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -576,7 +598,7 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3282881" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281711" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.70074546" weight="0.2721239" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.39874738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -818,13 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Connection.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ConnectionManager.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ConnHelper.java">
@@ -894,20 +909,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eBayAPI.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="102" column="34" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="485" column="33" selection-start-line="485" selection-start-column="33" selection-end-line="485" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2277">
+          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -918,10 +930,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.vm">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="69" column="19" lean-forward="true" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+        <state relative-caret-position="332">
+          <caret line="150" column="38" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="94" column="21" lean-forward="true" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
         </state>
       </provider>
     </entry>

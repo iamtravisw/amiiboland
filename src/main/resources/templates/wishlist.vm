@@ -152,7 +152,7 @@
                                             #end
                                             <label>
                                                     <span class="fa-stack">
-                                                        <i class="fas fa-gem fa-2x"></i>
+                                                        <i class="fas fa-gift fa-2x"></i>
                                                         <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
                                                             <input class="want is-hidden" type="checkbox" id="want#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.WishList">
                                                     </span>
