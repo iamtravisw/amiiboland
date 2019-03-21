@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var $search = $("#myInput").on('keyup',function(){
+                var matcher = new RegExp($(this).val(), 'gi');
+                $('.column').show().not(function(){
+                    return matcher.test($(this).find('.message-header').text())
+                }).hide();
+            })
+        })
+    </script>
+</head>
+
+<div id="header">
+    <nav class="navbar is-transparent" id="navMenu">
+        <div class="navbar-brand">
+            <a class="navbar-item has-text-danger has-text-weight-bold" href="/">
+                <img src="https://storage.googleapis.com/amiibo/logo.png" alt="Amiibo.Land">
+                &nbsp; beta
+            </a>
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+            </div>
+        </div>
+        <div class="navbar-end">
+            <a class="navbar-item" href="/">
+                Home
+            </a>
+            <a class="navbar-item" href="/profile/collection">
+                Profile
+            </a>
+            <a class="navbar-item" href="/about">
+                About
+            </a>
+            <!--
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="#">
+                    Series
+                </a>
+                <div class="navbar-dropdown is-boxed">
+
+                    #foreach( $series in $allSeries )
+                        <a class="navbar-item" href="/series/$series.Series">
+                            $series.Series
+                        </a>
+                    #end
+                </div>
+            </div>
+            -->
+        </div>
+
+        <span class="navbar-item">
+            <input class="input" type="text" placeholder="Filter amiibo on this page..." id="myInput">
+        </span>
+
+        <a class="navbar-item" href="#" id="showModal">
+            Login
+        </a>
+        <span class="navbar-item" id="signup">
+            <a class="button is-dark" href="/signup">
+              <span class="icon">
+                <i class="fas fa-user"></i>
+              </span>
+                <span>Sign Up</span>
+            </a>
+        </span>
+
+        <form action="/signout" method="POST">
+            <input class="input is-hidden" type="text" input name="logout" id="signout" value="logout">
+            <span class="navbar-item is-hidden" id="logout">
+                <button class="button input is-dark" type="submit">
+                <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+            <span>Sign Out</span>
+                </button>
+            </span>
+        </form>
+</nav>

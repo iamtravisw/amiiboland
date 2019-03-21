@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amiibo.Land - The Ultimate Source for Amiibo Collectors!</title>
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/amiiboland.js"></script>
+    <link rel="icon" href="/amiibo.ico">
+    <script src="/js/vanillatoasts.js"></script>
+    <link href="/css/vanillatoasts.css" rel="stylesheet"></script>
+    <script type="text/javascript">
+        var authenticated = $authenticated;
+    </script>
+</head>
+
+<div id="navMenu">
+    <script>
+        $.get("/navbar", function(data){
+            $("#navMenu").replaceWith(data);
+        });
+    </script>
+</div>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div id="login">
+                <script>
+                    $.get("/login", function(data){
+                        $("#login").replaceWith(data);
+                    });
+                </script>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="tabs is-centered is-boxed">
+    <ul>
+        <li class="">
+            <span>
+                <a href="new">New</a>
+            </span>
+        </li>
+
+        <li class="">
+            <span>
+                <a href="/">All</a>
+            </span>
+        </li>
+
+        <li class="">
+            <span>
+                <a href="/collected">Collected</a>
+            </span>
+        </li>
+
+        <li class="">
+            <span>
+                <a href="/favorited">Favorited</a>
+            </span>
+        </li>
+
+        <li class="is-active">
+            <span>
+                <a href="">Wish List</a>
+            </span>
+        </li>
+
+        <li class="">
+            <span>
+                <a href="/missing">Missing</a>
+            </span>
+        </li>
+
+        <li class="">
+            <span>
+                <a href="/comingsoon">Coming Soon</a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+    <div class="columns is-multiline">
+        <!-- Here are all of the Amiibo -->
+        #foreach( $wishlist in $wishlistAmiibo )
+            <div class="column is-one-fifth">
+                <div class="amiibo-id is-hidden" id="amiibo"></div>
+                <article class="message is-large is-danger">
+                    <div class="message-header" id="$wishlist.Name">
+                        <p></p>
+                        <p>$wishlist.Name</p>
+                        <p></p>
+                    </div>
+                    <center>   <!-- Amiibo -->
+                        <figure class="image has-text-light">
+                            <img class="amiibo-image" src="$wishlist.ImageURL" id="inactive-$wishlist.AmiiboID">
+                            <!-- Content Over Amiibo -->
+                            <figcaption class="overlay is-overlay is-invisible" id="active-$wishlist.AmiiboID">
+                                <!-- Background -->
+                                <img class="background is-overlay" src="https://storage.googleapis.com/amiibo/black.png">
+                                <div style="height:16px;font-size:16px;">&nbsp;</div>
+                                <!-- Buttons -->
+                                <div class="tile is-ancestor">
+                                    <!-- Collected "Mine" (Star) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($wishlist.Collected == "Y")
+                                            <div class="star has-text-warning" id="star$wishlist.AmiiboID">
+                                            #else
+                                            <div class="star" id="star$wishlist.AmiiboID">
+                                            #end
+                                            <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-star fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Mine</h4>
+                                                        <input class="mine is-hidden" type="checkbox" id="mine#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Collected">
+                                                    </span>
+                                            </label>
+                                        </div>
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Love" (Heart) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if ($wishlist.Favorited == "Y")
+                                            <div class="heart has-text-danger" id="heart$wishlist.AmiiboID">
+                                            #else
+                                            <div class="heart" id="heart$wishlist.AmiiboID">
+                                            #end
+                                            <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-heart fa-2x "></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Love</h4>
+                                                            <input class="love is-hidden" type="checkbox" id="love#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.Favorited">
+                                                    </span>
+                                            </label>
+                                        </div>
+                                        </article>
+                                    </div>
+                                    <!-- Collected "Want" (Gem) Button -->
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child">
+                                            #if($wishlist.WishList == "Y")
+                                            <div class="gem has-text-info" id="gem$wishlist.AmiiboID">
+                                            #else
+                                            <div class="gem" id="gem$wishlist.AmiiboID">
+                                            #end
+                                            <label>
+                                                    <span class="fa-stack">
+                                                        <i class="fas fa-gem fa-2x"></i>
+                                                        <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
+                                                            <input class="want is-hidden" type="checkbox" id="want#$wishlist.AmiiboID#$wishlist.Name" value="$wishlist.WishList">
+                                                    </span>
+                                            </label>
+                                        </div>
+                                        </article>
+                                    </div>
+                            </figcaption>
+                        </figure>
+                    </center>
+                </article>
+            </div>
+        #end
+    </div>
+
+<footer class="footer">
+    <div class="content">
+        <center>
+            <strong> Amiibo.Land © <a href="http://iamtravisw.com"> Travis Woodward</strong>.<br></a>
+            All trademarks, service marks, trade names, trade dress, product names and logos appearing on the site are the property of their respective owners.</a><br>
+            <a href="/privacypolicy">Privacy Policy</a> | <a href="/termsofservice">Terms of Service</a>
+        </center>
+    </div>
+</footer>
+
+</body>
+</html>

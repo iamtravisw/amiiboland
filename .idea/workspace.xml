@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="amiiboland:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1036">
+              <caret line="870" column="19" selection-start-line="870" selection-start-column="19" selection-end-line="870" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>$amiibo</find>
+      <find>amiiboID</find>
+      <find>session()</find>
+      <find>authenticated</find>
+      <find>session</find>
+      <find>isAuthenticated</find>
+      <find>int userID = loggedIn ? 1 : 0;</find>
+      <find>?</find>
+      <find>thanks</find>
+      <find>modal</find>
+      <find>is-da</find>
+      <find>activeUser</find>
+      <find>currentuser</find>
+      <find>count</find>
+      <find>session().attribute</find>
+      <find>request.session(true);</find>
+      <find>attribute</find>
+      <find>userID</find>
+      <find>userName1</find>
+      <find>email</find>
+      <find>collection</find>
+      <find>conn</find>
+      <find>amii</find>
+      <find>authUser</find>
+      <find>getUserName</find>
+      <find>#if</find>
+      <find>auth</find>
+      <find>current</find>
+      <find>resultsFavoritedAlt</find>
+      <find>userName</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>$collectedAmiibo</replace>
+      <replace>$collected</replace>
+      <replace>$unreleased</replace>
+      <replace>$favorited</replace>
+      <replace>$missing</replace>
+      <replace>$recents</replace>
+      <replace>$wishlist</replace>
+      <replace>AuthHelper.isAuthenticated</replace>
+      <replace>int userID = loggedIn ? rq.session().attribute(&quot;userID&quot;) : -1;</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/collected.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/sass/extensions/index.sass" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/js/events.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/js/EventEmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/js/index.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/js/bulma-steps.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/bulma.sass" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/css/bulma.min.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/sass/extensions/_all.sass" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/css/bulma.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/series/login.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/SignUp.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/wishlist.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/missing.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/favorited.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/collected.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pleaselogin.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/resetpassword.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/new.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/about.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/sorry.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/thanks.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/signup.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/count.vm" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/countWish.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/countFave.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/login.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/Connection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AddAmiibo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AddFavorite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AddWishList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RemoveAmiibo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RemoveWishList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ConnHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AmiiboCollect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RemoveFavorite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AmiiboFavorite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AmiiboWishList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AuthHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="32" />
+    <option name="width" value="2400" />
+    <option name="height" value="1536" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amiiboland" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amiiboland" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550202638051" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+      <recent name="$PROJECT_DIR$/src/main/resources/public/js" />
+      <recent name="$PROJECT_DIR$/src/main/resources/public/sass/components" />
+      <recent name="$PROJECT_DIR$/src/main/resources/public/sass/utilities" />
+      <recent name="$PROJECT_DIR$/src/main/resources/public/sass/elements" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Build JAR" type="Application" factoryName="Application">
+      <envs>
+        <env name="DB_URL" value="jdbc:mysql://localhost:3306/AmiiboLand" />
+        <env name="DB_USER" value="root" />
+        <env name="DB_PASSWORD" value="Pepper" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="amiiboland" />
+      <option name="PROGRAM_PARAMETERS" value="--help" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="assembly:single" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <envs>
+        <env name="DB_URL" value="jdbc:mysql://localhost:3306/AmiiboLand" />
+        <env name="DB_USER" value="root" />
+        <env name="DB_PASSWORD" value="Pepper" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="amiiboland" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Build JAR" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56f5454f-3f85-4ca3-b8fc-5e6f0dd19463" name="Default" comment="" />
+      <created>1533873552057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1533873552057</updated>
+      <workItem from="1533873560646" duration="709000" />
+      <workItem from="1533874322581" duration="4634000" />
+      <workItem from="1533946806997" duration="29182000" />
+      <workItem from="1533997493401" duration="3479000" />
+      <workItem from="1534002341477" duration="416000" />
+      <workItem from="1534002945745" duration="32000" />
+      <workItem from="1534003220161" duration="458000" />
+      <workItem from="1534003823904" duration="887000" />
+      <workItem from="1534004731538" duration="1846000" />
+      <workItem from="1534024491745" duration="381000" />
+      <workItem from="1534034318191" duration="9522000" />
+      <workItem from="1534080193589" duration="20955000" />
+      <workItem from="1534108901655" duration="28540000" />
+      <workItem from="1535264521972" duration="2785000" />
+      <workItem from="1535292935209" duration="21883000" />
+      <workItem from="1535324413096" duration="1349000" />
+      <workItem from="1535327390553" duration="763000" />
+      <workItem from="1535329518605" duration="640000" />
+      <workItem from="1535332497458" duration="9173000" />
+      <workItem from="1535514352258" duration="1437000" />
+      <workItem from="1535520921684" duration="5189000" />
+      <workItem from="1535528436724" duration="331000" />
+      <workItem from="1535552285844" duration="4203000" />
+      <workItem from="1535680127592" duration="271000" />
+      <workItem from="1535771600192" duration="8035000" />
+      <workItem from="1535822937839" duration="36045000" />
+      <workItem from="1535909621371" duration="9250000" />
+      <workItem from="1535924147603" duration="15472000" />
+      <workItem from="1535963190042" duration="349000" />
+      <workItem from="1535993844688" duration="3164000" />
+      <workItem from="1536001731186" duration="11137000" />
+      <workItem from="1536019434563" duration="1929000" />
+      <workItem from="1536031074485" duration="4645000" />
+      <workItem from="1536088517577" duration="6909000" />
+      <workItem from="1536118659642" duration="469000" />
+      <workItem from="1536125794245" duration="6530000" />
+      <workItem from="1536171346245" duration="598000" />
+      <workItem from="1536190129665" duration="2556000" />
+      <workItem from="1536409115006" duration="14036000" />
+      <workItem from="1536444837890" duration="9197000" />
+      <workItem from="1536543204633" duration="2811000" />
+      <workItem from="1536783234401" duration="1650000" />
+      <workItem from="1536785878645" duration="50460000" />
+      <workItem from="1536933084435" duration="3458000" />
+      <workItem from="1536942998499" duration="4556000" />
+      <workItem from="1537020487307" duration="12859000" />
+      <workItem from="1537060736688" duration="119000" />
+      <workItem from="1537072944229" duration="68000" />
+      <workItem from="1537110431917" duration="36950000" />
+      <workItem from="1537281035476" duration="3599000" />
+      <workItem from="1537293526398" duration="4335000" />
+      <workItem from="1537311301445" duration="17000" />
+      <workItem from="1537311421228" duration="17213000" />
+      <workItem from="1537368890190" duration="4305000" />
+      <workItem from="1537380215657" duration="393000" />
+      <workItem from="1537398651598" duration="2912000" />
+      <workItem from="1537405116161" duration="14272000" />
+      <workItem from="1537420418243" duration="12197000" />
+      <workItem from="1537467881538" duration="210000" />
+      <workItem from="1537539418158" duration="9000" />
+      <workItem from="1537539543126" duration="13552000" />
+      <workItem from="1537569259685" duration="8250000" />
+      <workItem from="1537577974303" duration="1782000" />
+      <workItem from="1537610631163" duration="17810000" />
+      <workItem from="1537713770288" duration="9525000" />
+      <workItem from="1537745429221" duration="598000" />
+      <workItem from="1537757725636" duration="10249000" />
+      <workItem from="1537796208959" duration="2885000" />
+      <workItem from="1537807684969" duration="659000" />
+      <workItem from="1537830171182" duration="3653000" />
+      <workItem from="1537885530434" duration="41278000" />
+      <workItem from="1537970980367" duration="16462000" />
+      <workItem from="1537993025246" duration="266000" />
+      <workItem from="1537998008672" duration="2395000" />
+      <workItem from="1538000788134" duration="115000" />
+      <workItem from="1538003551708" duration="767000" />
+      <workItem from="1538004355922" duration="83000" />
+      <workItem from="1538010136423" duration="851000" />
+      <workItem from="1538074430967" duration="8658000" />
+      <workItem from="1538100965263" duration="19000" />
+      <workItem from="1538101105409" duration="8474000" />
+      <workItem from="1538141314501" duration="12613000" />
+      <workItem from="1538176136924" duration="1868000" />
+      <workItem from="1538178221154" duration="1024000" />
+      <workItem from="1538231614208" duration="9144000" />
+      <workItem from="1538252763754" duration="650000" />
+      <workItem from="1538360876957" duration="612000" />
+      <workItem from="1538403088277" duration="828000" />
+      <workItem from="1538407265927" duration="111000" />
+      <workItem from="1538519033266" duration="41000" />
+      <workItem from="1538671187046" duration="337000" />
+      <workItem from="1538672392901" duration="793000" />
+      <workItem from="1538673929591" duration="101000" />
+      <workItem from="1538715348161" duration="44000" />
+      <workItem from="1539114341381" duration="72000" />
+      <workItem from="1539127888355" duration="8505000" />
+      <workItem from="1539666691853" duration="37000" />
+      <workItem from="1539666987204" duration="536000" />
+      <workItem from="1539667574958" duration="1877000" />
+      <workItem from="1539670660310" duration="25000" />
+      <workItem from="1539671417091" duration="96000" />
+      <workItem from="1539795724013" duration="23000" />
+      <workItem from="1539795981280" duration="130000" />
+      <workItem from="1539807765775" duration="20864000" />
+      <workItem from="1550201903525" duration="59000" />
+      <workItem from="1550202091340" duration="527000" />
+      <workItem from="1550203383306" duration="178000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="661205000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="32" width="2400" height="1536" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13706897" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3282881" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.70074546" weight="0.27172312" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.39874738" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32985386" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32964602" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.29925454" side_tool="true" weight="0.27348644" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.74791664" weight="0.20397644" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" weight="0.8349308" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Maven" order="9" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15069222" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32857144" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.701278" visible="true" weight="0.27348644" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997396" weight="0.39874738" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32985386" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32985386" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.29872206" side_tool="true" weight="0.27557412" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.74791664" weight="0.20563674" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js</url>
+          <line>49</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.css.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="73516" selection-start-column="73516" selection-end-column="73516" />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/EventEmitter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/bulma-steps.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/vanillatoasts.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/sass/extensions/bulma-steps.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/bulma.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/sass/extensions/_all.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/css/bulma.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="9673" lean-forward="true" selection-start-line="9673" selection-end-line="9673" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SignUp.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/about.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/collected.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/comingsoon.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="135" column="51" lean-forward="true" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/missing.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="35" column="25" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="35" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wishlist.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/termsofservice.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/resetpassword.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/privacypolicy.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/sorry.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/thanks.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/signup.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="79" column="120" lean-forward="true" selection-start-line="79" selection-start-column="120" selection-end-line="79" selection-end-column="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/favorited.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="40" lean-forward="true" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/count.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/countFave.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/countWish.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/new.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="105" column="85" selection-start-line="105" selection-start-column="85" selection-end-line="105" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pleaselogin.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="94" selection-start-line="11" selection-start-column="94" selection-end-line="11" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Connection.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ConnectionManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ConnHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AmiiboCollection.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/AddAmiibo.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/RemoveAmiibo.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/RemoveFavorite.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/AmiiboFavorite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#166#167#0" expanded="true" />
+            <element signature="e#206#207#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AddFavorite.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/AddWishList.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/RemoveWishList.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/AmiiboCollect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="88" column="33" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AmiiboWishList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="940">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/public/js/amiiboland.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/collection.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="81" column="79" selection-start-line="81" selection-start-column="79" selection-end-line="81" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/favorites.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile/wishlist.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="85" column="57" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AuthHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1036">
+          <caret line="870" column="19" selection-start-line="870" selection-start-column="19" selection-end-line="870" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>amiiboland:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>amiiboland</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>mysql-connector-java-5.1.46-bin</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
