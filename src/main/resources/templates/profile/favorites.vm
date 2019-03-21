@@ -89,7 +89,7 @@
                 </li>
                 <li>
                     <a href="/profile/$userID/wishlist">
-                        <span class="icon is-small"><i class="fas fa-gem" aria-hidden="true"></i></span>
+                        <span class="icon is-small"><i class="fas fa-gift" aria-hidden="true"></i></span>
                         <span>Wish List</span>
                     </a>
                 </li>
@@ -167,7 +167,7 @@
                                         #end
                                         <label>
                                             <span class="fa-stack">
-                                                <i class="fas fa-gem fa-2x"></i>
+                                                <i class="fas fa-gift fa-2x"></i>
                                                 <h4 class="subtitle is-5 has-text-light is-bold">Want</h4>
                                                 <input class="want is-hidden" type="checkbox" id="want#$favorited.AmiiboID#$favorited.Name" value="$favorited.WishList">
                                             </span>
