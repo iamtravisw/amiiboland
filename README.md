@@ -1,4 +1,4 @@
-# Original Amiibo.Land
+# Original Amiibo.Land (Java)
 
 **Important:** This project has been remade using C#, Angular and Postgres. **[Please view the new directory here](https://github.com/iamtravisw/amiiboland).**
 
