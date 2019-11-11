@@ -1,6 +1,6 @@
 # Original Amiibo.Land
 
-This project has been remade using C#, Angular and Postgres. [Please view the new directory here](https://github.com/iamtravisw/amiiboland). 
+**Important: This project has been remade using C#, Angular and Postgres. [Please view the new directory here](https://github.com/iamtravisw/amiiboland).**
 
 **Amiibo** are Nintendo's wireless communications and storage protocol, for use between compatible toys-to-life figurines, and the Wii U, Nintendo 3DS, and Nintendo Switch gaming platforms. **Amiibo.Land** is a place for collectors to keep track of their beloved Amiibo.
 
