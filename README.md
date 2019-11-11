@@ -37,4 +37,4 @@ Amiibo.Land is a web application and readily available for anyone to use. All yo
 - This project is not currently accepting contributions.
 
 ## Questions/ Support
-If you have any questions or concerns about this program, please contact me on my [official website](https://www.iamtravisw.com/p/amiiboland.html) by leaving a comment.
+If you have any questions or concerns about this program, please contact me on my [official website](https://www.iamtravisw.com/) by leaving a comment.
